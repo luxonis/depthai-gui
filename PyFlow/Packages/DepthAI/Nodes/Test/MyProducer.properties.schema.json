@@ -1,0 +1,18 @@
+{
+  "$id": "https://lpb.luxonis.com/schema/MyProducer.properties.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MyProducer Properties",
+  "description": "Specify message and processor placement of MyProducer node",
+  "required": [ "processorPlacement" ],
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "default": "Hello World!"
+    },
+    "processorPlacement":{
+      "$ref": "ProcessorType.schema.json"
+    }
+  }
+}

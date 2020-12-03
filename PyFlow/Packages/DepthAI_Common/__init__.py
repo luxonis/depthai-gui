@@ -23,6 +23,7 @@ from DepthAI_Common.Pins.TrackingInfoPin import TrackingInfoPin
 # Tools
 from DepthAI_Common.Tools.CustomDeviceTool import CustomDeviceTool
 from DepthAI_Common.Tools.RunTool import RunTool
+from DepthAI_Common.Tools.StopTool import StopTool
 
 # Factories
 from DepthAI_Common.UI.NodeFactory import createNodeDepthAI
@@ -42,7 +43,7 @@ PINS_TO_ADD = [
 for pin in PINS_TO_ADD:
     _PINS[pin.__name__] = pin
 
-TOOLS_TO_ADD = [CustomDeviceTool, RunTool]
+TOOLS_TO_ADD = [CustomDeviceTool, RunTool, StopTool]
 
 for tool in TOOLS_TO_ADD:
     _TOOLS[tool.__name__] = tool

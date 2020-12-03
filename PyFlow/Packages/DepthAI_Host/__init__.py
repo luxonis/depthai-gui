@@ -12,7 +12,9 @@ from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
 
 # Class based nodes
 from DepthAI_Host.Nodes.XLink.HostXLinkRead import HostXLinkRead
+from DepthAI_Host.Nodes.DataOps.ToBBoxNode import ToBBoxNode
 from DepthAI_Host.Nodes.FrameOps.ToFrameNode import ToFrameNode
+from DepthAI_Host.Nodes.FrameOps.BBoxOverlayNode import BBoxOverlayNode
 from DepthAI_Host.Nodes.Display.FramePreviewNode import FramePreviewNode
 
 _FOO_LIBS = {}
@@ -23,7 +25,7 @@ _PREFS_WIDGETS = OrderedDict()
 _EXPORTERS = OrderedDict()
 
 NODES_TO_ADD = [
-    HostXLinkRead, ToFrameNode, FramePreviewNode
+    HostXLinkRead, ToFrameNode, FramePreviewNode, BBoxOverlayNode, ToBBoxNode
 ]
 
 for node in NODES_TO_ADD:

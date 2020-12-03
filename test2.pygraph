@@ -55,7 +55,7 @@
                                 "destinationUUID": "6f89a299-12f7-4f1a-bc8a-4fce67b8cda6",
                                 "sourceName": "BW1093_color",
                                 "destinationName": "XLinkOut_input",
-                                "uuid": "8fc988af-0762-4daf-b608-47d23b5d921e",
+                                "uuid": "cd3648fa-444c-45ac-9b6a-ebd5243d2460",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -70,7 +70,7 @@
                                 "destinationUUID": "37b8a803-3928-4c87-a159-2809e3d616d6",
                                 "sourceName": "BW1093_color",
                                 "destinationName": "MobilenetSSDNode_frame",
-                                "uuid": "e2dcef82-9970-4bfa-bbd0-c17dd69550b9",
+                                "uuid": "331100e0-01a3-49b1-90a3-432a8659fedd",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -143,7 +143,7 @@
                                 "destinationUUID": "37b8a803-3928-4c87-a159-2809e3d616d6",
                                 "sourceName": "BW1093_color",
                                 "destinationName": "MobilenetSSDNode_frame",
-                                "uuid": "e2dcef82-9970-4bfa-bbd0-c17dd69550b9",
+                                "uuid": "331100e0-01a3-49b1-90a3-432a8659fedd",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -216,7 +216,7 @@
                                 "destinationUUID": "7adb7ac7-1c38-4505-8a84-e7477ab53972",
                                 "sourceName": "MobilenetSSDNode_out_tensor",
                                 "destinationName": "XLinkOut1_input",
-                                "uuid": "faf0d560-35de-476f-bc29-095d3d2753bb",
+                                "uuid": "5750827e-7439-4c04-bee7-3495813db736",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -255,29 +255,6 @@
             "uuid": "e6d3c9ab-b834-48a1-b543-ab44ee69e855",
             "inputs": [
                 {
-                    "name": "streamName",
-                    "package": "PyFlowBase",
-                    "fullName": "XLinkOut_streamName",
-                    "dataType": "StringPin",
-                    "direction": 0,
-                    "value": "\"cam_out\"",
-                    "uuid": "2cd091b1-381b-4115-a38a-f18aa3bbe83a",
-                    "linkedTo": [],
-                    "pinIndex": 1,
-                    "options": [
-                        256
-                    ],
-                    "structure": 0,
-                    "alwaysList": false,
-                    "alwaysSingle": false,
-                    "alwaysDict": false,
-                    "wrapper": {
-                        "bLabelHidden": false,
-                        "displayName": "streamName",
-                        "wires": {}
-                    }
-                },
-                {
                     "name": "input",
                     "package": "PyFlowBase",
                     "fullName": "XLinkOut_input",
@@ -314,7 +291,7 @@
                                 "destinationUUID": "6f89a299-12f7-4f1a-bc8a-4fce67b8cda6",
                                 "sourceName": "BW1093_color",
                                 "destinationName": "XLinkOut_input",
-                                "uuid": "8fc988af-0762-4daf-b608-47d23b5d921e",
+                                "uuid": "cd3648fa-444c-45ac-9b6a-ebd5243d2460",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -327,6 +304,29 @@
                         }
                     },
                     "currDataType": "FramePin"
+                },
+                {
+                    "name": "streamName",
+                    "package": "PyFlowBase",
+                    "fullName": "XLinkOut_streamName",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"cam_out\"",
+                    "uuid": "2cd091b1-381b-4115-a38a-f18aa3bbe83a",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "streamName",
+                        "wires": {}
+                    }
                 }
             ],
             "outputs": [],
@@ -391,7 +391,7 @@
                                 "destinationUUID": "7adb7ac7-1c38-4505-8a84-e7477ab53972",
                                 "sourceName": "MobilenetSSDNode_out_tensor",
                                 "destinationName": "XLinkOut1_input",
-                                "uuid": "faf0d560-35de-476f-bc29-095d3d2753bb",
+                                "uuid": "5750827e-7439-4c04-bee7-3495813db736",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -516,7 +516,7 @@
                                 "destinationUUID": "9228e800-c58f-4157-91cf-8c359bc8fbf8",
                                 "sourceName": "HostXLinkRead_out",
                                 "destinationName": "ToBBoxNode_data",
-                                "uuid": "d8aaac30-de98-4612-9cbe-04a2169d49c8",
+                                "uuid": "402bb0c0-ae3b-43fa-914a-c238ada9481e",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -614,7 +614,7 @@
                                 "destinationUUID": "9228e800-c58f-4157-91cf-8c359bc8fbf8",
                                 "sourceName": "HostXLinkRead_out",
                                 "destinationName": "ToBBoxNode_data",
-                                "uuid": "d8aaac30-de98-4612-9cbe-04a2169d49c8",
+                                "uuid": "402bb0c0-ae3b-43fa-914a-c238ada9481e",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -664,7 +664,7 @@
                                 "destinationUUID": "239e7c56-6ada-4267-9e30-4ae693879b17",
                                 "sourceName": "ToBBoxNode_bbox",
                                 "destinationName": "BBoxOverlayNode_bbox",
-                                "uuid": "5d5675e1-d987-45d7-9655-d88d6a6bcd94",
+                                "uuid": "69d003dc-0e16-4fe9-a1c1-a9f66754f9c1",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -764,7 +764,7 @@
                                 "destinationUUID": "7fe6e583-2fab-4c16-8046-4762579e1f80",
                                 "sourceName": "HostXLinkRead2_out",
                                 "destinationName": "ToFrameNode_data",
-                                "uuid": "6ea2abc1-d01b-48c7-9266-768522760553",
+                                "uuid": "99590aa2-1c2c-4ee3-a8a6-517e5be8c29f",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -839,7 +839,7 @@
                                 "destinationUUID": "7fe6e583-2fab-4c16-8046-4762579e1f80",
                                 "sourceName": "HostXLinkRead2_out",
                                 "destinationName": "ToFrameNode_data",
-                                "uuid": "6ea2abc1-d01b-48c7-9266-768522760553",
+                                "uuid": "99590aa2-1c2c-4ee3-a8a6-517e5be8c29f",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -912,6 +912,14 @@
                         {
                             "lhsNodeName": "ToFrameNode",
                             "outPinId": 1,
+                            "rhsNodeName": "FramePreviewNode3",
+                            "inPinId": 1,
+                            "lhsNodeUid": "0236a337-b06b-46b6-a678-18ebc1a0ae83",
+                            "rhsNodeUid": "3bf44c5d-6490-48c4-99e1-f6e1227f5e6a"
+                        },
+                        {
+                            "lhsNodeName": "ToFrameNode",
+                            "outPinId": 1,
                             "rhsNodeName": "BBoxOverlayNode",
                             "inPinId": 1,
                             "lhsNodeUid": "0236a337-b06b-46b6-a678-18ebc1a0ae83",
@@ -932,10 +940,10 @@
                         "wires": {
                             "1": {
                                 "sourceUUID": "df29b0ad-a825-4258-a896-a2bce7a34586",
-                                "destinationUUID": "a78aec81-8b1d-409a-97e3-b48748ad0dc8",
+                                "destinationUUID": "ed5dbfd2-513d-4831-b0f2-53adf8784be9",
                                 "sourceName": "ToFrameNode_frame",
-                                "destinationName": "BBoxOverlayNode_frame",
-                                "uuid": "b2fce308-be00-4ca2-b4ac-e1a655960189",
+                                "destinationName": "FramePreviewNode3_frame",
+                                "uuid": "6b48c6e0-42bb-4226-8a9d-e79cf75e0e1a",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -1008,7 +1016,7 @@
                                 "destinationUUID": "0b82ddf4-abb6-42f9-b0cd-b755d6cd91cc",
                                 "sourceName": "BBoxOverlayNode_result",
                                 "destinationName": "FramePreviewNode_frame",
-                                "uuid": "b2bae39d-ef22-48e0-b930-536bf08dc7a6",
+                                "uuid": "e74e025b-8911-4619-81a6-2b1038cb39d5",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -1040,8 +1048,8 @@
                     "output": {}
                 }
             },
-            "x": 135.0,
-            "y": 12.0
+            "x": 176.0,
+            "y": -241.0
         },
         {
             "package": "DepthAI_Host",
@@ -1051,52 +1059,6 @@
             "name": "BBoxOverlayNode",
             "uuid": "0f3cd946-4604-407a-b225-9ffdf476a2a4",
             "inputs": [
-                {
-                    "name": "bbox",
-                    "package": "DepthAI_Common",
-                    "fullName": "BBoxOverlayNode_bbox",
-                    "dataType": "BoundingBoxPin",
-                    "direction": 0,
-                    "value": null,
-                    "uuid": "239e7c56-6ada-4267-9e30-4ae693879b17",
-                    "linkedTo": [
-                        {
-                            "lhsNodeName": "ToBBoxNode",
-                            "outPinId": 1,
-                            "rhsNodeName": "BBoxOverlayNode",
-                            "inPinId": 2,
-                            "lhsNodeUid": "e9dd1934-a7cf-4f95-8a66-19d704629119",
-                            "rhsNodeUid": "0f3cd946-4604-407a-b225-9ffdf476a2a4"
-                        }
-                    ],
-                    "pinIndex": 2,
-                    "options": [],
-                    "structure": 0,
-                    "alwaysList": false,
-                    "alwaysSingle": false,
-                    "alwaysDict": false,
-                    "wrapper": {
-                        "bLabelHidden": false,
-                        "displayName": "bbox",
-                        "wires": {
-                            "2": {
-                                "sourceUUID": "f121d701-9320-4578-bb77-a889eae3ba00",
-                                "destinationUUID": "239e7c56-6ada-4267-9e30-4ae693879b17",
-                                "sourceName": "ToBBoxNode_bbox",
-                                "destinationName": "BBoxOverlayNode_bbox",
-                                "uuid": "5d5675e1-d987-45d7-9655-d88d6a6bcd94",
-                                "hOffsetL": "0.0",
-                                "hOffsetR": "0.0",
-                                "hOffsetLSShape": "0.0",
-                                "hOffsetRSShape": "0.0",
-                                "vOffset": "0.0",
-                                "vOffsetSShape": "0.0",
-                                "snapVToFirst": 1,
-                                "snapVToSecond": 0
-                            }
-                        }
-                    }
-                },
                 {
                     "name": "frame",
                     "package": "DepthAI_Common",
@@ -1132,7 +1094,53 @@
                                 "destinationUUID": "a78aec81-8b1d-409a-97e3-b48748ad0dc8",
                                 "sourceName": "ToFrameNode_frame",
                                 "destinationName": "BBoxOverlayNode_frame",
-                                "uuid": "b2fce308-be00-4ca2-b4ac-e1a655960189",
+                                "uuid": "12456aa1-efd0-459d-968a-ed9b71b0600e",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "bbox",
+                    "package": "DepthAI_Common",
+                    "fullName": "BBoxOverlayNode_bbox",
+                    "dataType": "BoundingBoxPin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "239e7c56-6ada-4267-9e30-4ae693879b17",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ToBBoxNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "BBoxOverlayNode",
+                            "inPinId": 2,
+                            "lhsNodeUid": "e9dd1934-a7cf-4f95-8a66-19d704629119",
+                            "rhsNodeUid": "0f3cd946-4604-407a-b225-9ffdf476a2a4"
+                        }
+                    ],
+                    "pinIndex": 2,
+                    "options": [],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "bbox",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "f121d701-9320-4578-bb77-a889eae3ba00",
+                                "destinationUUID": "239e7c56-6ada-4267-9e30-4ae693879b17",
+                                "sourceName": "ToBBoxNode_bbox",
+                                "destinationName": "BBoxOverlayNode_bbox",
+                                "uuid": "69d003dc-0e16-4fe9-a1c1-a9f66754f9c1",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -1205,7 +1213,7 @@
                                 "destinationUUID": "0b82ddf4-abb6-42f9-b0cd-b755d6cd91cc",
                                 "sourceName": "BBoxOverlayNode_result",
                                 "destinationName": "FramePreviewNode_frame",
-                                "uuid": "b2bae39d-ef22-48e0-b930-536bf08dc7a6",
+                                "uuid": "e74e025b-8911-4619-81a6-2b1038cb39d5",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -1232,8 +1240,86 @@
                     "output": {}
                 }
             },
-            "x": -64.0,
-            "y": 78.0
+            "x": -52.0,
+            "y": 19.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "FramePreviewNode",
+            "owningGraphName": "root",
+            "name": "FramePreviewNode3",
+            "uuid": "3bf44c5d-6490-48c4-99e1-f6e1227f5e6a",
+            "inputs": [
+                {
+                    "name": "frame",
+                    "package": "DepthAI_Common",
+                    "fullName": "FramePreviewNode3_frame",
+                    "dataType": "FramePin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "ed5dbfd2-513d-4831-b0f2-53adf8784be9",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ToFrameNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "FramePreviewNode3",
+                            "inPinId": 1,
+                            "lhsNodeUid": "0236a337-b06b-46b6-a678-18ebc1a0ae83",
+                            "rhsNodeUid": "3bf44c5d-6490-48c4-99e1-f6e1227f5e6a"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "frame",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "df29b0ad-a825-4258-a896-a2bce7a34586",
+                                "destinationUUID": "ed5dbfd2-513d-4831-b0f2-53adf8784be9",
+                                "sourceName": "ToFrameNode_frame",
+                                "destinationName": "FramePreviewNode3_frame",
+                                "uuid": "6b48c6e0-42bb-4226-8a9d-e79cf75e0e1a",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [],
+            "meta": {
+                "var": {},
+                "label": "FramePreviewNode3"
+            },
+            "wrapper": {
+                "resize": {
+                    "w": 230.0,
+                    "h": 239.0
+                },
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">FramePreviewNode3</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 175.0,
+            "y": 10.0
         }
     ],
     "depth": 1,

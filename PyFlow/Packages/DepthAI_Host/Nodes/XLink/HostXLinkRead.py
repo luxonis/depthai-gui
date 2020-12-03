@@ -36,9 +36,7 @@ class HostXLinkRead(HostNode):
         self.out = device.getOutputQueue(get_property_value(self, "streamName"), 1, True)
 
     def run(self):
-        print("Starting HostXLinkRead node...")
-        while True:
-            print("HostXLinkRead waiting...")
-            data = self.out.get()
-            self.send("out", data)
-            print("HostXLinkRead updated.")
+        print("HostXLinkRead waiting...")
+        data = self.out.get()
+        self.send("out", data)
+        print("HostXLinkRead updated.")

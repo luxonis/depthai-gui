@@ -36,16 +36,12 @@ class ToFrameNode(HostNode):
     def description():
         return "Description in rst format."
 
-    def compute(self, *args, **kwargs):
-        pass
-
     def run(self):
-        print("Starting ToFrame node...")
-        while True:
-            print("ToFrame waiting...")
-            packet = self.receive("data")
-            w = get_property_value(self, "width")
-            h = get_property_value(self, "height")
-            frame = np.array(packet.getData()).reshape((3, h, w)).transpose(1, 2, 0).astype(np.uint8)
-            self.send("frame", frame)
-            print("ToFrame updated.")
+        print("ToFrame waiting...")
+        packet = self.receive("data")
+        w = get_property_value(self, "width")
+        h = get_property_value(self, "height")
+        frame = np.array(packet.getData()).reshape((3, h, w)).transpose(1, 2, 0).astype(np.uint8)
+        frame = np.ascontiguousarray(frame)
+        self.send("frame", frame)
+        print("ToFrame updated.")

@@ -33,8 +33,6 @@ class FramePreviewNode(HostNode, PreviewNode):
         return "Description in rst format."
 
     def run(self, *args, **kwargs):
-        print("Starting preview node...")
-        while True:
-            print("Preview waiting...")
-            self.display_frame = self.receive("data")
-            print("Preview updated.")
+        print("Preview waiting...")
+        self.display_frame = self.receive("frame")
+        print("Preview updated.")

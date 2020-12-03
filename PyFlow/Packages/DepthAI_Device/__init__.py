@@ -35,7 +35,6 @@ from DepthAI_Device.Nodes.ModelZoo.PedestrianDetectionRetail13Node import Pedest
 from DepthAI_Device.Nodes.ModelZoo.PersonVehicleBikeDetectionNode import PersonVehicleBikeDetectionNode
 from DepthAI_Device.Nodes.ModelZoo.VehicleDetectionAdas2Node import VehicleDetectionAdas2Node
 from DepthAI_Device.Nodes.ModelZoo.VehicleLicensePlateDetectionNode import VehicleLicensePlateDetectionNode
-from DepthAI_Device.Nodes.XLink.HostXLinkRead import HostXLinkRead
 
 _FOO_LIBS = {}
 _NODES = {}
@@ -45,11 +44,11 @@ _PREFS_WIDGETS = OrderedDict()
 _EXPORTERS = OrderedDict()
 
 NODES_TO_ADD = [
-    BW1093, BW1097, BW1098OBC, VehicleLicensePlateDetectionNode, VehicleDetectionAdas2Node, HostXLinkRead, OCRNode,
+    BW1093, BW1097, BW1098OBC, VehicleLicensePlateDetectionNode, VehicleDetectionAdas2Node, OCRNode, MobilenetSSDNode,
     XLinkOut, GlobalPropertiesNode, ClassificationNetworkNode, XLinkIn, DetectorNetworkNode, BW1098FFC, RawNetworkNode,
     AgeGenderDetectionNode, EmotionsRecognitionNode, FaceDetectionAdas1Node, FaceDetectionRetail4Node, OCRNetworkNode,
-    FacialLandmarksAdas2Node, FacialLandmarksRetail9Node, MobilenetSSDNode, PedestrianDetectionAdas2Node,
-    PedestrianDetectionRetail13Node, PersonVehicleBikeDetectionNode,
+    FacialLandmarksAdas2Node, FacialLandmarksRetail9Node, PedestrianDetectionAdas2Node, PersonVehicleBikeDetectionNode,
+    PedestrianDetectionRetail13Node,
 ]
 
 for node in NODES_TO_ADD:

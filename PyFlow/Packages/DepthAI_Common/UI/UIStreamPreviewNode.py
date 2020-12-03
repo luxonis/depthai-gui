@@ -19,7 +19,7 @@ class UIStreamPreviewNode(UINodeBase):
         super(UIStreamPreviewNode, self).Tick(*args, **kwargs)
 
     def updateSize(self):
-        if not hasattr(self._rawNode, 'display_frame'):
+        if getattr(self._rawNode, 'display_frame', None) is None:
             return
         frame = self._rawNode.display_frame.copy()
         width = int(self.customLayout.geometry().width())

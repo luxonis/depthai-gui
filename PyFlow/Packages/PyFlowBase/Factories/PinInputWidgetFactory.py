@@ -162,7 +162,7 @@ class StringInputWidget(InputWidgetSingle):
         self.le.blockSignals(bLocked)
 
     def setWidgetValue(self, val):
-        self.le.setText(str(val))
+        self.le.setText("TEST" + str(val))
 
 
 class EnumInputWidget(InputWidgetSingle):
@@ -228,13 +228,13 @@ class PathInputWidget(InputWidgetSingle):
     def getPath(self):
         dlg = FileDialog(self.mode)
         if dlg.exec_() == QFileDialog.Accepted and len(dlg.selectedFiles())>0:
-            self.le.setText(dlg.selectedFiles()[0])
+            self.le.setText("TEST" + dlg.selectedFiles()[0])
 
     def blockWidgetSignals(self, bLocked):
         self.le.blockSignals(bLocked)
 
     def setWidgetValue(self, val):
-        self.le.setText(str(val))
+        self.le.setText("TEST" + str(val))
 
 class BoolInputWidget(InputWidgetSingle):
     """Boolean data input widget"""
@@ -273,7 +273,7 @@ class NoneInputWidget(InputWidgetSingle):
         self.le.blockSignals(bLocked)
 
     def setWidgetValue(self, val):
-        self.le.setText(str(val))
+        self.le.setText("TEST" + str(val))
 
 
 def getInputWidget(dataType, dataSetter, defaultValue, widgetVariant=DEFAULT_WIDGET_VARIANT, **kwds):

@@ -190,11 +190,9 @@ class GraphBase(ISerializable):
         :type jsonData: dict
         """
         self.clear()
-        self.name = self.graphManager.getUniqGraphName(jsonData['name'])
+        self.name = jsonData['name']
         self.category = jsonData['category']
         self.setIsRoot(jsonData['isRoot'])
-        if self.isRoot():
-            self.name = "root"
         # restore vars
         for varJson in jsonData['vars']:
             var = Variable.deserialize(self, varJson)

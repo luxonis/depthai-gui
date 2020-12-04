@@ -1796,12 +1796,16 @@ class BlueprintCanvasWidget(QWidget):
     def updateGraphTreeLocation(self, *args, **kwargs):
         location = self.canvas.location()
         clearLayout(self.pathLayout)
-        spacerItem = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        spacerItem = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Maximum)
         self.pathLayout.addItem(spacerItem)
         for folderName in location:
             index = self.pathLayout.count() - 1
+
             btn = QPushButton(folderName)
 
+            if index == 0:
+                btn.setCheckable(False)
+                btn.setDown(True)
             def onClicked(checked, name=None):
                 self.canvas.stepToCompound(name)
 

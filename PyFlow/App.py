@@ -332,7 +332,7 @@ class PyFlow(QMainWindow):
         # load raw data
         self.graphManager.get().deserialize(data)
         self.fileBeenLoaded.emit()
-        self.graphManager.get().selectGraphByName(data["activeGraph"])
+        self.graphManager.get().selectGraphByName(data["device"]["activeGraph"])
         self.updateLabel()
         PathsRegistry().rebuild()
 

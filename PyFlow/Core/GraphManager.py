@@ -20,7 +20,7 @@ from PyFlow.Core.GraphBase import GraphBase
 from PyFlow.Core.Common import *
 from PyFlow.Core import version
 
-ROOT_GRAPH_NAME = str('root')
+ROOT_GRAPH_NAME = str('device')
 
 
 class GraphManager(object):
@@ -35,8 +35,9 @@ class GraphManager(object):
         self.terminationRequested = False  #: used by cli only
         self.graphChanged = Signal(object)
         self._graphs = {}
-        self._activeGraph = None
-        self._activeGraph = GraphBase(ROOT_GRAPH_NAME, self)
+        self.deviceGraph = GraphBase(ROOT_GRAPH_NAME, self)
+        self.hostGraph = GraphBase("host", self)
+        self._activeGraph = self.deviceGraph
         self._activeGraph.setIsRoot(True)
 
     def findRootGraph(self):
@@ -63,10 +64,15 @@ class GraphManager(object):
 
         :rtype: dict
         """
-        rootGraph = self.findRootGraph()
-        saved = rootGraph.serialize()
-        saved["fileVersion"] = str(version.currentVersion())
-        saved["activeGraph"] = self.activeGraph().name
+        def serialize_graph(graph):
+            data = graph.serialize()
+            data["fileVersion"] = str(version.currentVersion())
+            data["activeGraph"] = self.activeGraph().name
+            return data
+        saved = {
+            "device": serialize_graph(self.deviceGraph),
+            "host": serialize_graph(self.hostGraph),
+        }
         return saved
 
     def removeGraphByName(self, name):
@@ -104,14 +110,12 @@ class GraphManager(object):
         :param data: Serialized data
         :type data: dict
         """
-        if "fileVersion" in data:
-            fileVersion = version.Version.fromString(data["fileVersion"])
-        else:
-            # handle older version
-            pass
         self.clear(keepRoot=False)
-        self._activeGraph = GraphBase(str('root'), self)
-        self._activeGraph.populateFromJson(data)
+        self.deviceGraph = GraphBase(ROOT_GRAPH_NAME, self)
+        self.hostGraph = GraphBase("host", self)
+        self.deviceGraph.populateFromJson(data["device"])
+        self.hostGraph.populateFromJson(data["host"])
+        self._activeGraph = self.deviceGraph
         self._activeGraph.setIsRoot(True)
         self.selectGraph(self._activeGraph)
 
@@ -123,12 +127,16 @@ class GraphManager(object):
         """
         self.selectGraphByName(ROOT_GRAPH_NAME)
         self.removeGraphByName(ROOT_GRAPH_NAME)
+        self.selectGraphByName("host")
+        self.removeGraphByName("host")
         self._graphs.clear()
         self._graphs = {}
         del self._activeGraph
         self._activeGraph = None
         if keepRoot:
-            self._activeGraph = GraphBase(ROOT_GRAPH_NAME, self)
+            self.deviceGraph = GraphBase(ROOT_GRAPH_NAME, self)
+            self.hostGraph = GraphBase("host", self)
+            self._activeGraph = self.deviceGraph
             self.selectGraph(self._activeGraph)
             self._activeGraph.setIsRoot(True)
 
@@ -228,7 +236,7 @@ class GraphManager(object):
 
             :meth:`PyFlow.Core.GraphBase.GraphBase.location`
         """
-        return self.activeGraph().location()
+        return self.activeGraph().location() + (self.hostGraph.location() if self.activeGraph().name == ROOT_GRAPH_NAME else self.deviceGraph.location())
 
     def getGraphsDict(self):
         """Creates and returns dictionary where graph name associated with graph
@@ -247,6 +255,7 @@ class GraphManager(object):
         :type graph: :class:`~PyFlow.Core.GraphBase.GraphBase`
         """
         graph.name = self.getUniqGraphName(graph.name)
+        print(graph.name, graph.uid)
         self._graphs[graph.uid] = graph
 
     def activeGraph(self):
@@ -263,6 +272,7 @@ class GraphManager(object):
         :type name: str
         """
         graphs = self.getGraphsDict()
+        print(graphs)
         if name in graphs:
             if name != self.activeGraph().name:
                 oldGraph = self.activeGraph()

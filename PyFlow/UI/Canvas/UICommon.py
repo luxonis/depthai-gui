@@ -49,7 +49,8 @@ def fetchPackageNames(graphJson):
 
             if "graphData" in node:
                 worker(node["graphData"])
-    worker(graphJson)
+    worker(graphJson['device'])
+    worker(graphJson['host'])
     return packages
 
 

@@ -71,11 +71,11 @@ class GeneralPreferences(CategoryWidgetBase):
         settings.setValue("RedirectOutput", self.redirectOutput.checkState() == QtCore.Qt.Checked)
 
     def onShow(self, settings):
-        self.lePythonEditor.setText(settings.value("EditorCmd"))
+        self.lePythonEditor.setText("TEST" + settings.value("EditorCmd"))
         path = settings.value("TempFilesDir")
         path = os.path.normpath(path)
-        self.tempFilesDir.setText(path)
-        self.additionalPackagePaths.setText(settings.value("ExtraPackageDirs"))
+        self.tempFilesDir.setText("TEST" + path)
+        self.additionalPackagePaths.setText("TEST" + settings.value("ExtraPackageDirs"))
 
         try:
             self.historyDepth.setValue(int(settings.value("HistoryDepth")))

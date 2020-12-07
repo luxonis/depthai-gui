@@ -63,8 +63,11 @@ class BBoxOverlayNode(HostNode):
         return None
 
     def run(self):
-        print("BBoxOverlay waiting...")
+        print(f"{self.name} waiting...")
         frame, bboxes = self.receive("frame", "bbox")
+        if frame is None:
+            print(f"{self.name} skipping - no frame available")
+            return
         frame = frame.copy()
         color = hex_to_rgb(get_property_value(self, "color_hex"))
         for raw_bbox in bboxes:
@@ -72,4 +75,4 @@ class BBoxOverlayNode(HostNode):
             print(bbox)
             cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), color, 2)
         self.send("result", frame)
-        print("BBoxOverlay updated.")
+        print(f"{self.name} updated.")

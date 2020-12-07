@@ -49,6 +49,7 @@ class Colors:
     NodeBackgrounds = QtGui.QColor(40, 40, 40, 200)
     NodeNameRectBlue = QtGui.QColor(28, 74, 149, 200)
     NodeNameRectGreen = QtGui.QColor(74, 124, 39, 200)
+    NodeNameRectOrange = QtGui.QColor(124, 94, 39, 200)
     NodeSelectedPenColor = QtGui.QColor(200, 200, 200, 150)
     Red = QtGui.QColor(255, 0, 0, 255)
     White = QtGui.QColor(255, 255, 255, 200)

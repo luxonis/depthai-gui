@@ -12,6 +12,7 @@ class ToFrameNode(HostNode):
         self.width = self.createInputPin('width', 'IntPin')
         self.height = self.createInputPin('height', 'IntPin')
         self.frame = self.createOutputPin('frame', 'FramePin')
+        self.data.enableOptions(PinOptions.AllowAny)
         self.data.enableOptions(PinOptions.AllowMultipleConnections)
         self.frame.enableOptions(PinOptions.AllowMultipleConnections)
 
@@ -37,10 +38,12 @@ class ToFrameNode(HostNode):
         return "Description in rst format."
 
     def run(self):
-        print("ToFrame waiting...")
+        print(f"{self.name} waiting...")
         packet = self.receive("data")
         w = get_property_value(self, "width")
         h = get_property_value(self, "height")
+        if 0 in (w, h):
+            raise RuntimeError(f"Width/Height is not set on the {self.name} node")
         frame = np.array(packet.getData()).reshape((3, h, w)).transpose(1, 2, 0).astype(np.uint8)
         frame = np.ascontiguousarray(frame)
         self.send("frame", frame)

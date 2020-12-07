@@ -10,6 +10,7 @@ class XLinkOut(DeviceNode):
         super(XLinkOut, self).__init__(name)
         self.streamName = self.createInputPin('streamName', 'StringPin')
         self.input = self.createInputPin('input', 'AnyPin')
+        self.input.enableOptions(PinOptions.AllowAny)
         self.input.enableOptions(PinOptions.AllowMultipleConnections)
 
     @staticmethod

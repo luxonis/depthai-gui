@@ -8,6 +8,7 @@ class XLinkIn(DeviceNode):
         super(XLinkIn, self).__init__(name)
         self.streamName = self.createInputPin('streamName', 'StringPin')
         self.out = self.createOutputPin('out', 'AnyPin')
+        self.out.enableOptions(PinOptions.AllowAny)
         self.out.enableOptions(PinOptions.AllowMultipleConnections)
 
     @staticmethod

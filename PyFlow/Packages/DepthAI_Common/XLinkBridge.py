@@ -3,6 +3,7 @@ import random
 from common import HostNode, DeviceNode, get_property_value, get_node_by_uid
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
+from PyFlow.UI.Utils.stylesheet import Colors
 
 
 def get_name():
@@ -12,8 +13,11 @@ def get_name():
 class XLinkBridge(HostNode, DeviceNode):
     def __init__(self, name):
         super(XLinkBridge, self).__init__(name)
-        self.out = self.createInputPin('in', 'AnyPin')
+        self.headerColor = Colors.NodeNameRectOrange.getRgb()
+        self.input = self.createInputPin('in', 'AnyPin')
         self.out = self.createOutputPin('out', 'AnyPin')
+        self.input.enableOptions(PinOptions.AllowAny)
+        self.out.enableOptions(PinOptions.AllowAny)
         self.out.enableOptions(PinOptions.AllowMultipleConnections)
         self.name = get_name()
 
@@ -69,12 +73,13 @@ class XLinkBridge(HostNode, DeviceNode):
 
     def run(self):
         if self.to_host():
-            print("HostXLinkRead waiting...")
-            data = self.out.get()
-            self.send("out", data)
-            print("HostXLinkRead updated.")
+            if self.out.has():
+                print(f"{self.name} getting new data...")
+                data = self.out.get()
+                self.send("out", data)
+                print(f"{self.name} updated.")
         else:
-            print("HostXLinkRead waiting...")
+            print(f"{self.name} waiting...")
             data = self.receive("in")
             self.input.send(data)
-            print("HostXLinkRead updated.")
+            print(f"{self.name} updated.")

@@ -16,10 +16,6 @@ from DepthAI_Device.Nodes.Devices.BW1093 import BW1093
 from DepthAI_Device.Nodes.Devices.BW1097 import BW1097
 from DepthAI_Device.Nodes.Devices.BW1098OBC import BW1098OBC
 from DepthAI_Device.Nodes.Devices.BW1098FFC import BW1098FFC
-from DepthAI_Device.Nodes.CustomNeuralNetwork.ClassificationNetworkNode import ClassificationNetworkNode
-from DepthAI_Device.Nodes.CustomNeuralNetwork.DetectorNetworkNode import DetectorNetworkNode
-from DepthAI_Device.Nodes.CustomNeuralNetwork.OCRNetworkNode import OCRNetworkNode
-from DepthAI_Device.Nodes.CustomNeuralNetwork.RawNetworkNode import RawNetworkNode
 from DepthAI_Device.Nodes.XLink.XLinkIn import XLinkIn
 from DepthAI_Device.Nodes.XLink.XLinkOut import XLinkOut
 from DepthAI_Device.Nodes.Global.GlobalPropertiesNode import GlobalPropertiesNode
@@ -46,10 +42,9 @@ _EXPORTERS = OrderedDict()
 
 NODES_TO_ADD = [
     BW1093, BW1097, BW1098OBC, VehicleLicensePlateDetectionNode, VehicleDetectionAdas2Node, OCRNode, MobilenetSSDNode,
-    XLinkOut, GlobalPropertiesNode, ClassificationNetworkNode, XLinkIn, DetectorNetworkNode, BW1098FFC, RawNetworkNode,
-    AgeGenderDetectionNode, EmotionsRecognitionNode, FaceDetectionAdas1Node, FaceDetectionRetail4Node, OCRNetworkNode,
+    XLinkOut, GlobalPropertiesNode, XLinkIn, BW1098FFC, PedestrianDetectionRetail13Node, XLinkBridge,
+    AgeGenderDetectionNode, EmotionsRecognitionNode, FaceDetectionAdas1Node, FaceDetectionRetail4Node,
     FacialLandmarksAdas2Node, FacialLandmarksRetail9Node, PedestrianDetectionAdas2Node, PersonVehicleBikeDetectionNode,
-    PedestrianDetectionRetail13Node, XLinkBridge
 ]
 
 for node in NODES_TO_ADD:

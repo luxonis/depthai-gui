@@ -11,14 +11,7 @@ from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
 # Pins
 from DepthAI_Common.Pins.FramePin import FramePin
 from DepthAI_Common.Pins.BoundingBoxPin import BoundingBoxPin
-from DepthAI_Common.Pins.DetectionLabelPin import DetectionLabelPin
 from DepthAI_Common.Pins.NeuralTensorPin import NeuralTensorPin
-from DepthAI_Common.Pins.DepthVectorPin import DepthVectorPin
-from DepthAI_Common.Pins.MSenderPin import MSenderPin
-from DepthAI_Common.Pins.SSenderPin import SSenderPin
-from DepthAI_Common.Pins.H264FramePin import H264FramePin
-from DepthAI_Common.Pins.H265FramePin import H265FramePin
-from DepthAI_Common.Pins.TrackingInfoPin import TrackingInfoPin
 
 # Tools
 from DepthAI_Common.Tools.CustomDeviceTool import CustomDeviceTool
@@ -36,8 +29,7 @@ _PREFS_WIDGETS = OrderedDict()
 _EXPORTERS = OrderedDict()
 
 PINS_TO_ADD = [
-    FramePin, NeuralTensorPin, BoundingBoxPin, DetectionLabelPin, DepthVectorPin, MSenderPin, SSenderPin, H264FramePin,
-    H265FramePin, TrackingInfoPin
+    FramePin, NeuralTensorPin, BoundingBoxPin
 ]
 
 for pin in PINS_TO_ADD:

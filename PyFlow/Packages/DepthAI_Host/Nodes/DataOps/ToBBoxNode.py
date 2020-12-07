@@ -11,6 +11,7 @@ class ToBBoxNode(HostNode):
         self.data = self.createInputPin('data', 'AnyPin')
         self.threshold = self.createInputPin('threshold', 'FloatPin')
         self.bbox = self.createOutputPin('bbox', 'BoundingBoxPin')
+        self.data.enableOptions(PinOptions.AllowAny)
         self.data.enableOptions(PinOptions.AllowMultipleConnections)
         self.bbox.enableOptions(PinOptions.AllowMultipleConnections)
 
@@ -38,7 +39,7 @@ class ToBBoxNode(HostNode):
         return "Description in rst format."
 
     def run(self):
-        print("ToBBox waiting...")
+        print(f"{self.name} waiting...")
         nn_data = self.receive("data")
         arr = np.array(nn_data.getFirstLayerFp16())
         arr = arr[:np.where(arr == -1)[0][0]]
@@ -49,4 +50,4 @@ class ToBBoxNode(HostNode):
             if obj[2] > get_property_value(self, "threshold")
         ]
         self.send("bbox", arr)
-        print("ToBBox updated.")
+        print(f"{self.name} updated.")

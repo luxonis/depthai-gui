@@ -2,11 +2,17 @@ import json
 import queue
 import threading
 
-import numpy as np
-
+from PyFlow.UI.Utils.stylesheet import Colors
 from PyFlow.Core.Common import PinDirection
-
 from PyFlow.Core import NodeBase
+from Qt.QtWidgets import QMessageBox
+
+
+def stop_pipeline(instance):
+    run_tool = next(filter(lambda tool: tool.name() == "RunTool", instance._tools), None)
+    if run_tool is not None:
+        print("STOPPING!")
+        run_tool._stop_pipeline()
 
 
 def node_id(node: NodeBase):
@@ -61,6 +67,10 @@ class PreviewNode:
 
 
 class DeviceNode(DepthaiNode):
+    def __init__(self, name):
+        super().__init__(name)
+        self.headerColor = Colors.NodeNameRectGreen.getRgb()
+
     def run_pipeline(self, *args, **kwargs):
         raise RuntimeError("Device nodes cannot be run!")
 
@@ -82,12 +92,16 @@ class StopNodeException(Exception):
 
 
 class HostNode(DepthaiNode):
+    def __init__(self, name):
+        super().__init__(name)
+        self.headerColor = Colors.NodeNameRectBlue.getRgb()
+
     def build_pipeline(self, *args, **kwargs):
         raise RuntimeError("Host nodes cannot build pipeline!")
     EXIT_MESSAGE = "exit_message"
 
     def run_node(self, device):
-        self.queue = queue.Queue(1)
+        self.queue = queue.Queue()
         self._running = True
         self.thread = threading.Thread(target=self._thread_fun, args=(self.queue, device), daemon=True)
         self.thread.start()
@@ -103,10 +117,17 @@ class HostNode(DepthaiNode):
         self.queue = queue
         self.input_buffer = {}
         self.start(device)
+        print(f"{self.name} starting...")
         while self._running:
             try:
                 self.run()
             except StopNodeException:
+                return
+            except Exception as e:
+                instance = self.getWrapper().canvasRef().pyFlowInstance
+                threading.Thread(target=stop_pipeline, args=(instance, )).start()
+                QMessageBox.critical(None, "Fatal error", "Error! {}".format(str(e)))
+                # TODO make custom QMessageBox with detailed traceback
                 return
 
     def start(self, device):
@@ -129,13 +150,13 @@ class HostNode(DepthaiNode):
     def receive(self, input_name, *input_names):
         names = [input_name, *input_names]
         in_data = self.queue.get()
+        self.queue.task_done()
         if in_data == self.EXIT_MESSAGE:
             print("HostNode received exit message, exiting...")
             raise StopNodeException()
         elif not isinstance(in_data, dict) or "name" not in in_data or "data" not in in_data:
             print("HostNode received malformed data packet: {}".format(in_data))
             return _receive_postprocess([None] * len(names))
-        self.queue.task_done()
         self.input_buffer[in_data["name"]] = in_data["data"]
         data = [
             self.input_buffer.get(key, self.get_default(key))

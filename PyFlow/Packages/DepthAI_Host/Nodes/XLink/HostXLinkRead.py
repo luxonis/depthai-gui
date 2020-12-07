@@ -8,6 +8,7 @@ class HostXLinkRead(HostNode):
         super(HostXLinkRead, self).__init__(name)
         self.streamName = self.createInputPin('streamName', 'StringPin')
         self.out = self.createOutputPin('out', 'AnyPin')
+        self.out.enableOptions(PinOptions.AllowAny)
         self.out.enableOptions(PinOptions.AllowMultipleConnections)
 
     @staticmethod
@@ -32,11 +33,10 @@ class HostXLinkRead(HostNode):
         return "Description in rst format."
 
     def start(self, device):
-        print("Initializing XLinkRead with {} queue".format(get_property_value(self, "streamName")))
+        print("Initializing {} with {} queue".format(self.name, get_property_value(self, "streamName")))
         self.out = device.getOutputQueue(get_property_value(self, "streamName"), 1, True)
 
     def run(self):
-        print("HostXLinkRead waiting...")
-        data = self.out.get()
-        self.send("out", data)
-        print("HostXLinkRead updated.")
+        if self.out.has():
+            data = self.out.get()
+            self.send("out", data)

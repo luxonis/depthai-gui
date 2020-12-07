@@ -1,12 +1,8 @@
-import json
 import traceback
 from pathlib import Path
 
-import cv2
-import numpy as np
-
 from DepthAI_Common.XLinkBridge import XLinkBridge
-from common import DepthaiNode, DeviceNode, HostNode
+from common import DeviceNode, HostNode
 from PyFlow.Core.Common import *
 from PyFlow.UI.Tool.Tool import ShelfTool
 from Qt import QtGui
@@ -29,9 +25,9 @@ class RunTool(ShelfTool):
 
     @staticmethod
     def name():
-        return "RunPipeline"
+        return "RunTool"
 
-    def stop_pipeline(self):
+    def _stop_pipeline(self):
         for node in self.host_nodes:
             node.stop_node()
         del self.device

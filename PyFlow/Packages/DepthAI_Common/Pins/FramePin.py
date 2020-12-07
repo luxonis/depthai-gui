@@ -51,7 +51,8 @@ class FramePin(PinBase):
 
     @staticmethod
     def color():
-        return (255, 255, 255, 255)
+        # no. 2 https://coolors.co/3de3f2-2313d4-cdd47f-39cc45-f52ae4-f1f7ad-701068-d2e036-bf2c1f-f5e1f3
+        return (57, 204, 69, 255)
 
     @staticmethod
     def internalDataStructure():

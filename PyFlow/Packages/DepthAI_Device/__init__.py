@@ -1,4 +1,5 @@
 from DepthAI_Common.UI.NodeFactory import createNodeDepthAI
+from DepthAI_Common.XLinkBridge import XLinkBridge
 
 PACKAGE_NAME = 'DepthAI'
 
@@ -48,7 +49,7 @@ NODES_TO_ADD = [
     XLinkOut, GlobalPropertiesNode, ClassificationNetworkNode, XLinkIn, DetectorNetworkNode, BW1098FFC, RawNetworkNode,
     AgeGenderDetectionNode, EmotionsRecognitionNode, FaceDetectionAdas1Node, FaceDetectionRetail4Node, OCRNetworkNode,
     FacialLandmarksAdas2Node, FacialLandmarksRetail9Node, PedestrianDetectionAdas2Node, PersonVehicleBikeDetectionNode,
-    PedestrianDetectionRetail13Node,
+    PedestrianDetectionRetail13Node, XLinkBridge
 ]
 
 for node in NODES_TO_ADD:

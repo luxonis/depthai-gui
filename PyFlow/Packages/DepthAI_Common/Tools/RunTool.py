@@ -5,6 +5,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+from DepthAI_Common.XLinkBridge import XLinkBridge
 from common import DepthaiNode, DeviceNode, HostNode
 from PyFlow.Core.Common import *
 from PyFlow.UI.Tool.Tool import ShelfTool
@@ -44,6 +45,8 @@ class RunTool(ShelfTool):
             for node in device_nodes:
                 node.build_pipeline(pipeline)
             for node in device_nodes:
+                if isinstance(node, XLinkBridge):
+                    continue
                 node.build_connections()
 
             self.found, self.device_info = depthai.XLinkConnection.getFirstDevice(depthai.XLinkDeviceState.X_LINK_UNBOOTED)

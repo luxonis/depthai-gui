@@ -24,10 +24,10 @@
                         {
                             "lhsNodeName": "BW1093",
                             "outPinId": 1,
-                            "rhsNodeName": "XLinkOut",
-                            "inPinId": 2,
+                            "rhsNodeName": "XLinkBridge",
+                            "inPinId": 1,
                             "lhsNodeUid": "b109a5dd-9c3e-44a6-b489-b5983739392a",
-                            "rhsNodeUid": "e6d3c9ab-b834-48a1-b543-ab44ee69e855"
+                            "rhsNodeUid": "92b6917e-8f73-49cd-81ff-5e208d62efc6"
                         },
                         {
                             "lhsNodeName": "BW1093",
@@ -50,27 +50,12 @@
                         "bLabelHidden": false,
                         "displayName": "color",
                         "wires": {
-                            "2": {
-                                "sourceUUID": "585d6b89-3d55-4d3d-b833-705e913ff377",
-                                "destinationUUID": "6f89a299-12f7-4f1a-bc8a-4fce67b8cda6",
-                                "sourceName": "BW1093_color",
-                                "destinationName": "XLinkOut_input",
-                                "uuid": "5f7761fe-9992-42e4-b973-ee72524d6007",
-                                "hOffsetL": "0.0",
-                                "hOffsetR": "0.0",
-                                "hOffsetLSShape": "0.0",
-                                "hOffsetRSShape": "0.0",
-                                "vOffset": "0.0",
-                                "vOffsetSShape": "0.0",
-                                "snapVToFirst": 1,
-                                "snapVToSecond": 0
-                            },
                             "1": {
                                 "sourceUUID": "585d6b89-3d55-4d3d-b833-705e913ff377",
-                                "destinationUUID": "37b8a803-3928-4c87-a159-2809e3d616d6",
+                                "destinationUUID": "8d93ba8b-901a-4aff-a671-f9e9d7341f37",
                                 "sourceName": "BW1093_color",
-                                "destinationName": "MobilenetSSDNode_frame",
-                                "uuid": "b2668e4e-a32b-4c09-81fc-db0bce7e13ea",
+                                "destinationName": "XLinkBridge_in",
+                                "uuid": "24889f6b-7f25-4549-aa16-2ceaa758e6b4",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -97,8 +82,8 @@
                     "output": {}
                 }
             },
-            "x": -370.0,
-            "y": -92.0
+            "x": -461.0,
+            "y": -73.0
         },
         {
             "package": "DepthAI_Device",
@@ -143,7 +128,7 @@
                                 "destinationUUID": "37b8a803-3928-4c87-a159-2809e3d616d6",
                                 "sourceName": "BW1093_color",
                                 "destinationName": "MobilenetSSDNode_frame",
-                                "uuid": "b2668e4e-a32b-4c09-81fc-db0bce7e13ea",
+                                "uuid": "dca4ba2c-6cb2-4af7-b96f-55328ed60cad",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -193,10 +178,10 @@
                         {
                             "lhsNodeName": "MobilenetSSDNode",
                             "outPinId": 1,
-                            "rhsNodeName": "XLinkOut1",
-                            "inPinId": 2,
+                            "rhsNodeName": "XLinkBridge1",
+                            "inPinId": 1,
                             "lhsNodeUid": "e43f19f6-2b1d-43c0-85c3-1f177bc018da",
-                            "rhsNodeUid": "957d7d8a-af51-4162-bffc-94e646bfd1af"
+                            "rhsNodeUid": "0f9da176-0c28-4422-99a7-2aa5313e2570"
                         }
                     ],
                     "pinIndex": 1,
@@ -211,12 +196,12 @@
                         "bLabelHidden": false,
                         "displayName": "out_tensor",
                         "wires": {
-                            "2": {
+                            "1": {
                                 "sourceUUID": "83abd5fe-46e3-47ab-9ff0-a44a21a15dbd",
-                                "destinationUUID": "7adb7ac7-1c38-4505-8a84-e7477ab53972",
+                                "destinationUUID": "19a2ab88-3211-4716-bd2a-7b340b7c47f9",
                                 "sourceName": "MobilenetSSDNode_out_tensor",
-                                "destinationName": "XLinkOut1_input",
-                                "uuid": "fc93b51d-5e0a-40af-bd64-1ab0c06c904d",
+                                "destinationName": "XLinkBridge1_in",
+                                "uuid": "a4dbd06d-b4d0-4ce1-990f-44298ec56fbe",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -243,383 +228,8 @@
                     "output": {}
                 }
             },
-            "x": -197.0,
-            "y": -92.0
-        },
-        {
-            "package": "DepthAI_Device",
-            "lib": null,
-            "type": "XLinkOut",
-            "owningGraphName": "root",
-            "name": "XLinkOut",
-            "uuid": "e6d3c9ab-b834-48a1-b543-ab44ee69e855",
-            "inputs": [
-                {
-                    "name": "streamName",
-                    "package": "PyFlowBase",
-                    "fullName": "XLinkOut_streamName",
-                    "dataType": "StringPin",
-                    "direction": 0,
-                    "value": "\"cam_out\"",
-                    "uuid": "2cd091b1-381b-4115-a38a-f18aa3bbe83a",
-                    "linkedTo": [],
-                    "pinIndex": 1,
-                    "options": [
-                        256
-                    ],
-                    "structure": 0,
-                    "alwaysList": false,
-                    "alwaysSingle": false,
-                    "alwaysDict": false,
-                    "wrapper": {
-                        "bLabelHidden": false,
-                        "displayName": "streamName",
-                        "wires": {}
-                    }
-                },
-                {
-                    "name": "input",
-                    "package": "PyFlowBase",
-                    "fullName": "XLinkOut_input",
-                    "dataType": "AnyPin",
-                    "direction": 0,
-                    "value": "null",
-                    "uuid": "6f89a299-12f7-4f1a-bc8a-4fce67b8cda6",
-                    "linkedTo": [
-                        {
-                            "lhsNodeName": "BW1093",
-                            "outPinId": 1,
-                            "rhsNodeName": "XLinkOut",
-                            "inPinId": 2,
-                            "lhsNodeUid": "b109a5dd-9c3e-44a6-b489-b5983739392a",
-                            "rhsNodeUid": "e6d3c9ab-b834-48a1-b543-ab44ee69e855"
-                        }
-                    ],
-                    "pinIndex": 2,
-                    "options": [
-                        8,
-                        16,
-                        256
-                    ],
-                    "structure": 0,
-                    "alwaysList": false,
-                    "alwaysSingle": false,
-                    "alwaysDict": false,
-                    "wrapper": {
-                        "bLabelHidden": false,
-                        "displayName": "input",
-                        "wires": {
-                            "2": {
-                                "sourceUUID": "585d6b89-3d55-4d3d-b833-705e913ff377",
-                                "destinationUUID": "6f89a299-12f7-4f1a-bc8a-4fce67b8cda6",
-                                "sourceName": "BW1093_color",
-                                "destinationName": "XLinkOut_input",
-                                "uuid": "5f7761fe-9992-42e4-b973-ee72524d6007",
-                                "hOffsetL": "0.0",
-                                "hOffsetR": "0.0",
-                                "hOffsetLSShape": "0.0",
-                                "hOffsetRSShape": "0.0",
-                                "vOffset": "0.0",
-                                "vOffsetSShape": "0.0",
-                                "snapVToFirst": 1,
-                                "snapVToSecond": 0
-                            }
-                        }
-                    },
-                    "currDataType": "FramePin"
-                }
-            ],
-            "outputs": [],
-            "meta": {
-                "var": {},
-                "label": "XLinkOut"
-            },
-            "wrapper": {
-                "collapsed": false,
-                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">XLinkOut</p></body></html>",
-                "exposeInputsToCompound": false,
-                "groups": {
-                    "input": {},
-                    "output": {}
-                }
-            },
-            "x": -278.0,
-            "y": -213.0
-        },
-        {
-            "package": "DepthAI_Device",
-            "lib": null,
-            "type": "XLinkOut",
-            "owningGraphName": "root",
-            "name": "XLinkOut1",
-            "uuid": "957d7d8a-af51-4162-bffc-94e646bfd1af",
-            "inputs": [
-                {
-                    "name": "streamName",
-                    "package": "PyFlowBase",
-                    "fullName": "XLinkOut1_streamName",
-                    "dataType": "StringPin",
-                    "direction": 0,
-                    "value": "\"nn_out\"",
-                    "uuid": "7e8535d0-5e3c-446a-90b5-1a994570a619",
-                    "linkedTo": [],
-                    "pinIndex": 1,
-                    "options": [
-                        256
-                    ],
-                    "structure": 0,
-                    "alwaysList": false,
-                    "alwaysSingle": false,
-                    "alwaysDict": false,
-                    "wrapper": {
-                        "bLabelHidden": false,
-                        "displayName": "streamName",
-                        "wires": {}
-                    }
-                },
-                {
-                    "name": "input",
-                    "package": "PyFlowBase",
-                    "fullName": "XLinkOut1_input",
-                    "dataType": "AnyPin",
-                    "direction": 0,
-                    "value": "null",
-                    "uuid": "7adb7ac7-1c38-4505-8a84-e7477ab53972",
-                    "linkedTo": [
-                        {
-                            "lhsNodeName": "MobilenetSSDNode",
-                            "outPinId": 1,
-                            "rhsNodeName": "XLinkOut1",
-                            "inPinId": 2,
-                            "lhsNodeUid": "e43f19f6-2b1d-43c0-85c3-1f177bc018da",
-                            "rhsNodeUid": "957d7d8a-af51-4162-bffc-94e646bfd1af"
-                        }
-                    ],
-                    "pinIndex": 2,
-                    "options": [
-                        8,
-                        16,
-                        256
-                    ],
-                    "structure": 0,
-                    "alwaysList": false,
-                    "alwaysSingle": false,
-                    "alwaysDict": false,
-                    "wrapper": {
-                        "bLabelHidden": false,
-                        "displayName": "input",
-                        "wires": {
-                            "2": {
-                                "sourceUUID": "83abd5fe-46e3-47ab-9ff0-a44a21a15dbd",
-                                "destinationUUID": "7adb7ac7-1c38-4505-8a84-e7477ab53972",
-                                "sourceName": "MobilenetSSDNode_out_tensor",
-                                "destinationName": "XLinkOut1_input",
-                                "uuid": "fc93b51d-5e0a-40af-bd64-1ab0c06c904d",
-                                "hOffsetL": "0.0",
-                                "hOffsetR": "0.0",
-                                "hOffsetLSShape": "0.0",
-                                "hOffsetRSShape": "0.0",
-                                "vOffset": "0.0",
-                                "vOffsetSShape": "0.0",
-                                "snapVToFirst": 1,
-                                "snapVToSecond": 0
-                            }
-                        }
-                    },
-                    "currDataType": "NeuralTensorPin"
-                }
-            ],
-            "outputs": [],
-            "meta": {
-                "var": {},
-                "label": "XLinkOut1"
-            },
-            "wrapper": {
-                "collapsed": false,
-                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">XLinkOut1</p></body></html>",
-                "exposeInputsToCompound": false,
-                "groups": {
-                    "input": {},
-                    "output": {}
-                }
-            },
-            "x": 6.0,
-            "y": -107.0
-        },
-        {
-            "package": "DepthAI_Host",
-            "lib": null,
-            "type": "HostXLinkRead",
-            "owningGraphName": "root",
-            "name": "HostXLinkRead",
-            "uuid": "e34dc903-2e5c-4875-851d-dc0f5f037d07",
-            "inputs": [
-                {
-                    "name": "streamName",
-                    "package": "PyFlowBase",
-                    "fullName": "HostXLinkRead_streamName",
-                    "dataType": "StringPin",
-                    "direction": 0,
-                    "value": "\"nn_out\"",
-                    "uuid": "f9504172-1cf3-47d3-83f6-1481434e0c37",
-                    "linkedTo": [],
-                    "pinIndex": 1,
-                    "options": [
-                        256
-                    ],
-                    "structure": 0,
-                    "alwaysList": false,
-                    "alwaysSingle": false,
-                    "alwaysDict": false,
-                    "wrapper": {
-                        "bLabelHidden": false,
-                        "displayName": "streamName",
-                        "wires": {}
-                    }
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "out",
-                    "package": "PyFlowBase",
-                    "fullName": "HostXLinkRead_out",
-                    "dataType": "AnyPin",
-                    "direction": 1,
-                    "value": null,
-                    "uuid": "78461459-6342-4ba7-987a-c580e3c338d8",
-                    "linkedTo": [
-                        {
-                            "lhsNodeName": "HostXLinkRead",
-                            "outPinId": 1,
-                            "rhsNodeName": "ToBBoxNode",
-                            "inPinId": 1,
-                            "lhsNodeUid": "e34dc903-2e5c-4875-851d-dc0f5f037d07",
-                            "rhsNodeUid": "06b0f4db-6fc7-4785-8cbb-5fcab8b2c92d"
-                        }
-                    ],
-                    "pinIndex": 1,
-                    "options": [
-                        8,
-                        16,
-                        256
-                    ],
-                    "structure": 0,
-                    "alwaysList": false,
-                    "alwaysSingle": false,
-                    "alwaysDict": false,
-                    "wrapper": {
-                        "bLabelHidden": false,
-                        "displayName": "out",
-                        "wires": {
-                            "1": {
-                                "sourceUUID": "78461459-6342-4ba7-987a-c580e3c338d8",
-                                "destinationUUID": "17f52e97-7d9e-440b-b520-ad5fab79dbbc",
-                                "sourceName": "HostXLinkRead_out",
-                                "destinationName": "ToBBoxNode_data",
-                                "uuid": "9d21746c-b866-43b9-832b-fe51c56e872e",
-                                "hOffsetL": "0.0",
-                                "hOffsetR": "0.0",
-                                "hOffsetLSShape": "0.0",
-                                "hOffsetRSShape": "0.0",
-                                "vOffset": "0.0",
-                                "vOffsetSShape": "0.0",
-                                "snapVToFirst": 1,
-                                "snapVToSecond": 0
-                            }
-                        }
-                    }
-                }
-            ],
-            "meta": {
-                "var": {},
-                "label": "HostXLinkRead"
-            },
-            "wrapper": {
-                "collapsed": false,
-                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">HostXLinkRead</p></body></html>",
-                "exposeInputsToCompound": false,
-                "groups": {
-                    "input": {},
-                    "output": {}
-                }
-            },
-            "x": -425.0,
-            "y": 34.0
-        },
-        {
-            "package": "DepthAI_Host",
-            "lib": null,
-            "type": "HostXLinkRead",
-            "owningGraphName": "root",
-            "name": "HostXLinkRead2",
-            "uuid": "bc5695fb-5395-4217-81bc-f4bcb0ba325d",
-            "inputs": [
-                {
-                    "name": "streamName",
-                    "package": "PyFlowBase",
-                    "fullName": "HostXLinkRead2_streamName",
-                    "dataType": "StringPin",
-                    "direction": 0,
-                    "value": "\"cam_out\"",
-                    "uuid": "38e15445-40cd-4ffa-8df3-90609e7b9d19",
-                    "linkedTo": [],
-                    "pinIndex": 1,
-                    "options": [
-                        256
-                    ],
-                    "structure": 0,
-                    "alwaysList": false,
-                    "alwaysSingle": false,
-                    "alwaysDict": false,
-                    "wrapper": {
-                        "bLabelHidden": false,
-                        "displayName": "streamName",
-                        "wires": {}
-                    }
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "out",
-                    "package": "PyFlowBase",
-                    "fullName": "HostXLinkRead2_out",
-                    "dataType": "AnyPin",
-                    "direction": 1,
-                    "value": null,
-                    "uuid": "6e69a62c-b48e-4bab-95bc-9199c0878a86",
-                    "linkedTo": [],
-                    "pinIndex": 1,
-                    "options": [
-                        8,
-                        16,
-                        256
-                    ],
-                    "structure": 0,
-                    "alwaysList": false,
-                    "alwaysSingle": false,
-                    "alwaysDict": false,
-                    "wrapper": {
-                        "bLabelHidden": false,
-                        "displayName": "out",
-                        "wires": {}
-                    }
-                }
-            ],
-            "meta": {
-                "var": {},
-                "label": "HostXLinkRead2"
-            },
-            "wrapper": {
-                "collapsed": false,
-                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">HostXLinkRead2</p></body></html>",
-                "exposeInputsToCompound": false,
-                "groups": {
-                    "input": {},
-                    "output": {}
-                }
-            },
-            "x": -433.0,
-            "y": 140.0
+            "x": -467.0,
+            "y": 181.0
         },
         {
             "package": "DepthAI_Host",
@@ -627,7 +237,7 @@
             "type": "ToBBoxNode",
             "owningGraphName": "root",
             "name": "ToBBoxNode",
-            "uuid": "06b0f4db-6fc7-4785-8cbb-5fcab8b2c92d",
+            "uuid": "e9dd1934-a7cf-4f95-8a66-19d704629119",
             "inputs": [
                 {
                     "name": "data",
@@ -636,15 +246,15 @@
                     "dataType": "AnyPin",
                     "direction": 0,
                     "value": null,
-                    "uuid": "17f52e97-7d9e-440b-b520-ad5fab79dbbc",
+                    "uuid": "9228e800-c58f-4157-91cf-8c359bc8fbf8",
                     "linkedTo": [
                         {
-                            "lhsNodeName": "HostXLinkRead",
+                            "lhsNodeName": "XLinkBridge1",
                             "outPinId": 1,
                             "rhsNodeName": "ToBBoxNode",
                             "inPinId": 1,
-                            "lhsNodeUid": "e34dc903-2e5c-4875-851d-dc0f5f037d07",
-                            "rhsNodeUid": "06b0f4db-6fc7-4785-8cbb-5fcab8b2c92d"
+                            "lhsNodeUid": "0f9da176-0c28-4422-99a7-2aa5313e2570",
+                            "rhsNodeUid": "e9dd1934-a7cf-4f95-8a66-19d704629119"
                         }
                     ],
                     "pinIndex": 1,
@@ -662,11 +272,11 @@
                         "displayName": "data",
                         "wires": {
                             "1": {
-                                "sourceUUID": "78461459-6342-4ba7-987a-c580e3c338d8",
-                                "destinationUUID": "17f52e97-7d9e-440b-b520-ad5fab79dbbc",
-                                "sourceName": "HostXLinkRead_out",
+                                "sourceUUID": "66f873ef-7cd4-4b56-b51a-2607f71c52c5",
+                                "destinationUUID": "9228e800-c58f-4157-91cf-8c359bc8fbf8",
+                                "sourceName": "XLinkBridge1_out",
                                 "destinationName": "ToBBoxNode_data",
-                                "uuid": "9d21746c-b866-43b9-832b-fe51c56e872e",
+                                "uuid": "3035928d-6663-4621-9cef-3910d0ffdf60",
                                 "hOffsetL": "0.0",
                                 "hOffsetR": "0.0",
                                 "hOffsetLSShape": "0.0",
@@ -686,7 +296,7 @@
                     "dataType": "FloatPin",
                     "direction": 0,
                     "value": "0.5",
-                    "uuid": "b5e29e87-5357-4ad8-b626-c2e4b0cedd16",
+                    "uuid": "3861306d-1a24-4f44-917b-66bea3d7f47b",
                     "linkedTo": [],
                     "pinIndex": 2,
                     "options": [
@@ -711,8 +321,17 @@
                     "dataType": "BoundingBoxPin",
                     "direction": 1,
                     "value": null,
-                    "uuid": "0c9567fd-54ab-459f-8c1c-4878ff8dbdab",
-                    "linkedTo": [],
+                    "uuid": "f121d701-9320-4578-bb77-a889eae3ba00",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ToBBoxNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "BBoxOverlayNode",
+                            "inPinId": 2,
+                            "lhsNodeUid": "e9dd1934-a7cf-4f95-8a66-19d704629119",
+                            "rhsNodeUid": "0f3cd946-4604-407a-b225-9ffdf476a2a4"
+                        }
+                    ],
                     "pinIndex": 1,
                     "options": [
                         8
@@ -724,7 +343,23 @@
                     "wrapper": {
                         "bLabelHidden": false,
                         "displayName": "bbox",
-                        "wires": {}
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "f121d701-9320-4578-bb77-a889eae3ba00",
+                                "destinationUUID": "239e7c56-6ada-4267-9e30-4ae693879b17",
+                                "sourceName": "ToBBoxNode_bbox",
+                                "destinationName": "BBoxOverlayNode_bbox",
+                                "uuid": "93db9a34-e7df-4b41-bd7c-b08db04fffe4",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
                     }
                 }
             ],
@@ -741,8 +376,789 @@
                     "output": {}
                 }
             },
-            "x": -231.0,
-            "y": 22.0
+            "x": -175.0,
+            "y": 181.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "ToFrameNode",
+            "owningGraphName": "root",
+            "name": "ToFrameNode",
+            "uuid": "0236a337-b06b-46b6-a678-18ebc1a0ae83",
+            "inputs": [
+                {
+                    "name": "height",
+                    "package": "PyFlowBase",
+                    "fullName": "ToFrameNode_height",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "300",
+                    "uuid": "c884a6f9-3f32-4e31-ae17-7f7b6b16b64e",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "height",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "data",
+                    "package": "PyFlowBase",
+                    "fullName": "ToFrameNode_data",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "7fe6e583-2fab-4c16-8046-4762579e1f80",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "XLinkBridge",
+                            "outPinId": 1,
+                            "rhsNodeName": "ToFrameNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "92b6917e-8f73-49cd-81ff-5e208d62efc6",
+                            "rhsNodeUid": "0236a337-b06b-46b6-a678-18ebc1a0ae83"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "data",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "5697e96b-86d0-4468-ac70-c819e6607246",
+                                "destinationUUID": "7fe6e583-2fab-4c16-8046-4762579e1f80",
+                                "sourceName": "XLinkBridge_out",
+                                "destinationName": "ToFrameNode_data",
+                                "uuid": "efd9afbf-3b59-4d36-a74a-e3d9299ceeba",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "width",
+                    "package": "PyFlowBase",
+                    "fullName": "ToFrameNode_width",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "300",
+                    "uuid": "72333084-292f-43f5-8729-7aa0ad6ccc7f",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "width",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "frame",
+                    "package": "DepthAI_Common",
+                    "fullName": "ToFrameNode_frame",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "df29b0ad-a825-4258-a896-a2bce7a34586",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ToFrameNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "FramePreviewNode3",
+                            "inPinId": 1,
+                            "lhsNodeUid": "0236a337-b06b-46b6-a678-18ebc1a0ae83",
+                            "rhsNodeUid": "3bf44c5d-6490-48c4-99e1-f6e1227f5e6a"
+                        },
+                        {
+                            "lhsNodeName": "ToFrameNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "BBoxOverlayNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "0236a337-b06b-46b6-a678-18ebc1a0ae83",
+                            "rhsNodeUid": "0f3cd946-4604-407a-b225-9ffdf476a2a4"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "frame",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "df29b0ad-a825-4258-a896-a2bce7a34586",
+                                "destinationUUID": "a78aec81-8b1d-409a-97e3-b48748ad0dc8",
+                                "sourceName": "ToFrameNode_frame",
+                                "destinationName": "BBoxOverlayNode_frame",
+                                "uuid": "ad83e169-a71b-4431-8053-e79fa9699377",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "ToFrameNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">ToFrameNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -167.0,
+            "y": -73.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "FramePreviewNode",
+            "owningGraphName": "root",
+            "name": "FramePreviewNode",
+            "uuid": "8c3478be-625b-44bc-8084-adf5da4e4116",
+            "inputs": [
+                {
+                    "name": "frame",
+                    "package": "DepthAI_Common",
+                    "fullName": "FramePreviewNode_frame",
+                    "dataType": "FramePin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "0b82ddf4-abb6-42f9-b0cd-b755d6cd91cc",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "BBoxOverlayNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "FramePreviewNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "0f3cd946-4604-407a-b225-9ffdf476a2a4",
+                            "rhsNodeUid": "8c3478be-625b-44bc-8084-adf5da4e4116"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "frame",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "2431d3d5-d86e-4790-bfb6-60f47db76ec4",
+                                "destinationUUID": "0b82ddf4-abb6-42f9-b0cd-b755d6cd91cc",
+                                "sourceName": "BBoxOverlayNode_result",
+                                "destinationName": "FramePreviewNode_frame",
+                                "uuid": "dfe5ea9b-5a6a-4e8c-a782-bb79be4e7dbe",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [],
+            "meta": {
+                "var": {},
+                "label": "FramePreviewNode"
+            },
+            "wrapper": {
+                "resize": {
+                    "w": 225.0,
+                    "h": 222.0
+                },
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">FramePreviewNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 159.0,
+            "y": -8.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "BBoxOverlayNode",
+            "owningGraphName": "root",
+            "name": "BBoxOverlayNode",
+            "uuid": "0f3cd946-4604-407a-b225-9ffdf476a2a4",
+            "inputs": [
+                {
+                    "name": "color_hex",
+                    "package": "PyFlowBase",
+                    "fullName": "BBoxOverlayNode_color_hex",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"#FF0000\"",
+                    "uuid": "9d8e9e18-cd5b-4053-a5a0-54e7782f5ec8",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "color_hex",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "frame",
+                    "package": "DepthAI_Common",
+                    "fullName": "BBoxOverlayNode_frame",
+                    "dataType": "FramePin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "a78aec81-8b1d-409a-97e3-b48748ad0dc8",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ToFrameNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "BBoxOverlayNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "0236a337-b06b-46b6-a678-18ebc1a0ae83",
+                            "rhsNodeUid": "0f3cd946-4604-407a-b225-9ffdf476a2a4"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "frame",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "df29b0ad-a825-4258-a896-a2bce7a34586",
+                                "destinationUUID": "a78aec81-8b1d-409a-97e3-b48748ad0dc8",
+                                "sourceName": "ToFrameNode_frame",
+                                "destinationName": "BBoxOverlayNode_frame",
+                                "uuid": "ad83e169-a71b-4431-8053-e79fa9699377",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "bbox",
+                    "package": "DepthAI_Common",
+                    "fullName": "BBoxOverlayNode_bbox",
+                    "dataType": "BoundingBoxPin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "239e7c56-6ada-4267-9e30-4ae693879b17",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ToBBoxNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "BBoxOverlayNode",
+                            "inPinId": 2,
+                            "lhsNodeUid": "e9dd1934-a7cf-4f95-8a66-19d704629119",
+                            "rhsNodeUid": "0f3cd946-4604-407a-b225-9ffdf476a2a4"
+                        }
+                    ],
+                    "pinIndex": 2,
+                    "options": [],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "bbox",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "f121d701-9320-4578-bb77-a889eae3ba00",
+                                "destinationUUID": "239e7c56-6ada-4267-9e30-4ae693879b17",
+                                "sourceName": "ToBBoxNode_bbox",
+                                "destinationName": "BBoxOverlayNode_bbox",
+                                "uuid": "93db9a34-e7df-4b41-bd7c-b08db04fffe4",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "package": "DepthAI_Common",
+                    "fullName": "BBoxOverlayNode_result",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "2431d3d5-d86e-4790-bfb6-60f47db76ec4",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "BBoxOverlayNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "FramePreviewNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "0f3cd946-4604-407a-b225-9ffdf476a2a4",
+                            "rhsNodeUid": "8c3478be-625b-44bc-8084-adf5da4e4116"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "result",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "2431d3d5-d86e-4790-bfb6-60f47db76ec4",
+                                "destinationUUID": "0b82ddf4-abb6-42f9-b0cd-b755d6cd91cc",
+                                "sourceName": "BBoxOverlayNode_result",
+                                "destinationName": "FramePreviewNode_frame",
+                                "uuid": "dfe5ea9b-5a6a-4e8c-a782-bb79be4e7dbe",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "BBoxOverlayNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">BBoxOverlayNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -33.0,
+            "y": 166.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "FramePreviewNode",
+            "owningGraphName": "root",
+            "name": "FramePreviewNode3",
+            "uuid": "3bf44c5d-6490-48c4-99e1-f6e1227f5e6a",
+            "inputs": [
+                {
+                    "name": "frame",
+                    "package": "DepthAI_Common",
+                    "fullName": "FramePreviewNode3_frame",
+                    "dataType": "FramePin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "ed5dbfd2-513d-4831-b0f2-53adf8784be9",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ToFrameNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "FramePreviewNode3",
+                            "inPinId": 1,
+                            "lhsNodeUid": "0236a337-b06b-46b6-a678-18ebc1a0ae83",
+                            "rhsNodeUid": "3bf44c5d-6490-48c4-99e1-f6e1227f5e6a"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "frame",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "df29b0ad-a825-4258-a896-a2bce7a34586",
+                                "destinationUUID": "ed5dbfd2-513d-4831-b0f2-53adf8784be9",
+                                "sourceName": "ToFrameNode_frame",
+                                "destinationName": "FramePreviewNode3_frame",
+                                "uuid": "4c312075-6fd4-44a5-9a6e-a49f81033a60",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [],
+            "meta": {
+                "var": {},
+                "label": "FramePreviewNode3"
+            },
+            "wrapper": {
+                "resize": {
+                    "w": 230.0,
+                    "h": 239.0
+                },
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">FramePreviewNode3</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 162.0,
+            "y": -264.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "XLinkBridge",
+            "owningGraphName": "root",
+            "name": "XLinkBridge",
+            "uuid": "92b6917e-8f73-49cd-81ff-5e208d62efc6",
+            "inputs": [
+                {
+                    "name": "in",
+                    "package": "PyFlowBase",
+                    "fullName": "XLinkBridge_in",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "8d93ba8b-901a-4aff-a671-f9e9d7341f37",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "BW1093",
+                            "outPinId": 1,
+                            "rhsNodeName": "XLinkBridge",
+                            "inPinId": 1,
+                            "lhsNodeUid": "b109a5dd-9c3e-44a6-b489-b5983739392a",
+                            "rhsNodeUid": "92b6917e-8f73-49cd-81ff-5e208d62efc6"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "in",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "585d6b89-3d55-4d3d-b833-705e913ff377",
+                                "destinationUUID": "8d93ba8b-901a-4aff-a671-f9e9d7341f37",
+                                "sourceName": "BW1093_color",
+                                "destinationName": "XLinkBridge_in",
+                                "uuid": "24889f6b-7f25-4549-aa16-2ceaa758e6b4",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "FramePin"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "XLinkBridge_out",
+                    "dataType": "AnyPin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "5697e96b-86d0-4468-ac70-c819e6607246",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "XLinkBridge",
+                            "outPinId": 1,
+                            "rhsNodeName": "ToFrameNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "92b6917e-8f73-49cd-81ff-5e208d62efc6",
+                            "rhsNodeUid": "0236a337-b06b-46b6-a678-18ebc1a0ae83"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "5697e96b-86d0-4468-ac70-c819e6607246",
+                                "destinationUUID": "7fe6e583-2fab-4c16-8046-4762579e1f80",
+                                "sourceName": "XLinkBridge_out",
+                                "destinationName": "ToFrameNode_data",
+                                "uuid": "efd9afbf-3b59-4d36-a74a-e3d9299ceeba",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "XLinkBridge"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">XLinkBridge</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -325.0,
+            "y": -73.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "XLinkBridge",
+            "owningGraphName": "root",
+            "name": "XLinkBridge1",
+            "uuid": "0f9da176-0c28-4422-99a7-2aa5313e2570",
+            "inputs": [
+                {
+                    "name": "in",
+                    "package": "PyFlowBase",
+                    "fullName": "XLinkBridge1_in",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "19a2ab88-3211-4716-bd2a-7b340b7c47f9",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "MobilenetSSDNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "XLinkBridge1",
+                            "inPinId": 1,
+                            "lhsNodeUid": "e43f19f6-2b1d-43c0-85c3-1f177bc018da",
+                            "rhsNodeUid": "0f9da176-0c28-4422-99a7-2aa5313e2570"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "in",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "83abd5fe-46e3-47ab-9ff0-a44a21a15dbd",
+                                "destinationUUID": "19a2ab88-3211-4716-bd2a-7b340b7c47f9",
+                                "sourceName": "MobilenetSSDNode_out_tensor",
+                                "destinationName": "XLinkBridge1_in",
+                                "uuid": "a4dbd06d-b4d0-4ce1-990f-44298ec56fbe",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "NeuralTensorPin"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "XLinkBridge1_out",
+                    "dataType": "AnyPin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "66f873ef-7cd4-4b56-b51a-2607f71c52c5",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "XLinkBridge1",
+                            "outPinId": 1,
+                            "rhsNodeName": "ToBBoxNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "0f9da176-0c28-4422-99a7-2aa5313e2570",
+                            "rhsNodeUid": "e9dd1934-a7cf-4f95-8a66-19d704629119"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        16,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "66f873ef-7cd4-4b56-b51a-2607f71c52c5",
+                                "destinationUUID": "9228e800-c58f-4157-91cf-8c359bc8fbf8",
+                                "sourceName": "XLinkBridge1_out",
+                                "destinationName": "ToBBoxNode_data",
+                                "uuid": "3035928d-6663-4621-9cef-3910d0ffdf60",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "XLinkBridge1"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">XLinkBridge1</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -293.0,
+            "y": 181.0
         }
     ],
     "depth": 1,

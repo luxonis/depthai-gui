@@ -53,11 +53,7 @@ class DepthaiNode(NodeBase):
                 connected_node = get_node_by_uid(nodes, link['rhsNodeUid'])
                 inp = get_pin_by_index(connected_node.pins, link['inPinId'])
                 node_in = connected_node.connection_map[inp.name]
-                try:
-                    node_out.link(node_in)
-                except:
-                    print()
-                    raise
+                node_out.link(node_in)
 
 
 class PreviewNode:

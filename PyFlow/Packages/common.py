@@ -106,12 +106,16 @@ class HostNode(DepthaiNode):
         self.thread = threading.Thread(target=self._thread_fun, args=(self.queue, device), daemon=True)
         self.thread.start()
 
-    def stop_node(self):
-        print(f"Stopping {self.__class__.__name__}")
+    def stop_node(self, wait=True):
+        print(f"Stopping {self.name}")
         self._running = False
         self.queue.put(self.EXIT_MESSAGE)
+        if wait:
+            self.join()
+
+    def join(self):
         self.thread.join()
-        print(f"Stopped {self.__class__.__name__}")
+        print(f"Stopped {self.name}")
 
     def _thread_fun(self, queue, device):
         self.queue = queue

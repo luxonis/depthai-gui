@@ -29,7 +29,9 @@ class RunTool(ShelfTool):
 
     def _stop_pipeline(self):
         for node in self.host_nodes:
-            node.stop_node()
+            node.stop_node(wait=False)
+        for node in self.host_nodes:
+            node.join()
         del self.device
 
     def do(self):

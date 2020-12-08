@@ -104,7 +104,7 @@ class HostNode(DepthaiNode):
     EXIT_MESSAGE = "exit_message"
 
     def run_node(self, device):
-        self.queue = queue.Queue()
+        self.queue = queue.Queue(1)
         self._running = True
         self.thread = threading.Thread(target=self._thread_fun, args=(self.queue, device), daemon=True)
         self.thread.start()
@@ -158,7 +158,8 @@ class HostNode(DepthaiNode):
         for link in out.linkedTo:
             connected_node = get_node_by_uid(nodes, link['rhsNodeUid'])
             inp = get_pin_by_index(connected_node.pins, link['inPinId'])
-            connected_node.queue.put({"name": inp.name, "data": data})
+            if not connected_node.queue.full():
+                connected_node.queue.put({"name": inp.name, "data": data})
 
     def get_default(self, name):
         return None

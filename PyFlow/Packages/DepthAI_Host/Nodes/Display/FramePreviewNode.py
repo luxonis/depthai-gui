@@ -3,6 +3,7 @@ import cv2
 from common import HostNode, PreviewNode
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
+from config import DEBUG
 
 
 class FramePreviewNode(HostNode, PreviewNode):
@@ -33,6 +34,8 @@ class FramePreviewNode(HostNode, PreviewNode):
         return "Description in rst format."
 
     def run(self, *args, **kwargs):
-        print(f"{self.name} waiting...")
+        if DEBUG:
+            print(f"{self.name} waiting...")
         self.display_frame = self.receive("frame")
-        print(f"{self.name} updated.")
+        if DEBUG:
+            print(f"{self.name} updated.")

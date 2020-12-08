@@ -4,6 +4,7 @@ from common import HostNode, DeviceNode, get_property_value, get_node_by_uid
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
 from PyFlow.UI.Utils.stylesheet import Colors
+from config import DEBUG
 
 
 def get_name():
@@ -19,7 +20,7 @@ class XLinkBridge(HostNode, DeviceNode):
         self.input.enableOptions(PinOptions.AllowAny)
         self.out.enableOptions(PinOptions.AllowAny)
         self.out.enableOptions(PinOptions.AllowMultipleConnections)
-        self.name = get_name()
+        self.stream_name = get_name()
 
     @staticmethod
     def pinTypeHints():
@@ -57,29 +58,33 @@ class XLinkBridge(HostNode, DeviceNode):
     def build_pipeline(self, pipeline):
         if self.to_host():
             xout = pipeline.createXLinkOut()
-            xout.setStreamName(self.name)
+            xout.setStreamName(self.stream_name)
             self.connection_map["in"] = xout.input
         else:
             xin = pipeline.createXLinkIn()
-            xin.setStreamName(self.name)
+            xin.setStreamName(self.stream_name)
             self.connection_map["out"] = xin.out
 
     def start(self, device):
         if self.to_host():
-            print("Initializing XLinkRead with {} queue".format(self.name))
-            self.out = device.getOutputQueue(self.name, 1, True)
+            print("Initializing {} with {} queue".format(self.name, self.stream_name))
+            self.out = device.getOutputQueue(self.stream_name, 1, True)
         else:
-            self.input = device.getInputQueue(self.name)
+            self.input = device.getInputQueue(self.stream_name)
 
     def run(self):
         if self.to_host():
             if self.out.has():
-                print(f"{self.name} getting new data...")
+                if DEBUG:
+                    print(f"{self.name} getting new data...")
                 data = self.out.get()
                 self.send("out", data)
-                print(f"{self.name} updated.")
+                if DEBUG:
+                    print(f"{self.name} updated.")
         else:
-            print(f"{self.name} waiting...")
+            if DEBUG:
+                print(f"{self.name} waiting...")
             data = self.receive("in")
             self.input.send(data)
-            print(f"{self.name} updated.")
+            if DEBUG:
+                print(f"{self.name} updated.")

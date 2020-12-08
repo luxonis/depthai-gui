@@ -4,6 +4,7 @@ import numpy as np
 from common import HostNode, get_property_value
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
+from config import DEBUG
 
 
 def hex_to_rgb(hex_string):
@@ -62,17 +63,19 @@ class BBoxOverlayNode(HostNode):
             return []
         return None
 
-    def run(self):
-        print(f"{self.name} waiting...")
+    def run(self):        
+        if DEBUG:
+            print(f"{self.name} waiting...")
         frame, bboxes = self.receive("frame", "bbox")
-        if frame is None:
-            print(f"{self.name} skipping - no frame available")
+        if frame is None:        
+            if DEBUG:
+                print(f"{self.name} skipping - no frame available")
             return
         frame = frame.copy()
         color = hex_to_rgb(get_property_value(self, "color_hex"))
         for raw_bbox in bboxes:
             bbox = frame_norm(frame, *raw_bbox)
-            print(bbox)
             cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), color, 2)
-        self.send("result", frame)
-        print(f"{self.name} updated.")
+        self.send("result", frame)        
+        if DEBUG:
+            print(f"{self.name} updated.")

@@ -3,6 +3,7 @@ import numpy as np
 from common import HostNode, get_property_value
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
+from config import DEBUG
 
 
 class ToBBoxNode(HostNode):
@@ -39,7 +40,8 @@ class ToBBoxNode(HostNode):
         return "Description in rst format."
 
     def run(self):
-        print(f"{self.name} waiting...")
+        if DEBUG:
+            print(f"{self.name} waiting...")
         nn_data = self.receive("data")
         arr = np.array(nn_data.getFirstLayerFp16())
         arr = arr[:np.where(arr == -1)[0][0]]
@@ -50,4 +52,5 @@ class ToBBoxNode(HostNode):
             if obj[2] > get_property_value(self, "threshold")
         ]
         self.send("bbox", arr)
-        print(f"{self.name} updated.")
+        if DEBUG:
+            print(f"{self.name} updated.")

@@ -3,6 +3,7 @@ import numpy as np
 from common import HostNode, get_property_value
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
+from config import DEBUG
 
 
 class ToFrameNode(HostNode):
@@ -38,7 +39,8 @@ class ToFrameNode(HostNode):
         return "Description in rst format."
 
     def run(self):
-        print(f"{self.name} waiting...")
+        if DEBUG:
+            print(f"{self.name} waiting...")
         packet = self.receive("data")
         w = get_property_value(self, "width")
         h = get_property_value(self, "height")
@@ -47,4 +49,5 @@ class ToFrameNode(HostNode):
         frame = np.array(packet.getData()).reshape((3, h, w)).transpose(1, 2, 0).astype(np.uint8)
         frame = np.ascontiguousarray(frame)
         self.send("frame", frame)
-        print("ToFrame updated.")
+        if DEBUG:
+            print(f"{self.name} updated.")

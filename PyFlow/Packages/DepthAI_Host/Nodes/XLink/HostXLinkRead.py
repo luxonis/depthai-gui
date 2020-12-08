@@ -1,6 +1,7 @@
 from common import HostNode, get_property_value
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
+from config import DEBUG
 
 
 class HostXLinkRead(HostNode):
@@ -33,10 +34,10 @@ class HostXLinkRead(HostNode):
         return "Description in rst format."
 
     def start(self, device):
-        print("Initializing {} with {} queue".format(self.name, get_property_value(self, "streamName")))
+        if DEBUG:
+            print("Initializing {} with {} queue".format(self.name, get_property_value(self, "streamName")))
         self.out = device.getOutputQueue(get_property_value(self, "streamName"), 1, True)
 
     def run(self):
-        if self.out.has():
-            data = self.out.get()
-            self.send("out", data)
+        data = self.out.tryGet()
+        self.send("out", data)

@@ -50,8 +50,8 @@ class RunTool(ShelfTool):
             self.found, self.device_info = depthai.XLinkConnection.getFirstDevice(depthai.XLinkDeviceState.X_LINK_UNBOOTED)
             if not self.found:
                 raise RuntimeError("Device not found")
-            self.device = depthai.Device(self.device_info, True)
-            self.device.startPipeline(pipeline)
+            self.device = depthai.Device(pipeline, self.device_info, True)
+            self.device.startPipeline()
 
             self.host_nodes = list(filter(lambda node: isinstance(node, HostNode), rootGraph.getNodesList()))
             for node in self.host_nodes:

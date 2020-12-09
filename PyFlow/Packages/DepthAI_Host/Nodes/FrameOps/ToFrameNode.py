@@ -46,7 +46,14 @@ class ToFrameNode(HostNode):
         h = get_property_value(self, "height")
         if 0 in (w, h):
             raise RuntimeError(f"Width/Height is not set on the {self.name} node")
-        frame = np.array(packet.getData()).reshape((3, h, w)).transpose(1, 2, 0).astype(np.uint8)
+        arr = np.array(packet.getData())
+        channels = arr.size / (w * h + 1)
+        if not channels.is_integer():
+            raise RuntimeError(f"Width/Height is incorrect for the data received (size: {arr.size}, calc_n_channels: {channels})")
+        if channels == 1:
+            frame = arr.reshape((channels, h, w)).transpose(1, 2, 0).astype(np.uint8)
+        else:
+            frame = arr.reshape((h, w)).astype(np.uint8)
         frame = np.ascontiguousarray(frame)
         self.send("frame", frame)
         if DEBUG:

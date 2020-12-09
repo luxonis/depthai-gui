@@ -1,15 +1,14 @@
-from PyFlow.Core import NodeBase
+from pathlib import Path
+
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
+from common import DeviceNode
 
-from DepthAI_Common.Pins.NeuralTensorPin import NeuralTensor
 
-
-class FacialLandmarksRetail9Node(NodeBase):
+class FacialLandmarksRetail9Node(DeviceNode):
     def __init__(self, name):
         super(FacialLandmarksRetail9Node, self).__init__(name)
         self.frame = self.createInputPin('frame', 'FramePin')
-        self.threshold = self.createInputPin('threshold', 'FloatPin')
         self.out_tensor = self.createOutputPin('out_tensor', 'NeuralTensorPin')
         self.frame.enableOptions(PinOptions.AllowMultipleConnections)
         self.out_tensor.enableOptions(PinOptions.AllowMultipleConnections)
@@ -18,7 +17,6 @@ class FacialLandmarksRetail9Node(NodeBase):
     def pinTypeHints():
         helper = NodePinsSuggestionsHelper()
         helper.addInputDataType('FramePin')
-        helper.addInputDataType('FloatPin')
         helper.addOutputDataType('NeuralTensorPin')
         helper.addInputStruct(StructureType.Multi)
         helper.addOutputStruct(StructureType.Multi)
@@ -36,6 +34,8 @@ class FacialLandmarksRetail9Node(NodeBase):
     def description():
         return "Description in rst format."
 
-    def compute(self, *args, **kwargs):
-        _ = self.frame.getData()
-        self.out_tensor.setData(NeuralTensor())
+    def build_pipeline(self, pipeline):
+        detection_nn = pipeline.createNeuralNetwork()
+        detection_nn.setBlobPath(str(Path(str((Path(__file__).parent / Path('models/landmarks-regression-retail-0009.blob')).resolve().absolute())).resolve().absolute()))
+        self.connection_map["out_tensor"] = detection_nn.out
+        self.connection_map["frame"] = detection_nn.input

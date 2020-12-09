@@ -1,16 +1,15 @@
-from PyFlow.Core import NodeBase
+from pathlib import Path
+
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
+from common import DeviceNode
 
-from DepthAI_Common.Pins.NeuralTensorPin import NeuralTensor
 
-
-class AgeGenderDetectionNode(NodeBase):
+class AgeGenderDetectionNode(DeviceNode):
     def __init__(self, name):
         super(AgeGenderDetectionNode, self).__init__(name)
         self.frame = self.createInputPin('frame', 'FramePin')
         self.out_tensor = self.createOutputPin('out_tensor', 'NeuralTensorPin')
-        self.threshold = self.createInputPin('threshold', 'FloatPin')
         self.frame.enableOptions(PinOptions.AllowMultipleConnections)
         self.out_tensor.enableOptions(PinOptions.AllowMultipleConnections)
 
@@ -19,7 +18,6 @@ class AgeGenderDetectionNode(NodeBase):
         helper = NodePinsSuggestionsHelper()
         helper.addInputDataType('FramePin')
         helper.addOutputDataType('NeuralTensorPin')
-        helper.addOutputDataType('FloatPin')
         helper.addInputStruct(StructureType.Multi)
         helper.addOutputStruct(StructureType.Multi)
         return helper
@@ -36,6 +34,8 @@ class AgeGenderDetectionNode(NodeBase):
     def description():
         return "Description in rst format."
 
-    def compute(self, *args, **kwargs):
-        _ = self.frame.getData()
-        self.out_tensor.setData(NeuralTensor())
+    def build_pipeline(self, pipeline):
+        detection_nn = pipeline.createNeuralNetwork()
+        detection_nn.setBlobPath(str(Path(str((Path(__file__).parent / Path('models/age-gender-recognition-retail-0013.blob')).resolve().absolute())).resolve().absolute()))
+        self.connection_map["out_tensor"] = detection_nn.out
+        self.connection_map["frame"] = detection_nn.input

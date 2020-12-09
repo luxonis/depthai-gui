@@ -1,31 +1,25 @@
+from pathlib import Path
+
 from DepthAI_Common.Pins.BoundingBoxPin import BoundingBox
 
-from PyFlow.Core import NodeBase
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
+from common import DeviceNode
 
 
-class VehicleLicensePlateDetectionNode(NodeBase):
+class VehicleLicensePlateDetectionNode(DeviceNode):
     def __init__(self, name):
         super(VehicleLicensePlateDetectionNode, self).__init__(name)
         self.frame = self.createInputPin('frame', 'FramePin')
-        self.threshold = self.createInputPin('threshold', 'FloatPin')
         self.out_tensor = self.createOutputPin('out_tensor', 'NeuralTensorPin')
-        self.bbox = self.createOutputPin('bbox', 'BoundingBoxPin')
-        self.depth = self.createOutputPin('depth', 'DepthVectorPin')
         self.frame.enableOptions(PinOptions.AllowMultipleConnections)
-        self.bbox.enableOptions(PinOptions.AllowMultipleConnections)
         self.out_tensor.enableOptions(PinOptions.AllowMultipleConnections)
-        self.depth.enableOptions(PinOptions.AllowMultipleConnections)
 
     @staticmethod
     def pinTypeHints():
         helper = NodePinsSuggestionsHelper()
         helper.addInputDataType('FramePin')
-        helper.addInputDataType('FloatPin')
         helper.addOutputDataType('NeuralTensorPin')
-        helper.addOutputDataType('DepthVectorPin')
-        helper.addOutputDataType('BoundingBoxPin')
         helper.addInputStruct(StructureType.Multi)
         helper.addOutputStruct(StructureType.Multi)
         return helper
@@ -42,6 +36,8 @@ class VehicleLicensePlateDetectionNode(NodeBase):
     def description():
         return "Description in rst format."
 
-    def compute(self, *args, **kwargs):
-        _ = self.frame.getData()
-        self.bbox.setData(BoundingBox())
+    def build_pipeline(self, pipeline):
+        detection_nn = pipeline.createNeuralNetwork()
+        detection_nn.setBlobPath(str(Path(str((Path(__file__).parent / Path('models/vehicle-license-plate-detection-barrier-0106.blob')).resolve().absolute())).resolve().absolute()))
+        self.connection_map["out_tensor"] = detection_nn.out
+        self.connection_map["frame"] = detection_nn.input

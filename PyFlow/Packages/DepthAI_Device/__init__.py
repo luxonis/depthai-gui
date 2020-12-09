@@ -26,12 +26,14 @@ from DepthAI_Device.Nodes.ModelZoo.FaceDetectionRetail4Node import FaceDetection
 from DepthAI_Device.Nodes.ModelZoo.FacialLandmarksAdas2Node import FacialLandmarksAdas2Node
 from DepthAI_Device.Nodes.ModelZoo.FacialLandmarksRetail9Node import FacialLandmarksRetail9Node
 from DepthAI_Device.Nodes.ModelZoo.MobilenetSSDNode import MobilenetSSDNode
-from DepthAI_Device.Nodes.ModelZoo.OCRNode import OCRNode
 from DepthAI_Device.Nodes.ModelZoo.PedestrianDetectionAdas2Node import PedestrianDetectionAdas2Node
 from DepthAI_Device.Nodes.ModelZoo.PedestrianDetectionRetail13Node import PedestrianDetectionRetail13Node
 from DepthAI_Device.Nodes.ModelZoo.PersonVehicleBikeDetectionNode import PersonVehicleBikeDetectionNode
 from DepthAI_Device.Nodes.ModelZoo.VehicleDetectionAdas2Node import VehicleDetectionAdas2Node
 from DepthAI_Device.Nodes.ModelZoo.VehicleLicensePlateDetectionNode import VehicleLicensePlateDetectionNode
+from DepthAI_Device.Nodes.NeuralNetwork.NeuralNetworkNode import NeuralNetworkNode
+from DepthAI_Device.Nodes.Cameras.ColorCameraNode import MonoCameraNode
+from DepthAI_Device.Nodes.Cameras.MonoCameraNode import ColorCameraNode
 
 _FOO_LIBS = {}
 _NODES = {}
@@ -41,10 +43,11 @@ _PREFS_WIDGETS = OrderedDict()
 _EXPORTERS = OrderedDict()
 
 NODES_TO_ADD = [
-    BW1093, BW1097, BW1098OBC, VehicleLicensePlateDetectionNode, VehicleDetectionAdas2Node, OCRNode, MobilenetSSDNode,
-    XLinkOut, GlobalPropertiesNode, XLinkIn, BW1098FFC, PedestrianDetectionRetail13Node, XLinkBridge,
-    AgeGenderDetectionNode, EmotionsRecognitionNode, FaceDetectionAdas1Node, FaceDetectionRetail4Node,
-    FacialLandmarksAdas2Node, FacialLandmarksRetail9Node, PedestrianDetectionAdas2Node, PersonVehicleBikeDetectionNode,
+    BW1093, BW1097, BW1098OBC, VehicleLicensePlateDetectionNode, VehicleDetectionAdas2Node, MobilenetSSDNode, BW1098FFC,
+    XLinkOut, GlobalPropertiesNode, PedestrianDetectionRetail13Node, XLinkIn, NeuralNetworkNode, AgeGenderDetectionNode,
+    EmotionsRecognitionNode, FaceDetectionAdas1Node, FaceDetectionRetail4Node, XLinkBridge, FacialLandmarksAdas2Node,
+    FacialLandmarksRetail9Node, PedestrianDetectionAdas2Node, PersonVehicleBikeDetectionNode, MonoCameraNode,
+    ColorCameraNode
 ]
 
 for node in NODES_TO_ADD:

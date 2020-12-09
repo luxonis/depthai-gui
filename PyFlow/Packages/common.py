@@ -36,7 +36,8 @@ def get_pin_by_index(pins, index, direction=PinDirection.Input):
 
 
 def get_property_value(node, name):
-    return next(filter(lambda obj: obj.name == name, node.inputs.values())).currentData()
+    prop = next(filter(lambda obj: obj.name == name, node.inputs.values()), None)
+    return prop.currentData() if prop is not None else None
 
 
 class DepthaiNode(NodeBase):
@@ -168,11 +169,11 @@ class HostNode(DepthaiNode):
         names = [input_name, *input_names]
         in_data = self.queue.get()
         self.queue.task_done()
-        if in_data == self.EXIT_MESSAGE:
-            if DEBUG:
-                print(f"{self.name} received exit message, exiting...")
-            raise StopNodeException()
-        elif not isinstance(in_data, dict) or "name" not in in_data or "data" not in in_data:
+        if not isinstance(in_data, dict) or "name" not in in_data or "data" not in in_data:
+            if in_data == self.EXIT_MESSAGE:
+                if DEBUG:
+                    print(f"{self.name} received exit message, exiting...")
+                raise StopNodeException()
             if DEBUG:
                 print(f"{self.name} received malformed data packet: {in_data}")
             return _receive_postprocess([None] * len(names))

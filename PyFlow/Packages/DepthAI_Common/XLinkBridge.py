@@ -74,13 +74,13 @@ class XLinkBridge(HostNode, DeviceNode):
 
     def run(self):
         if self.to_host():
-            if self.out.has():
-                if DEBUG:
-                    print(f"{self.name} getting new data...")
-                data = self.out.get()
-                self.send("out", data)
-                if DEBUG:
-                    print(f"{self.name} updated.")
+                data = self.out.tryGet()
+                if data is not None:
+                    if DEBUG:
+                        print(f"{self.name} got new data...")
+                    self.send("out", data)
+                    if DEBUG:
+                        print(f"{self.name} updated.")
         else:
             if DEBUG:
                 print(f"{self.name} waiting...")

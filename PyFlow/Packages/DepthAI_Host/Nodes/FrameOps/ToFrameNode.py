@@ -47,7 +47,7 @@ class ToFrameNode(HostNode):
         if 0 in (w, h):
             raise RuntimeError(f"Width/Height is not set on the {self.name} node")
         arr = np.array(packet.getData())
-        channels = arr.size / (w * h + 1)
+        channels = arr.size / (w * h)
         if not channels.is_integer():
             raise RuntimeError(f"Width/Height is incorrect for the data received (size: {arr.size}, calc_n_channels: {channels})")
         if channels == 1:

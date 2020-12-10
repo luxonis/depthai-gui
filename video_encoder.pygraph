@@ -1,0 +1,667 @@
+{
+    "name": "root",
+    "category": "",
+    "vars": [],
+    "nodes": [
+        {
+            "package": "DepthAI_Device",
+            "lib": null,
+            "type": "ColorCameraNode",
+            "owningGraphName": "root",
+            "name": "ColorCameraNode",
+            "uuid": "335ce366-c106-4d0a-a449-461c1ed4b2f3",
+            "inputs": [
+                {
+                    "name": "prev_width",
+                    "package": "PyFlowBase",
+                    "fullName": "ColorCameraNode_prev_width",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "0",
+                    "uuid": "25df35b7-9000-4d12-9662-b2ffed060d25",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "prev_width",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "interleaved",
+                    "package": "PyFlowBase",
+                    "fullName": "ColorCameraNode_interleaved",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "b3af88a7-898b-4bd2-87ed-32aa99451414",
+                    "linkedTo": [],
+                    "pinIndex": 4,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "interleaved",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "prev_height",
+                    "package": "PyFlowBase",
+                    "fullName": "ColorCameraNode_prev_height",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "0",
+                    "uuid": "de1a7eb0-1620-404b-8df8-6fbd670ce931",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "prev_height",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "resolution",
+                    "package": "PyFlowBase",
+                    "fullName": "ColorCameraNode_resolution",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"THE_4_K\"",
+                    "uuid": "685e3185-087c-4fd1-aafb-d2dbb531d9cc",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "resolution",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "preview",
+                    "package": "DepthAI_Common",
+                    "fullName": "ColorCameraNode_preview",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "a9ae9f38-9c00-4eeb-9822-216a1cf0d68a",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "preview",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "video",
+                    "package": "DepthAI_Common",
+                    "fullName": "ColorCameraNode_video",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "1bff6049-f907-4f41-9b7f-0fc565992c68",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ColorCameraNode",
+                            "outPinId": 2,
+                            "rhsNodeName": "VideoEncoder",
+                            "inPinId": 1,
+                            "lhsNodeUid": "335ce366-c106-4d0a-a449-461c1ed4b2f3",
+                            "rhsNodeUid": "5bea73f5-5a69-40de-9bc0-aca5e4a87745"
+                        }
+                    ],
+                    "pinIndex": 2,
+                    "options": [],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "video",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "1bff6049-f907-4f41-9b7f-0fc565992c68",
+                                "destinationUUID": "7abeebe1-e62f-4dfd-8632-25239cf5c90b",
+                                "sourceName": "ColorCameraNode_video",
+                                "destinationName": "VideoEncoder_input",
+                                "uuid": "a552f056-08fa-4560-bfbb-a8644ce5af58",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "ColorCameraNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">ColorCameraNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -663.0,
+            "y": -184.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "XLinkBridge",
+            "owningGraphName": "root",
+            "name": "XLinkBridge",
+            "uuid": "2fa8210b-b703-4f69-bd5e-120b4ef6a0c3",
+            "inputs": [
+                {
+                    "name": "in",
+                    "package": "PyFlowBase",
+                    "fullName": "XLinkBridge_in",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "3ed01276-a993-4e9e-b1d5-dd58a57823d3",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "VideoEncoder",
+                            "outPinId": 1,
+                            "rhsNodeName": "XLinkBridge",
+                            "inPinId": 1,
+                            "lhsNodeUid": "5bea73f5-5a69-40de-9bc0-aca5e4a87745",
+                            "rhsNodeUid": "2fa8210b-b703-4f69-bd5e-120b4ef6a0c3"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256,
+                        512
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "in",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "65420d15-766a-4219-a3d3-ff2d3a490ef3",
+                                "destinationUUID": "3ed01276-a993-4e9e-b1d5-dd58a57823d3",
+                                "sourceName": "VideoEncoder_bitstream",
+                                "destinationName": "XLinkBridge_in",
+                                "uuid": "d658594f-af4a-4fdf-b488-1b6b2b44569a",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "EncodedFramePin"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "XLinkBridge_out",
+                    "dataType": "AnyPin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "756dce41-6edf-4aa5-8475-63b9e46c4412",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "XLinkBridge",
+                            "outPinId": 1,
+                            "rhsNodeName": "FileWriterNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "2fa8210b-b703-4f69-bd5e-120b4ef6a0c3",
+                            "rhsNodeUid": "fb58186f-a7f4-4d6b-a546-53e62f1769a3"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        16,
+                        256,
+                        512
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "756dce41-6edf-4aa5-8475-63b9e46c4412",
+                                "destinationUUID": "22251497-66b3-43dd-8c95-d475b583cd9a",
+                                "sourceName": "XLinkBridge_out",
+                                "destinationName": "FileWriterNode_data",
+                                "uuid": "40261f31-2394-4411-adff-9c42221b6784",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "XLinkBridge"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">XLinkBridge</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -195.0,
+            "y": -181.0
+        },
+        {
+            "package": "DepthAI_Device",
+            "lib": null,
+            "type": "VideoEncoder",
+            "owningGraphName": "root",
+            "name": "VideoEncoder",
+            "uuid": "5bea73f5-5a69-40de-9bc0-aca5e4a87745",
+            "inputs": [
+                {
+                    "name": "profile",
+                    "package": "PyFlowBase",
+                    "fullName": "VideoEncoder_profile",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"H264_MAIN\"",
+                    "uuid": "f1e5607b-48dc-4c66-85d0-682d6378cb5b",
+                    "linkedTo": [],
+                    "pinIndex": 5,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "profile",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "width",
+                    "package": "PyFlowBase",
+                    "fullName": "VideoEncoder_width",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "3840",
+                    "uuid": "3f4c477f-b8dd-4ac7-a95f-472e917f175c",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "width",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "height",
+                    "package": "PyFlowBase",
+                    "fullName": "VideoEncoder_height",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "2160",
+                    "uuid": "b6692abb-fb75-4608-ad8c-c0e92496559e",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "height",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "input",
+                    "package": "DepthAI_Common",
+                    "fullName": "VideoEncoder_input",
+                    "dataType": "FramePin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "7abeebe1-e62f-4dfd-8632-25239cf5c90b",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ColorCameraNode",
+                            "outPinId": 2,
+                            "rhsNodeName": "VideoEncoder",
+                            "inPinId": 1,
+                            "lhsNodeUid": "335ce366-c106-4d0a-a449-461c1ed4b2f3",
+                            "rhsNodeUid": "5bea73f5-5a69-40de-9bc0-aca5e4a87745"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "input",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "1bff6049-f907-4f41-9b7f-0fc565992c68",
+                                "destinationUUID": "7abeebe1-e62f-4dfd-8632-25239cf5c90b",
+                                "sourceName": "ColorCameraNode_video",
+                                "destinationName": "VideoEncoder_input",
+                                "uuid": "a552f056-08fa-4560-bfbb-a8644ce5af58",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "fps",
+                    "package": "PyFlowBase",
+                    "fullName": "VideoEncoder_fps",
+                    "dataType": "IntPin",
+                    "direction": 0,
+                    "value": "30",
+                    "uuid": "d317d764-b07e-4896-9f20-b40b4a63767c",
+                    "linkedTo": [],
+                    "pinIndex": 4,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "fps",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "bitstream",
+                    "package": "DepthAI_Common",
+                    "fullName": "VideoEncoder_bitstream",
+                    "dataType": "EncodedFramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "65420d15-766a-4219-a3d3-ff2d3a490ef3",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "VideoEncoder",
+                            "outPinId": 1,
+                            "rhsNodeName": "XLinkBridge",
+                            "inPinId": 1,
+                            "lhsNodeUid": "5bea73f5-5a69-40de-9bc0-aca5e4a87745",
+                            "rhsNodeUid": "2fa8210b-b703-4f69-bd5e-120b4ef6a0c3"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "bitstream",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "65420d15-766a-4219-a3d3-ff2d3a490ef3",
+                                "destinationUUID": "3ed01276-a993-4e9e-b1d5-dd58a57823d3",
+                                "sourceName": "VideoEncoder_bitstream",
+                                "destinationName": "XLinkBridge_in",
+                                "uuid": "d658594f-af4a-4fdf-b488-1b6b2b44569a",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "VideoEncoder"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">VideoEncoder</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -431.0,
+            "y": -183.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "FileWriterNode",
+            "owningGraphName": "root",
+            "name": "FileWriterNode",
+            "uuid": "fb58186f-a7f4-4d6b-a546-53e62f1769a3",
+            "inputs": [
+                {
+                    "name": "file_mode",
+                    "package": "PyFlowBase",
+                    "fullName": "FileWriterNode_file_mode",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"wb\"",
+                    "uuid": "ada352d7-365c-4208-861e-a9cf4e90d948",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "file_mode",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "data",
+                    "package": "PyFlowBase",
+                    "fullName": "FileWriterNode_data",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "22251497-66b3-43dd-8c95-d475b583cd9a",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "XLinkBridge",
+                            "outPinId": 1,
+                            "rhsNodeName": "FileWriterNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "2fa8210b-b703-4f69-bd5e-120b4ef6a0c3",
+                            "rhsNodeUid": "fb58186f-a7f4-4d6b-a546-53e62f1769a3"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        16,
+                        256,
+                        512
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "data",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "756dce41-6edf-4aa5-8475-63b9e46c4412",
+                                "destinationUUID": "22251497-66b3-43dd-8c95-d475b583cd9a",
+                                "sourceName": "XLinkBridge_out",
+                                "destinationName": "FileWriterNode_data",
+                                "uuid": "40261f31-2394-4411-adff-9c42221b6784",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "file_path",
+                    "package": "PyFlowBase",
+                    "fullName": "FileWriterNode_file_path",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"/home/vandavv/dev/luxonis/PyFlow/vid.264\"",
+                    "uuid": "946c5a48-555c-447c-ad7e-8951226aa3f6",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "file_path",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [],
+            "meta": {
+                "var": {},
+                "label": "FileWriterNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">FileWriterNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -5.0,
+            "y": -181.0
+        }
+    ],
+    "depth": 1,
+    "isRoot": true,
+    "parentGraphName": "None",
+    "fileVersion": "2.0.1",
+    "activeGraph": "root"
+}

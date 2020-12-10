@@ -17,6 +17,7 @@ from DepthAI_Host.Nodes.DataOps.ToBBoxNode import ToBBoxNode
 from DepthAI_Host.Nodes.FrameOps.ToFrameNode import ToFrameNode
 from DepthAI_Host.Nodes.FrameOps.BBoxOverlayNode import BBoxOverlayNode
 from DepthAI_Host.Nodes.Display.FramePreviewNode import FramePreviewNode
+from DepthAI_Host.Nodes.Files.FileWriterNode import FileWriterNode
 
 _FOO_LIBS = {}
 _NODES = {}
@@ -26,7 +27,7 @@ _PREFS_WIDGETS = OrderedDict()
 _EXPORTERS = OrderedDict()
 
 NODES_TO_ADD = [
-    HostXLinkRead, ToFrameNode, FramePreviewNode, BBoxOverlayNode, ToBBoxNode, XLinkBridge
+    HostXLinkRead, ToFrameNode, FramePreviewNode, BBoxOverlayNode, ToBBoxNode, XLinkBridge, FileWriterNode
 ]
 
 for node in NODES_TO_ADD:

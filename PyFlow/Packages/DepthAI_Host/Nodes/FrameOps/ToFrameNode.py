@@ -51,9 +51,9 @@ class ToFrameNode(HostNode):
         if not channels.is_integer():
             raise RuntimeError(f"Width/Height is incorrect for the data received (size: {arr.size}, calc_n_channels: {channels})")
         if channels == 1:
-            frame = arr.reshape((channels, h, w)).transpose(1, 2, 0).astype(np.uint8)
-        else:
             frame = arr.reshape((h, w)).astype(np.uint8)
+        else:
+            frame = arr.reshape((int(channels), h, w)).transpose(1, 2, 0).astype(np.uint8)
         frame = np.ascontiguousarray(frame)
         self.send("frame", frame)
         if DEBUG:

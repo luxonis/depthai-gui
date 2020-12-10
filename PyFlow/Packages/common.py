@@ -35,9 +35,13 @@ def get_pin_by_index(pins, index, direction=PinDirection.Input):
             return pin
 
 
-def get_property_value(node, name):
+def get_property_value(node, name, default=None):
     prop = next(filter(lambda obj: obj.name == name, node.inputs.values()), None)
-    return prop.currentData() if prop is not None else None
+    return (prop.currentData() or default) if prop is not None else default
+
+
+def get_enum_values(enum):
+    return list(filter(lambda var: var[0].isupper() and not var.startswith('_'), vars(enum)))
 
 
 class DepthaiNode(NodeBase):
@@ -126,28 +130,35 @@ class HostNode(DepthaiNode):
     def _thread_fun(self, queue, device):
         self.queue = queue
         self.input_buffer = {}
-        self.start(device)
-        if DEBUG:
-            print(f"{self.name} starting...")
-        while self._running:
+        try:
+            self.start(device)
+            if DEBUG:
+                print(f"{self.name} starting...")
             try:
-                self.run()
-            except StopNodeException:
-                return
-            except Exception as e:
-                instance = self.getWrapper().canvasRef().pyFlowInstance
-                threading.Thread(target=stop_pipeline, args=(instance, )).start()
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Critical)
-                msg.setText("Error occured during node execution!")
-                msg.setInformativeText(str(e))
-                msg.setDetailedText(traceback.format_exc())
-                msg.setWindowTitle("Node execution error!")
-                msg.setStandardButtons(QMessageBox.Ok)
-                msg.exec()
-                return
+                while self._running:
+                    try:
+                        self.run()
+                    except StopNodeException:
+                        break
+            finally:
+                self.end(device)
+        except Exception as e:
+            traceback.print_exc()
+            instance = self.getWrapper().canvasRef().pyFlowInstance
+            threading.Thread(target=stop_pipeline, args=(instance, )).start()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Error occured during node execution!")
+            msg.setInformativeText(str(e))
+            msg.setDetailedText(traceback.format_exc())
+            msg.setWindowTitle("Node execution error!")
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec()
 
     def start(self, device):
+        pass
+
+    def end(self, device):
         pass
 
     def run(self):

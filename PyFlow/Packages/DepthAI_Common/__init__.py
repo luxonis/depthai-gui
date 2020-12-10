@@ -1,3 +1,5 @@
+from DepthAI_Common.Pins.EncodedFramePin import EncodedFramePin
+
 PACKAGE_NAME = 'DepthAI'
 
 from collections import OrderedDict
@@ -29,7 +31,7 @@ _PREFS_WIDGETS = OrderedDict()
 _EXPORTERS = OrderedDict()
 
 PINS_TO_ADD = [
-    FramePin, NeuralTensorPin, BoundingBoxPin
+    FramePin, NeuralTensorPin, BoundingBoxPin, EncodedFramePin
 ]
 
 for pin in PINS_TO_ADD:

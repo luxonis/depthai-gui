@@ -1,22 +1,21 @@
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
-from common import DeviceNode, get_property_value
+from common import DeviceNode, get_property_value, get_enum_values
 
 
-class ColorCameraNode(DeviceNode):
+class MonoCameraNode(DeviceNode):
     def __init__(self, name):
-        super(ColorCameraNode, self).__init__(name)
+        import depthai
+        super(MonoCameraNode, self).__init__(name)
         self.out = self.createOutputPin('out', 'FramePin')
-        self.prev_w = self.createInputPin('prev_width', 'IntPin')
-        self.prev_h = self.createInputPin('prev_height', 'IntPin')
         self.out.enableOptions(PinOptions.AllowMultipleConnections)
+        self.resolution = self.createInputPin('resolution', 'StringPin')
+        self.resolution.setValueList(get_enum_values(depthai.MonoCameraProperties.SensorResolution))
 
     @staticmethod
     def pinTypeHints():
         helper = NodePinsSuggestionsHelper()
-        helper.addInputDataType('IntPin')
         helper.addOutputDataType('FramePin')
-        helper.addInputStruct(StructureType.Multi)
         helper.addOutputStruct(StructureType.Multi)
         return helper
 
@@ -35,9 +34,9 @@ class ColorCameraNode(DeviceNode):
     def build_pipeline(self, pipeline):
         import depthai
         cam = pipeline.createMonoCamera()
-        w = get_property_value(self, "prev_width")
-        h = get_property_value(self, "prev_height")
-        if None not in (w, h) and w > 0 and h > 0:
-            cam.setPreviewSize(h, w)
         cam.setResolution(depthai.MonoCameraProperties.SensorResolution.THE_720_P)
-        self.connection_map["out"] = cam.preview
+        cam.setResolution(getattr(
+            depthai.MonoCameraProperties.SensorResolution,
+            get_property_value(self, "resolution", "THE_720_P")
+        ))
+        self.connection_map["out"] = cam.out

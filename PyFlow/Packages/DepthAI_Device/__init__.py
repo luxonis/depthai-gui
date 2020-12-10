@@ -32,8 +32,10 @@ from DepthAI_Device.Nodes.ModelZoo.PersonVehicleBikeDetectionNode import PersonV
 from DepthAI_Device.Nodes.ModelZoo.VehicleDetectionAdas2Node import VehicleDetectionAdas2Node
 from DepthAI_Device.Nodes.ModelZoo.VehicleLicensePlateDetectionNode import VehicleLicensePlateDetectionNode
 from DepthAI_Device.Nodes.NeuralNetwork.NeuralNetworkNode import NeuralNetworkNode
-from DepthAI_Device.Nodes.Cameras.ColorCameraNode import MonoCameraNode
-from DepthAI_Device.Nodes.Cameras.MonoCameraNode import ColorCameraNode
+from DepthAI_Device.Nodes.Cameras.ColorCameraNode import ColorCameraNode
+from DepthAI_Device.Nodes.Cameras.MonoCameraNode import MonoCameraNode
+from DepthAI_Device.Nodes.Depth.StereoDepthNode import StereoDepthNode
+from DepthAI_Device.Nodes.Encoding.VideoEncoder import VideoEncoder
 
 _FOO_LIBS = {}
 _NODES = {}
@@ -47,7 +49,7 @@ NODES_TO_ADD = [
     XLinkOut, GlobalPropertiesNode, PedestrianDetectionRetail13Node, XLinkIn, NeuralNetworkNode, AgeGenderDetectionNode,
     EmotionsRecognitionNode, FaceDetectionAdas1Node, FaceDetectionRetail4Node, XLinkBridge, FacialLandmarksAdas2Node,
     FacialLandmarksRetail9Node, PedestrianDetectionAdas2Node, PersonVehicleBikeDetectionNode, MonoCameraNode,
-    ColorCameraNode
+    ColorCameraNode, StereoDepthNode, VideoEncoder
 ]
 
 for node in NODES_TO_ADD:

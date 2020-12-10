@@ -28,6 +28,11 @@ class StringPin(PinBase):
     def IsValuePin():
         return True
 
+    def setValueList(self, values):
+        if self.annotationDescriptionDict is None:
+            self.annotationDescriptionDict = {}
+        self.annotationDescriptionDict[PinSpecifires.VALUE_LIST] = values
+
     def getInputWidgetVariant(self):
         if self.annotationDescriptionDict is not None:
             if PinSpecifires.VALUE_LIST in self.annotationDescriptionDict:

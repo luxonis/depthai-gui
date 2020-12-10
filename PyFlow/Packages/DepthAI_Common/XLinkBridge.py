@@ -7,10 +7,6 @@ from PyFlow.UI.Utils.stylesheet import Colors
 from config import DEBUG
 
 
-def get_name():
-    return ''.join(random.choice(string.ascii_letters) for i in range(12))
-
-
 class XLinkBridge(HostNode, DeviceNode):
     def __init__(self, name):
         super(XLinkBridge, self).__init__(name)
@@ -20,7 +16,6 @@ class XLinkBridge(HostNode, DeviceNode):
         self.input.enableOptions(PinOptions.AllowAny)
         self.out.enableOptions(PinOptions.AllowAny)
         self.out.enableOptions(PinOptions.AllowMultipleConnections)
-        self.stream_name = get_name()
 
     @staticmethod
     def pinTypeHints():
@@ -58,19 +53,19 @@ class XLinkBridge(HostNode, DeviceNode):
     def build_pipeline(self, pipeline):
         if self.to_host():
             xout = pipeline.createXLinkOut()
-            xout.setStreamName(self.stream_name)
+            xout.setStreamName(self.name)
             self.connection_map["in"] = xout.input
         else:
             xin = pipeline.createXLinkIn()
-            xin.setStreamName(self.stream_name)
+            xin.setStreamName(self.name)
             self.connection_map["out"] = xin.out
 
     def start(self, device):
         if self.to_host():
-            print("Initializing {} with {} queue".format(self.name, self.stream_name))
-            self.out = device.getOutputQueue(self.stream_name, 1, True)
+            print("Initializing {} with {} queue".format(self.name, self.name))
+            self.out = device.getOutputQueue(self.name, 1, True)
         else:
-            self.input = device.getInputQueue(self.stream_name)
+            self.input = device.getInputQueue(self.name)
 
     def run(self):
         if self.to_host():

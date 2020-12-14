@@ -24,7 +24,9 @@ import pkgutil
 import collections
 from copy import copy
 import os
+import sys
 import json
+from pathlib import Path
 
 from PyFlow.Packages import *
 
@@ -156,6 +158,7 @@ def getRawNodeInstance(nodeClassName, packageName=None, libName=None, **kwargs):
 
 
 def INITIALIZE(additionalPackageLocations=[], software=""):
+    sys.path.append(str((Path(__file__).parent / Path('Packages')).resolve().absolute()))
     from PyFlow.UI.Tool import REGISTER_TOOL
     from PyFlow.UI.Widgets.InputWidgets import REGISTER_UI_INPUT_WIDGET_PIN_FACTORY
     from PyFlow.UI.Canvas.UINodeBase import REGISTER_UI_NODE_FACTORY

@@ -4,6 +4,7 @@ from pathlib import Path
 from Qt import QtGui
 from Qt.QtWidgets import QMessageBox
 
+from DepthAI_Common.Tools import RESOURCES_DIR
 from PyFlow.Core.Common import *
 from PyFlow.UI.Tool.Tool import ShelfTool
 from common import stop_pipeline
@@ -21,7 +22,7 @@ class StopTool(ShelfTool):
 
     @staticmethod
     def getIcon():
-        return QtGui.QIcon(str((Path(__file__).parent / Path('res/stop.png')).resolve().absolute()))
+        return QtGui.QIcon(RESOURCES_DIR + "stop.png")
 
     @staticmethod
     def name():

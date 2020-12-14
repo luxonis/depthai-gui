@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from DepthAI_Common.Tools import RESOURCES_DIR
 from PyFlow import INITIALIZE
 from PyFlow.Core.Common import *
 from PyFlow.UI.Tool.Tool import ShelfTool
@@ -177,7 +178,7 @@ class CustomDeviceTool(ShelfTool):
 
     @staticmethod
     def getIcon():
-        return QtGui.QIcon(str((Path(__file__).parent / Path('res/usb.png')).resolve().absolute()))
+        return QtGui.QIcon(RESOURCES_DIR + "usb.png")
 
     @staticmethod
     def name():

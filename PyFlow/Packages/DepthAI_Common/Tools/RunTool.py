@@ -1,6 +1,7 @@
 import traceback
 from pathlib import Path
 
+from DepthAI_Common.Tools import RESOURCES_DIR
 from DepthAI_Common.XLinkBridge import XLinkBridge
 from common import DeviceNode, HostNode
 from PyFlow.Core.Common import *
@@ -21,7 +22,7 @@ class RunTool(ShelfTool):
 
     @staticmethod
     def getIcon():
-        return QtGui.QIcon(str((Path(__file__).parent / Path('res/play.png')).resolve().absolute()))
+        return QtGui.QIcon(RESOURCES_DIR + "play.png")
 
     @staticmethod
     def name():

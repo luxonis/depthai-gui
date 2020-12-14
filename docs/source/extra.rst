@@ -1,5 +1,0 @@
-Extra
-=========
-
-  Extra info
-

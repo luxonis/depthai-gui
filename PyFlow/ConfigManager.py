@@ -20,6 +20,7 @@ from Qt import QtCore, QtGui
 
 from PyFlow.Core.Common import *
 from PyFlow.Input import InputAction, InputManager, InputActionType
+from Qt.QtWidgets import QMessageBox
 
 
 @SingletonDecorator
@@ -32,6 +33,7 @@ class ConfigManager(object):
     INPUT_CONFIG_PATH = os.path.join(CONFIGS_DIR, "input.json")
 
     def __init__(self, *args, **kwargs):
+        self.loadedDefaults = False
         self.registerConfigFile("PREFS", os.path.join(self.CONFIGS_DIR, "prefs.ini"))
         self.registerConfigFile("APP_STATE", os.path.join(self.CONFIGS_DIR, "config.ini"))
 
@@ -69,6 +71,7 @@ class ConfigManager(object):
                 return settings.value(valueKey)
 
     def createDefaultInput(self):
+        self.loadedDefaults = True
         InputManager().registerAction(InputAction(name="Canvas.Pan", actionType=InputActionType.Mouse, group="Navigation", mouse=QtCore.Qt.MouseButton.MiddleButton))
         InputManager().registerAction(InputAction(name="Canvas.Pan", actionType=InputActionType.Mouse, group="Navigation", mouse=QtCore.Qt.MouseButton.LeftButton, modifiers=QtCore.Qt.AltModifier))
         InputManager().registerAction(InputAction(name="Canvas.Zoom", actionType=InputActionType.Mouse, group="Navigation", mouse=QtCore.Qt.MouseButton.RightButton))

@@ -571,9 +571,9 @@ class PyFlow(QMainWindow):
     @staticmethod
     def instance(parent=None, software=""):
         assert(software != ""), "Invalid arguments. Please pass you software name as second argument!"
-        settings = ConfigManager().getSettings("APP_STATE")
 
         instance = PyFlow(parent)
+        settings = ConfigManager().getSettings("APP_STATE")
         instance.currentSoftware = software
         SessionDescriptor().software = instance.currentSoftware
 
@@ -673,4 +673,7 @@ class PyFlow(QMainWindow):
                 for categoryName, widgetClass in prefsWidgets.items():
                     PreferencesWindow().addCategory(categoryName, widgetClass())
                 PreferencesWindow().selectByName("General")
+
+        if ConfigManager().loadedDefaults:
+            QMessageBox.information(None, "First-time tips", "Welcome to DepthAI GUI. To use this tool efficiently, please do the following:\n\n1. Maximize the window\n2. Enable NodeBox widget (Tools > PyFlowBase > NodeBox)\n3. Enable Properties widget (Tools > PyFlowBase > Properties)\n\nHave fun!")
         return instance

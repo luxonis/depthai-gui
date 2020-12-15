@@ -1,6 +1,9 @@
+import queue
 import string
 import random
-from common import HostNode, DeviceNode, get_property_value, get_node_by_uid
+import threading
+
+from common import HostNode, DeviceNode, get_property_value, get_node_by_uid, DepthaiNode, get_pin_by_index
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
 from PyFlow.UI.Utils.stylesheet import Colors
@@ -61,25 +64,48 @@ class XLinkBridge(HostNode, DeviceNode):
             self.connection_map["out"] = xin.out
 
     def start(self, device):
+        self._running = True
         if self.to_host():
             print("Initializing {} with {} queue".format(self.name, self.name))
             self.out = device.getOutputQueue(self.name, 1, True)
         else:
             self.input = device.getInputQueue(self.name)
 
-    def run(self):
+    def run_node(self, device):
         if self.to_host():
-                data = self.out.tryGet()
-                if data is not None:
-                    if DEBUG:
-                        print(f"{self.name} got new data...")
-                    self.send("out", data)
-                    if DEBUG:
-                        print(f"{self.name} updated.")
+            self.thread = threading.Thread(target=self.run_to_host, args=(device, ), daemon=True)
+            self.thread.start()
         else:
-            if DEBUG:
-                print(f"{self.name} waiting...")
+            self.queue = queue.Queue()
+            self.thread = threading.Thread(target=self.run_to_device, args=(self.queue, ), daemon=True)
+            self.thread.start()
+
+    def stop_node(self, wait=True):
+        self._running = False
+        if wait:
+            self.thread.join()
+
+    def run_to_host(self, device):
+        self.setup_connections()
+        self.start(device)
+        while self._running:
+            data = self.out.tryGet()
+            if data is not None:
+                if DEBUG:
+                    print(f"{self.name} got new data...")
+                self.send("out", data)
+                if DEBUG:
+                    print(f"{self.name} updated.")
+
+    def run_to_device(self, queue):
+        self.queue = queue
+        self.input_buffer = {}
+        while self._running:
+            self.get_queue_data()
             data = self.receive("in")
-            self.input.send(data)
-            if DEBUG:
-                print(f"{self.name} updated.")
+            if data is not None:
+                if DEBUG:
+                    print(f"{self.name} got new data...")
+                self.input.send(data)
+                if DEBUG:
+                    print(f"{self.name} updated.")

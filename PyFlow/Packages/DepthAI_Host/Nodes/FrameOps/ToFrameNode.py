@@ -42,6 +42,8 @@ class ToFrameNode(HostNode):
         if DEBUG:
             print(f"{self.name} waiting...")
         packet = self.receive("data")
+        if packet is None:
+            return
         w = get_property_value(self, "width")
         h = get_property_value(self, "height")
         if 0 in (w, h):

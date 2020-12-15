@@ -110,14 +110,12 @@ class HostNode(DepthaiNode):
 
     def run_node(self, device):
         self.queue = queue.Queue(1)
-        self._running = True
         self.thread = threading.Thread(target=self._thread_fun, args=(self.queue, device), daemon=True)
         self.thread.start()
 
     def stop_node(self, wait=True):
         if DEBUG:
             print(f"Stopping {self.name}")
-        self._running = False
         self.queue.put(self.EXIT_MESSAGE)
         if wait:
             self.join()
@@ -131,12 +129,14 @@ class HostNode(DepthaiNode):
         self.queue = queue
         self.input_buffer = {}
         try:
+            self.setup_connections()
             self.start(device)
             if DEBUG:
                 print(f"{self.name} starting...")
             try:
-                while self._running:
+                while True:
                     try:
+                        self.get_queue_data()
                         self.run()
                     except StopNodeException:
                         break
@@ -155,6 +155,32 @@ class HostNode(DepthaiNode):
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec()
 
+    def setup_connections(self):
+        self._connections = {}
+        nodes = self.getWrapper().canvasRef().graphManager.findRootGraph().getNodesList()
+        for output in self.outputs.values():
+            self._connections[output.name] = {}
+            for link in output.linkedTo:
+                connected_node = get_node_by_uid(nodes, link['rhsNodeUid'])
+                inp = get_pin_by_index(connected_node.pins, link['inPinId'])
+                self._connections[output.name][inp.name] = connected_node
+
+    def get_queue_data(self):
+        while not self.queue.empty():
+            in_data = self.queue.get()
+            self.queue.task_done()
+            if not isinstance(in_data, dict):
+                if in_data == self.EXIT_MESSAGE:
+                    if DEBUG:
+                        print(f"{self.name} received exit message, exiting...")
+                    raise StopNodeException()
+                if DEBUG:
+                    print(f"{self.name} received malformed data packet: {in_data}")
+                self.input_buffer[in_data["name"]] = in_data["data"]
+            else:
+                self.input_buffer[in_data["name"]] = in_data["data"]
+
+
     def start(self, device):
         pass
 
@@ -165,33 +191,20 @@ class HostNode(DepthaiNode):
         pass
 
     def send(self, output_name, data):
-        nodes = self.getWrapper().canvasRef().graphManager.findRootGraph().getNodesList()
-        out = next(filter(lambda output: output.name == output_name, self.outputs.values()))
-        for link in out.linkedTo:
-            connected_node = get_node_by_uid(nodes, link['rhsNodeUid'])
-            inp = get_pin_by_index(connected_node.pins, link['inPinId'])
-            if not connected_node.queue.full():
-                connected_node.queue.put({"name": inp.name, "data": data})
+        for name, node in self._connections.get(output_name, {}).items():
+            try:
+                node.queue.put_nowait({"name": name, "data": data})
+            except queue.Full:
+                if DEBUG:
+                    print(f"Node {node.name} queue is full, skipping data from {self.name}...")
 
     def get_default(self, name):
         return None
 
     def receive(self, input_name, *input_names):
-        names = [input_name, *input_names]
-        in_data = self.queue.get()
-        self.queue.task_done()
-        if not isinstance(in_data, dict) or "name" not in in_data or "data" not in in_data:
-            if in_data == self.EXIT_MESSAGE:
-                if DEBUG:
-                    print(f"{self.name} received exit message, exiting...")
-                raise StopNodeException()
-            if DEBUG:
-                print(f"{self.name} received malformed data packet: {in_data}")
-            return _receive_postprocess([None] * len(names))
-        self.input_buffer[in_data["name"]] = in_data["data"]
         data = [
             self.input_buffer.get(key, self.get_default(key))
-            for key in names
+            for key in [input_name, *input_names]
         ]
         return _receive_postprocess(data)
 

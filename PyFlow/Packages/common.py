@@ -82,12 +82,13 @@ class DepthaiNode(NodeBase):
     def build_connections(self):
         nodes = self.getWrapper().canvasRef().graphManager.findRootGraph().getNodesList()
         for out in self.outputs.values():
-            node_out = self.connection_map[out.name]
             for link in out.linkedTo:
                 connected_node = get_node_by_uid(nodes, link['rhsNodeUid'])
+                if not isinstance(connected_node, DeviceNode):
+                    continue
                 inp = get_pin_by_index(connected_node.pins, link['inPinId'])
                 node_in = connected_node.connection_map[inp.name]
-                node_out.link(node_in)
+                self.connection_map[out.name].link(node_in)
 
 
 class PreviewNode:
@@ -120,6 +121,40 @@ class StopNodeException(Exception):
 
 
 class HostNode(DepthaiNode):
+    def __init__(self, name):
+        super(HostNode, self).__init__(name)
+        self.queue = queue.Queue(1)
+
+    def setup_connections(self):
+        self._connections = {}
+        nodes = self.getWrapper().canvasRef().graphManager.findRootGraph().getNodesList()
+        for output in self.outputs.values():
+            self._connections[output.name] = []
+            for link in output.linkedTo:
+                connected_node = get_node_by_uid(nodes, link['rhsNodeUid'])
+                inp = get_pin_by_index(connected_node.pins, link['inPinId'])
+                self._connections[output.name].append((inp.name, connected_node))
+
+
+    def send(self, output_name, data):
+        for name, node in self._connections.get(output_name, []):
+            try:
+                node.queue.put_nowait({"name": name, "data": data})
+            except queue.Full:
+                pass
+
+    def _fun(self, device):
+        return
+
+    def _run(self, device):
+        self.setup_connections()
+        self._fun(device)
+
+    def run_node(self, device):
+        t = threading.Thread(target=self._run, args=(device, ), daemon=True)
+        t.start()
+
+class OldHostNode:
     use_buffer = False
 
     def __init__(self, name):
@@ -130,9 +165,9 @@ class HostNode(DepthaiNode):
         raise RuntimeError("Host nodes cannot build pipeline!")
     EXIT_MESSAGE = "exit_message"
 
-    def run_node(self, device):
+    def run_node(self, device, show_q):
         self.queue = queue.Queue(1)
-        self.thread = threading.Thread(target=self._thread_fun, args=(self.queue, device), daemon=True)
+        self.thread = threading.Thread(target=self._thread_fun, args=(self.queue, device, show_q), daemon=True)
         self.thread.start()
 
     def stop_node(self, wait=True):
@@ -147,8 +182,9 @@ class HostNode(DepthaiNode):
         if DEBUG:
             print(f"Stopped {self.name}")
 
-    def _thread_fun(self, queue, device):
+    def _thread_fun(self, queue, device, show_q):
         self.queue = queue
+        self.show_q = show_q
         if self.use_buffer:
             self.input_buffer = {}
         try:
@@ -216,6 +252,13 @@ class HostNode(DepthaiNode):
 
     def run(self):
         pass
+
+    def display(self, frame):
+        try:
+            self.show_q.put_nowait(frame)
+        except Exception as e:
+            print(e)
+
 
     def send(self, output_name, data):
         for name, node in self._connections.get(output_name, []):

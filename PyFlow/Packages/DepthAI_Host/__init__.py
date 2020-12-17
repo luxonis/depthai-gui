@@ -1,5 +1,6 @@
 from DepthAI_Common.UI.NodeFactory import createNodeDepthAI
 from DepthAI_Common.XLinkBridge import XLinkBridge
+from DepthAI_Common.XLinkToHost import XLinkToHost
 from DepthAI_Host.Nodes.Debug.DataFeederNode import DataFeederNode
 from DepthAI_Host.Nodes.Files.VideoSourceNode import VideoSourceNode
 
@@ -30,7 +31,7 @@ _EXPORTERS = OrderedDict()
 
 NODES_TO_ADD = [
     HostXLinkRead, ToFrameNode, FramePreviewNode, BBoxOverlayNode, ToBBoxNode, XLinkBridge, FileWriterNode,
-    VideoSourceNode, DataFeederNode
+    VideoSourceNode, DataFeederNode, XLinkToHost
 ]
 
 for node in NODES_TO_ADD:

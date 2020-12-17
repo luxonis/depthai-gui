@@ -1,15 +1,13 @@
-import numpy as np
-
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
-from common import HostNode
+from common import DeviceNode, HostNode
 
 
-class ToFrameNode(HostNode):
+class XLinkToHost(HostNode, DeviceNode):
     def __init__(self, name):
-        super(ToFrameNode, self).__init__(name)
-        self.data = self.createInputPin('data', 'AnyPin')
-        self.data.enableOptions(PinOptions.AllowAny)
+        super(XLinkToHost, self).__init__(name)
+        self.input = self.createInputPin('in', 'AnyPin')
+        self.input.enableOptions(PinOptions.AllowAny)
         self.out = self.createOutputPin('out', 'AnyPin')
         self.out.enableOptions(PinOptions.AllowAny)
         self.out.enableOptions(PinOptions.AllowMultipleConnections)
@@ -23,7 +21,7 @@ class ToFrameNode(HostNode):
 
     @staticmethod
     def category():
-        return 'FrameOps'
+        return 'XLink'
 
     @staticmethod
     def keywords():
@@ -33,9 +31,12 @@ class ToFrameNode(HostNode):
     def description():
         return "Description in rst format."
 
+    def build_pipeline(self, pipeline):
+        xout = pipeline.createXLinkOut()
+        xout.setStreamName(self.name)
+        self.connection_map["in"] = xout.input
+
     def _fun(self, device):
+        q_in = device.getOutputQueue(self.name)
         while True:
-            data = self.queue.get()
-            frame = data['data'].getData().reshape((3, 300, 300)).transpose(1, 2, 0).astype(np.uint8)
-            frame = np.ascontiguousarray(frame)
-            self.send("out", frame)
+            self.send("out", q_in.get())

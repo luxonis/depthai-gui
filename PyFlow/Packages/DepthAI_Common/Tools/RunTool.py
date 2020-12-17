@@ -1,13 +1,13 @@
 import traceback
-from pathlib import Path
+
+from Qt import QtGui
+from Qt.QtWidgets import QMessageBox
 
 from DepthAI_Common.Tools import RESOURCES_DIR
 from DepthAI_Common.XLinkBridge import XLinkBridge
-from common import DeviceNode, HostNode
 from PyFlow.Core.Common import *
 from PyFlow.UI.Tool.Tool import ShelfTool
-from Qt import QtGui
-from Qt.QtWidgets import QFileDialog, QMessageBox
+from common import DeviceNode, HostNode
 
 
 class RunTool(ShelfTool):

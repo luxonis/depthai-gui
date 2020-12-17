@@ -46,21 +46,25 @@ class XLinkBridge(HostNode, DeviceNode):
         out = next(iter(self.outputs.values()))
         for link in out.linkedTo:
             connected_node = get_node_by_uid(nodes, link['rhsNodeUid'])
-            if isinstance(connected_node, HostNode):
-                return True
-            elif isinstance(connected_node, DeviceNode):
+            # if isinstance(connected_node, HostTestNode): TODO
+            #     return True
+            if isinstance(connected_node, DeviceNode):
                 return False
             else:
-                raise RuntimeError("Connected node is neither Device nor Host node")
+                return True
+
+            # else:
+            #     raise RuntimeError("Connected node is neither Device nor Host node")
+        return True
 
     def build_pipeline(self, pipeline):
         if self.to_host():
             xout = pipeline.createXLinkOut()
-            xout.setStreamName(self.name)
+            xout.setStreamName("rgb")
             self.connection_map["in"] = xout.input
         else:
             xin = pipeline.createXLinkIn()
-            xin.setStreamName(self.name)
+            xin.setStreamName("rgb")
             self.connection_map["out"] = xin.out
 
     def start(self, device):

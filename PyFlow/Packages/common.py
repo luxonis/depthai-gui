@@ -1,6 +1,7 @@
 import json
 import queue
 import threading
+import time
 import traceback
 
 from PyFlow.UI.Utils.stylesheet import Colors
@@ -42,6 +43,25 @@ def get_property_value(node, name, default=None):
 
 def get_enum_values(enum):
     return list(filter(lambda var: var[0].isupper() and not var.startswith('_'), vars(enum)))
+
+
+class FPS:
+    _data = {}
+
+    @staticmethod
+    def update(name):
+        if name not in FPS._data:
+            FPS._data[name] = {
+                'current': 0,
+                'all': [],
+                'last_ts': time.time(),
+            }
+        else:
+            now = time.time()
+            fps = 1 / (now - FPS._data[name]['last_ts'])
+            FPS._data[name]['last_ts'] = now
+            FPS._data[name]['all'].append(fps)
+            FPS._data[name]['current'] = fps
 
 
 class DepthaiNode(NodeBase):
@@ -100,6 +120,8 @@ class StopNodeException(Exception):
 
 
 class HostNode(DepthaiNode):
+    use_buffer = False
+
     def __init__(self, name):
         super().__init__(name)
         self.headerColor = Colors.NodeNameRectBlue.getRgb()
@@ -127,7 +149,8 @@ class HostNode(DepthaiNode):
 
     def _thread_fun(self, queue, device):
         self.queue = queue
-        self.input_buffer = {}
+        if self.use_buffer:
+            self.input_buffer = {}
         try:
             self.setup_connections()
             self.start(device)
@@ -136,7 +159,9 @@ class HostNode(DepthaiNode):
             try:
                 while True:
                     try:
-                        self.get_queue_data()
+                        FPS.update(self.name)
+                        if self.use_buffer:
+                            self.consume_queue_data()
                         self.run()
                     except StopNodeException:
                         break
@@ -159,26 +184,28 @@ class HostNode(DepthaiNode):
         self._connections = {}
         nodes = self.getWrapper().canvasRef().graphManager.findRootGraph().getNodesList()
         for output in self.outputs.values():
-            self._connections[output.name] = {}
+            self._connections[output.name] = []
             for link in output.linkedTo:
                 connected_node = get_node_by_uid(nodes, link['rhsNodeUid'])
                 inp = get_pin_by_index(connected_node.pins, link['inPinId'])
-                self._connections[output.name][inp.name] = connected_node
+                self._connections[output.name].append((inp.name, connected_node))
 
-    def get_queue_data(self):
-        while not self.queue.empty():
-            in_data = self.queue.get()
-            self.queue.task_done()
-            if not isinstance(in_data, dict):
-                if in_data == self.EXIT_MESSAGE:
-                    if DEBUG:
-                        print(f"{self.name} received exit message, exiting...")
-                    raise StopNodeException()
+    def _get_queue_data(self):
+        in_data = self.queue.get()
+        self.queue.task_done()
+        if not isinstance(in_data, dict):
+            if in_data == self.EXIT_MESSAGE:
                 if DEBUG:
-                    print(f"{self.name} received malformed data packet: {in_data}")
-                self.input_buffer[in_data["name"]] = in_data["data"]
-            else:
-                self.input_buffer[in_data["name"]] = in_data["data"]
+                    print(f"{self.name} received exit message, exiting...")
+                raise StopNodeException()
+            if DEBUG:
+                print(f"{self.name} received malformed data packet: {in_data}")
+        return in_data
+
+    def consume_queue_data(self):
+        while not self.queue.empty():
+            in_data = self._get_queue_data()
+            self.input_buffer[in_data["name"]] = in_data["data"]
 
 
     def start(self, device):
@@ -191,8 +218,17 @@ class HostNode(DepthaiNode):
         pass
 
     def send(self, output_name, data):
-        for name, node in self._connections.get(output_name, {}).items():
+        for name, node in self._connections.get(output_name, []):
             try:
+                if not hasattr(node, 'queue'):
+                    repeat = 5
+                    while repeat > 0:
+                        time.sleep(1)
+                        if hasattr(node, 'queue'):
+                            break
+                        else:
+                            repeat -= 1
+
                 node.queue.put_nowait({"name": name, "data": data})
             except queue.Full:
                 if DEBUG:
@@ -202,11 +238,22 @@ class HostNode(DepthaiNode):
         return None
 
     def receive(self, input_name, *input_names):
-        data = [
-            self.input_buffer.get(key, self.get_default(key))
-            for key in [input_name, *input_names]
-        ]
+        if self.use_buffer:
+            data = [
+                self.input_buffer.get(key, self.get_default(key))
+                for key in [input_name, *input_names]
+            ]
+        else:
+            data = None
+            while data is None:
+                in_data = self._get_queue_data()
+                if in_data['name'] == input_name:
+                    data = in_data['data']
         return _receive_postprocess(data)
+
+
+class BufferedHostNode(HostNode):
+    use_buffer = True
 
 
 class ExportableNode:

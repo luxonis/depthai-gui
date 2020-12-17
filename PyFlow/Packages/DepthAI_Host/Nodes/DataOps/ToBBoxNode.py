@@ -47,11 +47,7 @@ class ToBBoxNode(HostNode):
             arr = np.array(nn_data.getFirstLayerFp16())
             arr = arr[:np.where(arr == -1)[0][0]]
             arr = arr.reshape((arr.size // 7, 7))
-            arr = [
-                obj[3:7]
-                for obj in arr
-                if obj[2] > get_property_value(self, "threshold")
-            ]
+            arr = arr[arr[:, 2] > get_property_value(self, "threshold")][:, 3:7]
             self.send("bbox", arr)
             if DEBUG:
                 print(f"{self.name} updated.")

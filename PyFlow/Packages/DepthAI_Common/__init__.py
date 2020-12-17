@@ -1,4 +1,5 @@
 from DepthAI_Common.Pins.EncodedFramePin import EncodedFramePin
+from DepthAI_Common.Tools.DebugTool import DebugTool
 
 PACKAGE_NAME = 'DepthAI'
 
@@ -37,7 +38,7 @@ PINS_TO_ADD = [
 for pin in PINS_TO_ADD:
     _PINS[pin.__name__] = pin
 
-TOOLS_TO_ADD = [CustomDeviceTool, RunTool, StopTool]
+TOOLS_TO_ADD = [CustomDeviceTool, RunTool, StopTool, DebugTool]
 
 for tool in TOOLS_TO_ADD:
     _TOOLS[tool.__name__] = tool

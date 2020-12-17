@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from common import HostNode, get_property_value
+from common import HostNode, get_property_value, BufferedHostNode
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
 from config import DEBUG
@@ -14,18 +14,13 @@ def hex_to_rgb(hex_string):
     return int(r_hex, 16), int(g_hex, 16), int(b_hex, 16)
 
 
-def frame_norm(frame, *xy_vals):
-    height, width = frame.shape[:2]
-    result = []
-    for i, val in enumerate(xy_vals):
-        if i % 2 == 0:
-            result.append(max(0, min(width, int(val * width))))
-        else:
-            result.append(max(0, min(height, int(val * height))))
-    return result
+def frame_norm(frame, bbox):
+    if len(bbox) != 4:
+        raise ValueError("BBox is malformed, should have length of 4 - received {}".format(bbox))
+    return (np.array(bbox) * np.array([*frame.shape[:2], *frame.shape[:2]])[::-1]).astype(int)
 
 
-class BBoxOverlayNode(HostNode):
+class BBoxOverlayNode(BufferedHostNode):
     def __init__(self, name):
         super(BBoxOverlayNode, self).__init__(name)
         self.data = self.createInputPin('frame', 'FramePin')
@@ -63,19 +58,22 @@ class BBoxOverlayNode(HostNode):
             return []
         return None
 
+    def start(self, device):
+        self.color = hex_to_rgb(get_property_value(self, "color_hex"))
+
     def run(self):        
         if DEBUG:
             print(f"{self.name} waiting...")
         frame, bboxes = self.receive("frame", "bbox")
+        frame = frame.copy()
         if frame is None:        
             if DEBUG:
                 print(f"{self.name} skipping - no frame available")
             return
-        frame = frame.copy()
-        color = hex_to_rgb(get_property_value(self, "color_hex"))
+
         for raw_bbox in bboxes:
-            bbox = frame_norm(frame, *raw_bbox)
-            cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), color, 2)
+            bbox = frame_norm(frame, raw_bbox)
+            cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), self.color, 2)
         self.send("result", frame)        
         if DEBUG:
             print(f"{self.name} updated.")

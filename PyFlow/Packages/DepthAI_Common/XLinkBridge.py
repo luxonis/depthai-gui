@@ -67,7 +67,7 @@ class XLinkBridge(HostNode, DeviceNode):
         self._running = True
         if self.to_host():
             print("Initializing {} with {} queue".format(self.name, self.name))
-            self.out = device.getOutputQueue(self.name, 1, True)
+            self.out = device.getOutputQueue(self.name)
         else:
             self.input = device.getInputQueue(self.name)
 

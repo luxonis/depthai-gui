@@ -1,3 +1,5 @@
+from PyFlow.UI.Utils.stylesheet import Colors
+
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
 from common import DeviceNode, HostNode
@@ -6,6 +8,7 @@ from common import DeviceNode, HostNode
 class XLinkToHost(HostNode, DeviceNode):
     def __init__(self, name):
         super(XLinkToHost, self).__init__(name)
+        self.headerColor = Colors.NodeNameRectOrange.getRgb()
         self.input = self.createInputPin('in', 'AnyPin')
         self.input.enableOptions(PinOptions.AllowAny)
         self.out = self.createOutputPin('out', 'AnyPin')

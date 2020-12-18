@@ -39,12 +39,10 @@ class ToBBoxNode(HostNode):
     def description():
         return "Description in rst format."
 
-    def run(self):
-        if DEBUG:
-            print(f"{self.name} waiting...")
-        nn_data = self.receive("data")
-        if nn_data is not None:
-            arr = np.array(nn_data.getFirstLayerFp16())
+    def _fun(self, device):
+        while True:
+            data = self.queue.get()['data']
+            arr = np.array(data.getFirstLayerFp16())
             arr = arr[:np.where(arr == -1)[0][0]]
             arr = arr.reshape((arr.size // 7, 7))
             arr = arr[arr[:, 2] > get_property_value(self, "threshold")][:, 3:7]

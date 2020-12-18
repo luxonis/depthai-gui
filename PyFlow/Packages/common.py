@@ -123,6 +123,7 @@ class StopNodeException(Exception):
 class HostNode(DepthaiNode):
     def __init__(self, name):
         super(HostNode, self).__init__(name)
+        self.headerColor = Colors.NodeNameRectBlue.getRgb()
         self.queue = queue.Queue(1)
 
     def setup_connections(self):

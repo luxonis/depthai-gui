@@ -53,27 +53,24 @@ class BBoxOverlayNode(BufferedHostNode):
     def description():
         return "Description in rst format."
 
-    def get_default(self, name):
-        if name == "bbox":
-            return []
-        return None
+    def _fun(self, device):
+        color = hex_to_rgb(get_property_value(self, "color_hex"))
+        bboxes = []
+        frame = None
 
-    def start(self, device):
-        self.color = hex_to_rgb(get_property_value(self, "color_hex"))
+        while True:
+            in_data = self.queue.get()
+            if in_data['name'] == "frame":
+                frame = in_data['data']
+            elif in_data['name'] == "bbox":
+                bboxes = in_data['data']
 
-    def run(self):        
-        if DEBUG:
-            print(f"{self.name} waiting...")
-        frame, bboxes = self.receive("frame", "bbox")
-        frame = frame.copy()
-        if frame is None:        
-            if DEBUG:
-                print(f"{self.name} skipping - no frame available")
-            return
+            if frame is None:
+                continue
 
-        for raw_bbox in bboxes:
-            bbox = frame_norm(frame, raw_bbox)
-            cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), self.color, 2)
-        self.send("result", frame)        
-        if DEBUG:
-            print(f"{self.name} updated.")
+            frame = frame.copy()
+            for raw_bbox in bboxes:
+                bbox = frame_norm(frame, raw_bbox)
+                cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), color, 2)
+            self.send("result", frame)
+

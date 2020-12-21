@@ -1,6 +1,4 @@
 from DepthAI_Common.UI.NodeFactory import createNodeDepthAI
-from DepthAI_Common.XLinkBridge import XLinkBridge
-from DepthAI_Common.XLinkToHost import XLinkToHost
 from DepthAI_Host.Nodes.Debug.DataFeederNode import DataFeederNode
 from DepthAI_Host.Nodes.Files.VideoSourceNode import VideoSourceNode
 
@@ -15,12 +13,13 @@ from PyFlow.Core import NodeBase
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
 
 # Class based nodes
-from DepthAI_Host.Nodes.XLink.HostXLinkRead import HostXLinkRead
 from DepthAI_Host.Nodes.DataOps.ToBBoxNode import ToBBoxNode
 from DepthAI_Host.Nodes.FrameOps.ToFrameNode import ToFrameNode
 from DepthAI_Host.Nodes.FrameOps.BBoxOverlayNode import BBoxOverlayNode
 from DepthAI_Host.Nodes.Display.FramePreviewNode import FramePreviewNode
 from DepthAI_Host.Nodes.Files.FileWriterNode import FileWriterNode
+from DepthAI_Common.XLinkToDevice import XLinkToDevice
+from DepthAI_Common.XLinkToHost import XLinkToHost
 
 _FOO_LIBS = {}
 _NODES = {}
@@ -30,8 +29,8 @@ _PREFS_WIDGETS = OrderedDict()
 _EXPORTERS = OrderedDict()
 
 NODES_TO_ADD = [
-    HostXLinkRead, ToFrameNode, FramePreviewNode, BBoxOverlayNode, ToBBoxNode, XLinkBridge, FileWriterNode,
-    VideoSourceNode, DataFeederNode, XLinkToHost
+    ToFrameNode, FramePreviewNode, BBoxOverlayNode, ToBBoxNode, XLinkToDevice, FileWriterNode, XLinkToHost,
+    VideoSourceNode, DataFeederNode
 ]
 
 for node in NODES_TO_ADD:

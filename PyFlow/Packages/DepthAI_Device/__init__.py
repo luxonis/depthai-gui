@@ -1,5 +1,4 @@
 from DepthAI_Common.UI.NodeFactory import createNodeDepthAI
-from DepthAI_Common.XLinkBridge import XLinkBridge
 
 PACKAGE_NAME = 'DepthAI'
 
@@ -36,6 +35,8 @@ from DepthAI_Device.Nodes.Cameras.ColorCameraNode import ColorCameraNode
 from DepthAI_Device.Nodes.Cameras.MonoCameraNode import MonoCameraNode
 from DepthAI_Device.Nodes.Depth.StereoDepthNode import StereoDepthNode
 from DepthAI_Device.Nodes.Encoding.VideoEncoder import VideoEncoder
+from DepthAI_Common.XLinkToDevice import XLinkToDevice
+from DepthAI_Common.XLinkToHost import XLinkToHost
 
 _FOO_LIBS = {}
 _NODES = {}
@@ -47,9 +48,9 @@ _EXPORTERS = OrderedDict()
 NODES_TO_ADD = [
     BW1093, BW1097, BW1098OBC, VehicleLicensePlateDetectionNode, VehicleDetectionAdas2Node, MobilenetSSDNode, BW1098FFC,
     XLinkOut, GlobalPropertiesNode, PedestrianDetectionRetail13Node, XLinkIn, NeuralNetworkNode, AgeGenderDetectionNode,
-    EmotionsRecognitionNode, FaceDetectionAdas1Node, FaceDetectionRetail4Node, XLinkBridge, FacialLandmarksAdas2Node,
+    EmotionsRecognitionNode, FaceDetectionAdas1Node, FaceDetectionRetail4Node, FacialLandmarksAdas2Node, VideoEncoder,
     FacialLandmarksRetail9Node, PedestrianDetectionAdas2Node, PersonVehicleBikeDetectionNode, MonoCameraNode,
-    ColorCameraNode, StereoDepthNode, VideoEncoder
+    ColorCameraNode, StereoDepthNode, XLinkToDevice, XLinkToHost
 ]
 
 for node in NODES_TO_ADD:

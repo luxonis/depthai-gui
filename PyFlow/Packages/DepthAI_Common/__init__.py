@@ -1,6 +1,3 @@
-from DepthAI_Common.Pins.EncodedFramePin import EncodedFramePin
-from DepthAI_Common.Tools.DebugTool import DebugTool
-
 PACKAGE_NAME = 'DepthAI'
 
 from collections import OrderedDict
@@ -15,6 +12,7 @@ from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
 from DepthAI_Common.Pins.FramePin import FramePin
 from DepthAI_Common.Pins.BoundingBoxPin import BoundingBoxPin
 from DepthAI_Common.Pins.NeuralTensorPin import NeuralTensorPin
+from DepthAI_Common.Pins.EncodedFramePin import EncodedFramePin
 
 # Tools
 from DepthAI_Common.Tools.CustomDeviceTool import CustomDeviceTool
@@ -38,7 +36,7 @@ PINS_TO_ADD = [
 for pin in PINS_TO_ADD:
     _PINS[pin.__name__] = pin
 
-TOOLS_TO_ADD = [CustomDeviceTool, RunTool, StopTool, DebugTool]
+TOOLS_TO_ADD = [CustomDeviceTool, RunTool, StopTool]
 
 for tool in TOOLS_TO_ADD:
     _TOOLS[tool.__name__] = tool

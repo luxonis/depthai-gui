@@ -45,25 +45,6 @@ def get_enum_values(enum):
     return list(filter(lambda var: var[0].isupper() and not var.startswith('_'), vars(enum)))
 
 
-class FPS:
-    _data = {}
-
-    @staticmethod
-    def update(name):
-        if name not in FPS._data:
-            FPS._data[name] = {
-                'current': 0,
-                'all': [],
-                'last_ts': time.time(),
-            }
-        else:
-            now = time.time()
-            fps = 1 / (now - FPS._data[name]['last_ts'])
-            FPS._data[name]['last_ts'] = now
-            FPS._data[name]['all'].append(fps)
-            FPS._data[name]['current'] = fps
-
-
 class DepthaiNode(NodeBase):
     def __init__(self, name):
         super(DepthaiNode, self).__init__(name)
@@ -144,16 +125,46 @@ class HostNode(DepthaiNode):
             except queue.Full:
                 pass
 
-    def _fun(self, device):
+    def run(self, device):
         return
 
-    def _run(self, device):
-        self.setup_connections()
-        self._fun(device)
+    def _fun(self, device):
+        try:
+            self.setup_connections()
+            self.run(device)
+        except Exception as e:
+            traceback.print_exc()
+            self._terminate()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Error occured during node execution!")
+            msg.setInformativeText(str(e))
+            msg.setDetailedText(traceback.format_exc())
+            msg.setWindowTitle("Node execution error!")
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec()
 
     def run_node(self, device):
-        t = threading.Thread(target=self._run, args=(device, ), daemon=True)
-        t.start()
+        self._running = True
+        self.t = threading.Thread(target=self._fun, args=(device, ), daemon=True)
+        self.t.start()
+
+    def stop_node(self):
+        for connected_nodes in self._connections.values():
+            for _, connected_node in connected_nodes:
+                if isinstance(connected_node, HostNode):
+                    connected_node.stop_node()
+        self._running = False
+        self.t.join(10)
+
+    def _terminate(self):
+            instance = self.getWrapper().canvasRef().pyFlowInstance
+            threading.Thread(target=stop_pipeline, args=(instance,)).start()
+            for connected_nodes in self._connections.values():
+                for name, connected_node in connected_nodes:
+                    if isinstance(connected_node, HostNode) and hasattr(connected_node, 'queue'):
+                            connected_node.queue.put(None)
+
 
 class OldHostNode:
     use_buffer = False

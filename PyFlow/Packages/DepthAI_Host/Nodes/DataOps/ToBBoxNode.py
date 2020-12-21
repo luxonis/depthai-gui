@@ -39,13 +39,15 @@ class ToBBoxNode(HostNode):
     def description():
         return "Description in rst format."
 
-    def _fun(self, device):
-        while True:
-            data = self.queue.get()['data']
-            arr = np.array(data.getFirstLayerFp16())
-            arr = arr[:np.where(arr == -1)[0][0]]
-            arr = arr.reshape((arr.size // 7, 7))
-            arr = arr[arr[:, 2] > get_property_value(self, "threshold")][:, 3:7]
-            self.send("bbox", arr)
-            if DEBUG:
-                print(f"{self.name} updated.")
+    def run(self, device):
+        while self._running:
+            in_data = self.queue.get()
+            if in_data is not None:
+                data = in_data['data']
+                arr = np.array(data.getFirstLayerFp16())
+                arr = arr[:np.where(arr == -1)[0][0]]
+                arr = arr.reshape((arr.size // 7, 7))
+                arr = arr[arr[:, 2] > get_property_value(self, "threshold")][:, 3:7]
+                self.send("bbox", arr)
+                if DEBUG:
+                    print(f"{self.name} updated.")

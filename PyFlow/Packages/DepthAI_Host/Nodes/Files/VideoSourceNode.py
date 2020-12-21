@@ -56,13 +56,11 @@ class VideoSourceNode(HostNode):
     def description():
         return "Description in rst format."
 
-    def start(self, device):
+    def run(self, device):
         if not get_property_value(self, "file_path"):
             raise RuntimeError(f"No file path specified in {self.name} node!")
         self.cap = cv2.VideoCapture(get_property_value(self, "file_path"))
-
-    def run(self):
-        if self.cap.isOpened():
+        while self._running and self.cap.isOpened():
             read_correctly, frame = self.cap.read()
             if read_correctly:
                 print("sending video frame...")

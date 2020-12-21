@@ -30,6 +30,8 @@ class FramePreviewNode(HostNode, PreviewNode):
     def description():
         return "Description in rst format."
 
-    def _fun(self, *args, **kwargs):
-        while True:
-            self.display_frame = self.queue.get()['data']
+    def run(self, *args, **kwargs):
+        while self._running:
+            in_data = self.queue.get()
+            if in_data is not None:
+                self.display_frame = in_data['data']

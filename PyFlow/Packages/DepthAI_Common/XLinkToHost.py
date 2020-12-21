@@ -39,7 +39,7 @@ class XLinkToHost(HostNode, DeviceNode):
         xout.setStreamName(self.name)
         self.connection_map["in"] = xout.input
 
-    def _fun(self, device):
+    def run(self, device):
         q_in = device.getOutputQueue(self.name)
-        while True:
+        while self._running:
             self.send("out", q_in.get())

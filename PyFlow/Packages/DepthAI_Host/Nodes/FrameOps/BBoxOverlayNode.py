@@ -53,13 +53,15 @@ class BBoxOverlayNode(BufferedHostNode):
     def description():
         return "Description in rst format."
 
-    def _fun(self, device):
+    def run(self, device):
         color = hex_to_rgb(get_property_value(self, "color_hex"))
         bboxes = []
         frame = None
 
-        while True:
+        while self._running:
             in_data = self.queue.get()
+            if in_data is None:
+                continue
             if in_data['name'] == "frame":
                 frame = in_data['data']
             elif in_data['name'] == "bbox":

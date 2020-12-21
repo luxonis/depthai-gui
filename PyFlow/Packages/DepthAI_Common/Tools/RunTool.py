@@ -4,7 +4,6 @@ from Qt import QtGui
 from Qt.QtWidgets import QMessageBox
 
 from DepthAI_Common.Tools import RESOURCES_DIR
-from DepthAI_Common.XLinkBridge import XLinkBridge
 from PyFlow.Core.Common import *
 from PyFlow.UI.Tool.Tool import ShelfTool
 from common import DeviceNode, HostNode
@@ -30,9 +29,7 @@ class RunTool(ShelfTool):
 
     def _stop_pipeline(self):
         for node in self.host_nodes:
-            node.stop_node(wait=False)
-        for node in self.host_nodes:
-            node.join()
+            node.stop_node()
         del self.device
 
     def do(self):
@@ -44,8 +41,6 @@ class RunTool(ShelfTool):
             for node in device_nodes:
                 node.build_pipeline(pipeline)
             for node in device_nodes:
-                if isinstance(node, XLinkBridge):
-                    continue
                 node.build_connections()
 
             self.found, self.device_info = depthai.XLinkConnection.getFirstDevice(depthai.XLinkDeviceState.X_LINK_UNBOOTED)

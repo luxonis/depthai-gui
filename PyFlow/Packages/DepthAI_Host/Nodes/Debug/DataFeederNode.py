@@ -55,6 +55,7 @@ class DataFeederNode(HostNode):
     def description():
         return "Description in rst format."
 
-    def run(self):
-        data = get_property_value(self, "data")
-        self.send("out", eval(data))
+    def run(self, device):
+        while self._running:
+            data = get_property_value(self, "data")
+            self.send("out", eval(data))

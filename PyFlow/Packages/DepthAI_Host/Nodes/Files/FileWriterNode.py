@@ -37,19 +37,17 @@ class FileWriterNode(HostNode):
     def description():
         return "Description in rst format."
 
-    def start(self, device):
+    def run(self, device):
         if not get_property_value(self, "file_path"):
             raise RuntimeError(f"No file path specified in {self.name} node!")
-        self.file = open(get_property_value(self, "file_path"), get_property_value(self, "file_mode"))
-
-    def end(self, device):
-        if hasattr(self, 'file'):
-            self.file.close()
-
-    def run(self):
-        if DEBUG:
-            print(f"{self.name} waiting...")
-        data = self.receive("data")
-        data.getData().tofile(self.file)
-        if DEBUG:
-            print(f"{self.name} updated.")
+        with open(get_property_value(self, "file_path"), get_property_value(self, "file_mode")) as file:
+            while self._running:
+                in_data = self.queue.get()
+                if in_data is not None:
+                    if hasattr(in_data, 'getData'):
+                        data = in_data['data'].getData()
+                    else:
+                        data = in_data['data']
+                    data.tofile(file)
+                    if DEBUG:
+                        print(f"{self.name} updated.")

@@ -1,15 +1,16 @@
-import numpy as np
+from PyFlow.UI.Utils.stylesheet import Colors
 
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
-from common import HostNode
+from common import DeviceNode, HostNode
 
 
-class ToFrameNode(HostNode):
+class XLinkToDevice(HostNode, DeviceNode):
     def __init__(self, name):
-        super(ToFrameNode, self).__init__(name)
-        self.data = self.createInputPin('data', 'AnyPin')
-        self.data.enableOptions(PinOptions.AllowAny)
+        super(XLinkToDevice, self).__init__(name)
+        self.headerColor = Colors.NodeNameRectOrange.getRgb()
+        self.input = self.createInputPin('in', 'AnyPin')
+        self.input.enableOptions(PinOptions.AllowAny)
         self.out = self.createOutputPin('out', 'AnyPin')
         self.out.enableOptions(PinOptions.AllowAny)
         self.out.enableOptions(PinOptions.AllowMultipleConnections)
@@ -23,7 +24,7 @@ class ToFrameNode(HostNode):
 
     @staticmethod
     def category():
-        return 'FrameOps'
+        return 'XLink'
 
     @staticmethod
     def keywords():
@@ -33,9 +34,14 @@ class ToFrameNode(HostNode):
     def description():
         return "Description in rst format."
 
+    def build_pipeline(self, pipeline):
+        xin = pipeline.createXLinkIn()
+        xin.setStreamName(self.name)
+        self.connection_map["out"] = xin.out
+
     def run(self, device):
+        q_out = device.getInputQueue(self.name)
         while self._running:
-            data = self.queue.get()
-            frame = data['data'].getData().reshape((3, 300, 300)).transpose(1, 2, 0).astype(np.uint8)
-            frame = np.ascontiguousarray(frame)
-            self.send("out", frame)
+            in_data = self.queue.get()
+            if in_data is not None:
+                q_out.send(in_data['data'])

@@ -64,6 +64,8 @@ class StereoDepthNode(DeviceNode):
         depth.setLeftRightCheck(get_property_value(self, "lr_check"))
         depth.setExtendedDisparity(get_property_value(self, "ext_disparity"))
         depth.setSubpixel(get_property_value(self, "subpixel"))
+        self.connection_map["left"] = depth.left
+        self.connection_map["right"] = depth.right
         self.connection_map["syncedLeft"] = depth.syncedLeft
         self.connection_map["syncedRight"] = depth.syncedRight
         self.connection_map["depth"] = depth.depth

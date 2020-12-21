@@ -2,7 +2,7 @@ import numpy as np
 
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
-from common import HostNode
+from common import HostNode, get_property_value
 
 
 class ToFrameNode(HostNode):
@@ -10,14 +10,14 @@ class ToFrameNode(HostNode):
         super(ToFrameNode, self).__init__(name)
         self.data = self.createInputPin('data', 'AnyPin')
         self.data.enableOptions(PinOptions.AllowAny)
-        self.out = self.createOutputPin('out', 'AnyPin')
-        self.out.enableOptions(PinOptions.AllowAny)
+        self.out = self.createOutputPin('out', 'FramePin')
         self.out.enableOptions(PinOptions.AllowMultipleConnections)
 
     @staticmethod
     def pinTypeHints():
         helper = NodePinsSuggestionsHelper()
-        helper.addOutputDataType('AnyPin')
+        helper.addInputDataType('AnyPin')
+        helper.addOutputDataType('FramePin')
         helper.addOutputStruct(StructureType.Multi)
         return helper
 
@@ -36,6 +36,17 @@ class ToFrameNode(HostNode):
     def run(self, device):
         while self._running:
             data = self.queue.get()
-            frame = data['data'].getData().reshape((3, 300, 300)).transpose(1, 2, 0).astype(np.uint8)
+            if data is None:
+                continue
+            arr = data['data'].getData()
+            w = data['data'].getWidth()
+            h = data['data'].getHeight()
+            channels = arr.size / (w * h)
+            if not channels.is_integer():
+                raise RuntimeError(f"Width/Height is incorrect for the data received (size: {arr.size}, calc_n_channels: {channels})")
+            if channels == 1:
+                frame = arr.reshape((h, w)).astype(np.uint8)
+            else:
+                frame = arr.reshape((int(channels), h, w)).transpose(1, 2, 0).astype(np.uint8)
             frame = np.ascontiguousarray(frame)
             self.send("out", frame)

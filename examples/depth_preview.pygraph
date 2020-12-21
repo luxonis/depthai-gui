@@ -1,0 +1,960 @@
+{
+    "name": "root",
+    "category": "",
+    "vars": [],
+    "nodes": [
+        {
+            "package": "DepthAI_Device",
+            "lib": null,
+            "type": "MonoCameraNode",
+            "owningGraphName": "root",
+            "name": "MonoCameraNode",
+            "uuid": "e3bf9cd9-2627-4a1a-83fa-d8ef81d652ce",
+            "inputs": [
+                {
+                    "name": "resolution",
+                    "package": "PyFlowBase",
+                    "fullName": "MonoCameraNode_resolution",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"\"",
+                    "uuid": "6bf6356b-6821-4350-a7f3-b52102038b77",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "resolution",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "DepthAI_Common",
+                    "fullName": "MonoCameraNode_out",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "290ed4bc-5bec-47f4-8e00-95c970e538f5",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "MonoCameraNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "StereoDepthNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "e3bf9cd9-2627-4a1a-83fa-d8ef81d652ce",
+                            "rhsNodeUid": "dc94ffae-eb76-4a63-b113-02790867fbac"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "290ed4bc-5bec-47f4-8e00-95c970e538f5",
+                                "destinationUUID": "b2a831ec-d116-42f7-ba12-3a0f14b4504e",
+                                "sourceName": "MonoCameraNode_out",
+                                "destinationName": "StereoDepthNode_left",
+                                "uuid": "8bf95524-8613-4499-ae93-5fd695c86e1d",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "MonoCameraNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">MonoCameraNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -655.0,
+            "y": -174.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "XLinkToHost",
+            "owningGraphName": "root",
+            "name": "XLinkToHost",
+            "uuid": "e7d9c7f1-740b-419e-8db5-609183072508",
+            "inputs": [
+                {
+                    "name": "in",
+                    "package": "PyFlowBase",
+                    "fullName": "XLinkToHost_in",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "6a778361-dba8-47c9-a650-280d30abe202",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "StereoDepthNode",
+                            "outPinId": 4,
+                            "rhsNodeName": "XLinkToHost",
+                            "inPinId": 1,
+                            "lhsNodeUid": "dc94ffae-eb76-4a63-b113-02790867fbac",
+                            "rhsNodeUid": "e7d9c7f1-740b-419e-8db5-609183072508"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256,
+                        512
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "in",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "68b51c12-2ae8-4158-afa7-c912c6aeaf9d",
+                                "destinationUUID": "6a778361-dba8-47c9-a650-280d30abe202",
+                                "sourceName": "StereoDepthNode_disparity",
+                                "destinationName": "XLinkToHost_in",
+                                "uuid": "164dcb41-66ba-451d-9b7f-bcfafe2a0fca",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    },
+                    "currDataType": "FramePin"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "PyFlowBase",
+                    "fullName": "XLinkToHost_out",
+                    "dataType": "AnyPin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "6007bf13-6dab-4b7b-83de-d35dabc7e9f2",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "XLinkToHost",
+                            "outPinId": 1,
+                            "rhsNodeName": "ToFrameNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "e7d9c7f1-740b-419e-8db5-609183072508",
+                            "rhsNodeUid": "e1312bbc-3706-41b0-9dd3-8a3300a5178e"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        16,
+                        256,
+                        512
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "6007bf13-6dab-4b7b-83de-d35dabc7e9f2",
+                                "destinationUUID": "3a18ad1c-6e91-4948-8d26-bc6b2f7d0759",
+                                "sourceName": "XLinkToHost_out",
+                                "destinationName": "ToFrameNode_data",
+                                "uuid": "013e87c6-a2bd-493b-bcef-c04c380ee45e",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "XLinkToHost"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">XLinkToHost</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -190.0,
+            "y": -151.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "ToFrameNode",
+            "owningGraphName": "root",
+            "name": "ToFrameNode",
+            "uuid": "e1312bbc-3706-41b0-9dd3-8a3300a5178e",
+            "inputs": [
+                {
+                    "name": "data",
+                    "package": "PyFlowBase",
+                    "fullName": "ToFrameNode_data",
+                    "dataType": "AnyPin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "3a18ad1c-6e91-4948-8d26-bc6b2f7d0759",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "XLinkToHost",
+                            "outPinId": 1,
+                            "rhsNodeName": "ToFrameNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "e7d9c7f1-740b-419e-8db5-609183072508",
+                            "rhsNodeUid": "e1312bbc-3706-41b0-9dd3-8a3300a5178e"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        16,
+                        256,
+                        512
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "data",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "6007bf13-6dab-4b7b-83de-d35dabc7e9f2",
+                                "destinationUUID": "3a18ad1c-6e91-4948-8d26-bc6b2f7d0759",
+                                "sourceName": "XLinkToHost_out",
+                                "destinationName": "ToFrameNode_data",
+                                "uuid": "013e87c6-a2bd-493b-bcef-c04c380ee45e",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "DepthAI_Common",
+                    "fullName": "ToFrameNode_out",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "a64ab9be-c511-440a-b16c-bb5c8ec9e6c5",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ToFrameNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "FramePreviewNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "e1312bbc-3706-41b0-9dd3-8a3300a5178e",
+                            "rhsNodeUid": "fe0accb9-78ff-47c6-9447-b16bbfd9df89"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "a64ab9be-c511-440a-b16c-bb5c8ec9e6c5",
+                                "destinationUUID": "54c11cfd-b03f-4313-9395-24027e8df5b0",
+                                "sourceName": "ToFrameNode_out",
+                                "destinationName": "FramePreviewNode_frame",
+                                "uuid": "b614838a-fea9-42c3-ac31-6e3fdc451f15",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "ToFrameNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">ToFrameNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -45.0,
+            "y": -151.0
+        },
+        {
+            "package": "DepthAI_Host",
+            "lib": null,
+            "type": "FramePreviewNode",
+            "owningGraphName": "root",
+            "name": "FramePreviewNode",
+            "uuid": "fe0accb9-78ff-47c6-9447-b16bbfd9df89",
+            "inputs": [
+                {
+                    "name": "frame",
+                    "package": "DepthAI_Common",
+                    "fullName": "FramePreviewNode_frame",
+                    "dataType": "FramePin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "54c11cfd-b03f-4313-9395-24027e8df5b0",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "ToFrameNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "FramePreviewNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "e1312bbc-3706-41b0-9dd3-8a3300a5178e",
+                            "rhsNodeUid": "fe0accb9-78ff-47c6-9447-b16bbfd9df89"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "frame",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "a64ab9be-c511-440a-b16c-bb5c8ec9e6c5",
+                                "destinationUUID": "54c11cfd-b03f-4313-9395-24027e8df5b0",
+                                "sourceName": "ToFrameNode_out",
+                                "destinationName": "FramePreviewNode_frame",
+                                "uuid": "b614838a-fea9-42c3-ac31-6e3fdc451f15",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [],
+            "meta": {
+                "var": {},
+                "label": "FramePreviewNode"
+            },
+            "wrapper": {
+                "resize": {
+                    "w": 351.0,
+                    "h": 320.0
+                },
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">FramePreviewNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": 110.0,
+            "y": -423.0
+        },
+        {
+            "package": "DepthAI_Device",
+            "lib": null,
+            "type": "StereoDepthNode",
+            "owningGraphName": "root",
+            "name": "StereoDepthNode",
+            "uuid": "dc94ffae-eb76-4a63-b113-02790867fbac",
+            "inputs": [
+                {
+                    "name": "right",
+                    "package": "DepthAI_Common",
+                    "fullName": "StereoDepthNode_right",
+                    "dataType": "FramePin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "51460dd4-9fdf-44ef-87da-b1091bfdc9c8",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "MonoCameraNode1",
+                            "outPinId": 1,
+                            "rhsNodeName": "StereoDepthNode",
+                            "inPinId": 2,
+                            "lhsNodeUid": "dfa24a26-a566-41af-9d6d-99d21568ed14",
+                            "rhsNodeUid": "dc94ffae-eb76-4a63-b113-02790867fbac"
+                        }
+                    ],
+                    "pinIndex": 2,
+                    "options": [],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "right",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "ba09c344-a5a0-46fe-8f4d-740fbde0ff76",
+                                "destinationUUID": "51460dd4-9fdf-44ef-87da-b1091bfdc9c8",
+                                "sourceName": "MonoCameraNode1_out",
+                                "destinationName": "StereoDepthNode_right",
+                                "uuid": "49d8a42b-c7fc-42b8-9f4f-23e416b45310",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "rectified",
+                    "package": "PyFlowBase",
+                    "fullName": "StereoDepthNode_rectified",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "39d248e2-ca66-4c00-bb08-6d3c21e176a1",
+                    "linkedTo": [],
+                    "pinIndex": 5,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "rectified",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "subpixel",
+                    "package": "PyFlowBase",
+                    "fullName": "StereoDepthNode_subpixel",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "83ed50a8-0e9d-4ed8-99b5-9449c663a5e3",
+                    "linkedTo": [],
+                    "pinIndex": 8,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "subpixel",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "median",
+                    "package": "PyFlowBase",
+                    "fullName": "StereoDepthNode_median",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"KERNEL_5x5\"",
+                    "uuid": "b49c1386-7670-4213-afac-cc3e7a10b498",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "median",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "left",
+                    "package": "DepthAI_Common",
+                    "fullName": "StereoDepthNode_left",
+                    "dataType": "FramePin",
+                    "direction": 0,
+                    "value": null,
+                    "uuid": "b2a831ec-d116-42f7-ba12-3a0f14b4504e",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "MonoCameraNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "StereoDepthNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "e3bf9cd9-2627-4a1a-83fa-d8ef81d652ce",
+                            "rhsNodeUid": "dc94ffae-eb76-4a63-b113-02790867fbac"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "left",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "290ed4bc-5bec-47f4-8e00-95c970e538f5",
+                                "destinationUUID": "b2a831ec-d116-42f7-ba12-3a0f14b4504e",
+                                "sourceName": "MonoCameraNode_out",
+                                "destinationName": "StereoDepthNode_left",
+                                "uuid": "8bf95524-8613-4499-ae93-5fd695c86e1d",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "lr_check",
+                    "package": "PyFlowBase",
+                    "fullName": "StereoDepthNode_lr_check",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "a39f537f-7df1-46aa-bb67-e692787845cf",
+                    "linkedTo": [],
+                    "pinIndex": 6,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "lr_check",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "ext_disparity",
+                    "package": "PyFlowBase",
+                    "fullName": "StereoDepthNode_ext_disparity",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "172c305e-05e2-497c-baab-3728e57686ce",
+                    "linkedTo": [],
+                    "pinIndex": 7,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "ext_disparity",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "raw_depth",
+                    "package": "PyFlowBase",
+                    "fullName": "StereoDepthNode_raw_depth",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "a10bab2e-1c52-42fb-8852-6d87c65ae04f",
+                    "linkedTo": [],
+                    "pinIndex": 4,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "raw_depth",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "syncedRight",
+                    "package": "DepthAI_Common",
+                    "fullName": "StereoDepthNode_syncedRight",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "0e274ec5-6acf-4914-a7c9-089e380f96d1",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "syncedRight",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "rectifiedLeft",
+                    "package": "DepthAI_Common",
+                    "fullName": "StereoDepthNode_rectifiedLeft",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "c9059bbd-c9c6-43ce-9d42-92875acc9eb1",
+                    "linkedTo": [],
+                    "pinIndex": 5,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "rectifiedLeft",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "depth",
+                    "package": "DepthAI_Common",
+                    "fullName": "StereoDepthNode_depth",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "168e2e0d-98ee-4562-a779-b3987da58b4e",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "depth",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "syncedLeft",
+                    "package": "DepthAI_Common",
+                    "fullName": "StereoDepthNode_syncedLeft",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "f017de07-0b23-4e2b-9150-f7c98d0021d4",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "syncedLeft",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "rectifiedRight",
+                    "package": "DepthAI_Common",
+                    "fullName": "StereoDepthNode_rectifiedRight",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "8d461fe8-215a-4fa1-b417-7e4cbd221522",
+                    "linkedTo": [],
+                    "pinIndex": 6,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "rectifiedRight",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "disparity",
+                    "package": "DepthAI_Common",
+                    "fullName": "StereoDepthNode_disparity",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "68b51c12-2ae8-4158-afa7-c912c6aeaf9d",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "StereoDepthNode",
+                            "outPinId": 4,
+                            "rhsNodeName": "XLinkToHost",
+                            "inPinId": 1,
+                            "lhsNodeUid": "dc94ffae-eb76-4a63-b113-02790867fbac",
+                            "rhsNodeUid": "e7d9c7f1-740b-419e-8db5-609183072508"
+                        }
+                    ],
+                    "pinIndex": 4,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "disparity",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "68b51c12-2ae8-4158-afa7-c912c6aeaf9d",
+                                "destinationUUID": "6a778361-dba8-47c9-a650-280d30abe202",
+                                "sourceName": "StereoDepthNode_disparity",
+                                "destinationName": "XLinkToHost_in",
+                                "uuid": "164dcb41-66ba-451d-9b7f-bcfafe2a0fca",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "StereoDepthNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">StereoDepthNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -470.0,
+            "y": -174.0
+        },
+        {
+            "package": "DepthAI_Device",
+            "lib": null,
+            "type": "MonoCameraNode",
+            "owningGraphName": "root",
+            "name": "MonoCameraNode1",
+            "uuid": "dfa24a26-a566-41af-9d6d-99d21568ed14",
+            "inputs": [
+                {
+                    "name": "resolution",
+                    "package": "PyFlowBase",
+                    "fullName": "MonoCameraNode1_resolution",
+                    "dataType": "StringPin",
+                    "direction": 0,
+                    "value": "\"\"",
+                    "uuid": "f3691126-ab5a-40eb-a9bf-607a34f1bc4e",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "resolution",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "out",
+                    "package": "DepthAI_Common",
+                    "fullName": "MonoCameraNode1_out",
+                    "dataType": "FramePin",
+                    "direction": 1,
+                    "value": null,
+                    "uuid": "ba09c344-a5a0-46fe-8f4d-740fbde0ff76",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "MonoCameraNode1",
+                            "outPinId": 1,
+                            "rhsNodeName": "StereoDepthNode",
+                            "inPinId": 2,
+                            "lhsNodeUid": "dfa24a26-a566-41af-9d6d-99d21568ed14",
+                            "rhsNodeUid": "dc94ffae-eb76-4a63-b113-02790867fbac"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "out",
+                        "wires": {
+                            "2": {
+                                "sourceUUID": "ba09c344-a5a0-46fe-8f4d-740fbde0ff76",
+                                "destinationUUID": "51460dd4-9fdf-44ef-87da-b1091bfdc9c8",
+                                "sourceName": "MonoCameraNode1_out",
+                                "destinationName": "StereoDepthNode_right",
+                                "uuid": "49d8a42b-c7fc-42b8-9f4f-23e416b45310",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "MonoCameraNode1"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">MonoCameraNode1</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -654.0,
+            "y": -76.0
+        }
+    ],
+    "depth": 1,
+    "isRoot": true,
+    "parentGraphName": "None",
+    "fileVersion": "1.0.3",
+    "activeGraph": "root"
+}

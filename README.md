@@ -10,7 +10,7 @@ It's purpose is to allow users to create computer vision prototypes quickly, foc
 ## Demo
 
 
-[![Gaze Example Demo](https://user-images.githubusercontent.com/5244214/102129242-54254800-3e4f-11eb-839b-42aed417c9a5.gif)](https://www.youtube.com/watch?v=0V1ScV-tW4s)
+[![Gaze Example Demo](https://user-images.githubusercontent.com/5244214/102778186-6729a200-4392-11eb-981a-b2f3db50c2b9.gif)](https://www.youtube.com/watch?v=yNFgp1xrE80)
 
 
 ## Install 

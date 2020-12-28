@@ -1,2 +1,3 @@
 recursive-include PyFlow/UI *.*
 recursive-include PyFlow/Packages/PyFlowBase/Tools *.*
+recursive-include PyFlow/Packages/DepthAI_Common/Tools *.*

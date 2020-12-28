@@ -46,7 +46,7 @@ class ColorCameraNode(CameraNode):
         w = get_property_value(self, "prev_width")
         h = get_property_value(self, "prev_height")
         if None not in (w, h) and w > 0 and h > 0:
-            cam.setPreviewSize(h, w)
+            cam.setPreviewSize(w, h)
         cam.setResolution(getattr(
             depthai.ColorCameraProperties.SensorResolution,
             get_property_value(self, "resolution", "THE_1080_P")

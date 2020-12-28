@@ -1,6 +1,4 @@
 from DepthAI_Common.UI.NodeFactory import createNodeDepthAI
-from DepthAI_Host.Nodes.Debug.DataFeederNode import DataFeederNode
-from DepthAI_Host.Nodes.Files.VideoSourceNode import VideoSourceNode
 
 PACKAGE_NAME = 'DepthAI'
 
@@ -20,6 +18,10 @@ from DepthAI_Host.Nodes.Display.FramePreviewNode import FramePreviewNode
 from DepthAI_Host.Nodes.Files.FileWriterNode import FileWriterNode
 from DepthAI_Common.XLinkToDevice import XLinkToDevice
 from DepthAI_Common.XLinkToHost import XLinkToHost
+from DepthAI_Host.Nodes.Debug.DataFeederNode import DataFeederNode
+from DepthAI_Host.Nodes.Files.VideoSourceNode import VideoSourceNode
+from DepthAI_Host.Nodes.FrameOps.ColorMapNode import ColorMapNode
+from DepthAI_Host.Nodes.Files.FrameWriterNode import FrameWriterNode
 
 _FOO_LIBS = {}
 _NODES = {}
@@ -30,7 +32,7 @@ _EXPORTERS = OrderedDict()
 
 NODES_TO_ADD = [
     ToFrameNode, FramePreviewNode, BBoxOverlayNode, ToBBoxNode, XLinkToDevice, FileWriterNode, XLinkToHost,
-    VideoSourceNode, DataFeederNode
+    VideoSourceNode, DataFeederNode, ColorMapNode, FrameWriterNode
 ]
 
 for node in NODES_TO_ADD:

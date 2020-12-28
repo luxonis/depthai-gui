@@ -97,6 +97,16 @@ def _receive_postprocess(ret_data):
         return ret_data
 
 
+class CameraNode(DeviceNode):
+    def getId(self):
+        pass
+        # nodes = self.getWrapper().canvasRef().graphManager.findRootGraph().getNodesList()
+        # cameras = list(sorted(map(lambda node: node.name, filter(lambda node: isinstance(node, CameraNode), nodes))))
+        # cam_id = cameras.index(self.name)
+        # return cam_id
+
+
+
 class StopNodeException(Exception):
     pass
 
@@ -305,10 +315,6 @@ class OldHostNode:
                 if in_data['name'] == input_name:
                     data = in_data['data']
         return _receive_postprocess(data)
-
-
-class BufferedHostNode(HostNode):
-    use_buffer = True
 
 
 class ExportableNode:

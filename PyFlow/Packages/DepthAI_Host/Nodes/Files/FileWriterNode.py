@@ -49,5 +49,3 @@ class FileWriterNode(HostNode):
                     else:
                         data = in_data['data']
                     data.tofile(file)
-                    if DEBUG:
-                        print(f"{self.name} updated.")

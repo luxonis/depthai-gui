@@ -1,9 +1,9 @@
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
-from common import DeviceNode, get_property_value, get_enum_values
+from common import get_property_value, get_enum_values, CameraNode
 
 
-class ColorCameraNode(DeviceNode):
+class ColorCameraNode(CameraNode):
     def __init__(self, name):
         import depthai
         super(ColorCameraNode, self).__init__(name)
@@ -37,6 +37,9 @@ class ColorCameraNode(DeviceNode):
     def description():
         return "Description in rst format."
 
+    def getId(self):
+        return 0
+
     def build_pipeline(self, pipeline):
         import depthai
         cam = pipeline.createColorCamera()
@@ -49,5 +52,6 @@ class ColorCameraNode(DeviceNode):
             get_property_value(self, "resolution", "THE_1080_P")
         ))
         cam.setInterleaved(get_property_value(self, "interleaved"))
+        cam.setCamId(self.getId())
         self.connection_map["preview"] = cam.preview
         self.connection_map["video"] = cam.video

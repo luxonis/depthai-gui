@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from common import HostNode, get_property_value, BufferedHostNode
+from common import HostNode, get_property_value
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
 from config import DEBUG
@@ -20,7 +20,7 @@ def frame_norm(frame, bbox):
     return (np.array(bbox) * np.array([*frame.shape[:2], *frame.shape[:2]])[::-1]).astype(int)
 
 
-class BBoxOverlayNode(BufferedHostNode):
+class BBoxOverlayNode(HostNode):
     def __init__(self, name):
         super(BBoxOverlayNode, self).__init__(name)
         self.data = self.createInputPin('frame', 'FramePin')

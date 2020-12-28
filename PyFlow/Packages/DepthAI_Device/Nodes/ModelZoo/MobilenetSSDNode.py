@@ -36,6 +36,6 @@ class MobilenetSSDNode(DeviceNode):
 
     def build_pipeline(self, pipeline):
         detection_nn = pipeline.createNeuralNetwork()
-        detection_nn.setBlobPath(str(Path(str((Path(__file__).parent / Path('models/mobilenet-ssd.blob')).resolve().absolute())).resolve().absolute()))
+        detection_nn.setBlobPath(str((Path(__file__).parent / Path('models/mobilenet-ssd.blob')).resolve().absolute()))
         self.connection_map["out_tensor"] = detection_nn.out
         self.connection_map["frame"] = detection_nn.input

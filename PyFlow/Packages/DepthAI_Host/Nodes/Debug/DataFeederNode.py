@@ -3,7 +3,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from common import HostNode, get_property_value, BufferedHostNode
+from common import HostNode, get_property_value
 from PyFlow.Core.Common import *
 from PyFlow.Core.NodeBase import NodePinsSuggestionsHelper
 from config import DEBUG

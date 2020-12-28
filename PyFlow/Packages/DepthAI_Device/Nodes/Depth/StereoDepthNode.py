@@ -54,16 +54,15 @@ class StereoDepthNode(DeviceNode):
         import depthai
         depth = pipeline.createStereoDepth()
         depth.setConfidenceThreshold(200)
-        depth.setOutputDepth(get_property_value(self, "raw_depth"))
-        depth.setOutputRectified(get_property_value(self, "rectified"))
-        depth.setRectifyEdgeFillColor(0)  # Black, to better see the cutout
-        depth.setMedianFilter(getattr(
-            depthai.StereoDepthProperties.MedianFilter,
-            get_property_value(self, "median", "MEDIAN_OFF")
-        ))
-        depth.setLeftRightCheck(get_property_value(self, "lr_check"))
-        depth.setExtendedDisparity(get_property_value(self, "ext_disparity"))
-        depth.setSubpixel(get_property_value(self, "subpixel"))
+        # depth.setOutputDepth(get_property_value(self, "raw_depth"))
+        # depth.setOutputRectified(get_property_value(self, "rectified"))
+        # depth.setMedianFilter(getattr(
+        #     depthai.StereoDepthProperties.MedianFilter,
+        #     get_property_value(self, "median", "MEDIAN_OFF")
+        # ))
+        # depth.setLeftRightCheck(get_property_value(self, "lr_check"))
+        # depth.setExtendedDisparity(get_property_value(self, "ext_disparity"))
+        # depth.setSubpixel(get_property_value(self, "subpixel"))
         self.connection_map["left"] = depth.left
         self.connection_map["right"] = depth.right
         self.connection_map["syncedLeft"] = depth.syncedLeft

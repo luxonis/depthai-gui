@@ -42,7 +42,7 @@ setup(
         "blinker",
         "nine",
         "docutils",
-        "depthai==0.0.2.1+22ad34c8264fc3a9a919dbc5c01e3ed3eb41f5aa",
+        "depthai==0.0.2.1+b15a4a1740fef3d805634eaefbcb8ce136fc2d26",
         "opencv-python"
     ],
     dependency_links=[

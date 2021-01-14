@@ -16,7 +16,7 @@ It's purpose is to allow users to create computer vision prototypes quickly, foc
 ## Install 
 
 ```
-pip install depthai-gui
+pip install --extra-index-url https://artifacts.luxonis.com/artifactory/luxonis-python-snapshot-local/ depthai-gui
 ```
 
 ## Usage

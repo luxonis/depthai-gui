@@ -24,7 +24,7 @@ setup(
     url="https://github.com/luxonis/depthai-gui",   # project home page
     project_urls={
         "Bug Tracker": "https://github.com/luxonis/depthai-gui/issues",
-        "Documentation": "https://pyflow.readthedocs.io",
+        "Documentation": "https://docs.luxonis.com/projects/gui/en/latest/",
         "Source Code": "https://github.com/luxonis/depthai-gui",
     },
     classifiers=[

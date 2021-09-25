@@ -7,6 +7,9 @@ import os
 sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), "PyFlow", "Core"))
 from version import currentVersion
 
+with open('requirements.txt') as f:
+    required = f.readlines()
+
 setup(
     name="depthai-gui",
     version=str(currentVersion()),
@@ -36,16 +39,5 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
-    install_requires=[
-        "PySide2",
-        "Qt.py",
-        "blinker",
-        "nine",
-        "docutils",
-        "depthai==2.0.0.1",
-        "opencv-python"
-    ],
-    dependency_links=[
-        'https://artifacts.luxonis.com/artifactory/luxonis-python-snapshot-local/depthai'
-    ],
+    install_requires=required,
 )

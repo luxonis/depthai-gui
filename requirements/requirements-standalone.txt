@@ -1,6 +1,0 @@
-aenum; python_version < '3.4'
-PySide2
-Qt.py
-blinker
-nine
-docutils

@@ -27,7 +27,7 @@ jobs:
         /opt/python/cp38-cp38/bin/python3.8 setup.py sdist --formats=gztar
         mv dist/* wheelhouse/audited/
     - name: Build wheels
-      run: /opt/python/cp38-cp38/bin/python3.8 -m pip wheel . -w ./wheelhouse/ --verbose
+      run: /opt/python/cp38-cp38/bin/python3.8 setup.py sdist bdist_wheel --verbose
     - name: Run deploy to PyPi
       run: bash ./ci/upload-pypi.sh
       env:

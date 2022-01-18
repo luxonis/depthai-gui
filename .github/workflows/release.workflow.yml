@@ -28,6 +28,8 @@ jobs:
         mv dist/* wheelhouse/audited/
     - name: Build wheels
       run: /opt/python/cp38-cp38/bin/python3.8 -m pip wheel . -w ./wheelhouse/ --verbose
+    - name: Installing libusb1-devel dependency
+      run: yum install -y --disableplugin=fastestmirror libusb1-devel
     - name: Audit wheels
       run: for whl in wheelhouse/*.whl; do auditwheel repair "$whl" --plat $PLAT -w wheelhouse/audited/; done
     - name: Run deploy to PyPi

@@ -1,0 +1,3 @@
+recursive-include NodeGraphQt/widgets/icons *.*
+include ExampleGraph.json
+include EveryNode.json

@@ -6,38 +6,49 @@ import depthai as dai
 from pathlib import Path
 from DAIPipelineGraph import DAIPipelineGraph
 
-SCRIPT_DIR = Path(__file__).resolve().parent
+def main():
+    default_json_path = (Path(__file__).parent / "ExampleGraph.json").resolve().absolute()
+    if not default_json_path.exists():
+        # used as module
+        default_json_path = (Path(sys.prefix) / 'gui-data' / "ExampleGraph.json").resolve().absolute()
+        if not default_json_path.exists():
+            default_json_path = None
 
-parser = argparse.ArgumentParser()
-parser.add_argument( "-p", "--path", type=str, default='ExampleGraph.json', help="Path to pipeline graph (Default: ExampleGraph.json)")
-args = vars( parser.parse_args() )
+    parser = argparse.ArgumentParser()
+    parser.add_argument( "-p", "--path", type=Path, default=default_json_path, help="Path to pipeline graph (Default: %(default)s)")
+    args = parser.parse_args()
 
-pipeline_path = str( SCRIPT_DIR / args[ 'path' ] )
+    if args.path is None:
+        raise RuntimeError("Path to pipeline graph file is required.")
 
-# Create the pipeline
-pipeline_graph = DAIPipelineGraph( path=pipeline_path )
+    # Create the pipeline
+    pipeline_graph = DAIPipelineGraph( path=str(args.path) )
 
-# Display all XLinkOut data as CV frames
-with dai.Device( pipeline_graph.pipeline ) as device:
-    queues = {}
-    frames = {}
+    # Display all XLinkOut data as CV frames
+    with dai.Device( pipeline_graph.pipeline ) as device:
+        queues = {}
+        frames = {}
 
-    for stream_id in pipeline_graph.xout_streams:
-        queues[ stream_id ] = device.getOutputQueue( stream_id )
-        frames[ stream_id ] = None
-
-    while True:
         for stream_id in pipeline_graph.xout_streams:
-            get_result = queues[ stream_id ].tryGet()
+            queues[ stream_id ] = device.getOutputQueue( stream_id )
+            frames[ stream_id ] = None
 
-            # RGB Frame
-            if get_result is not None:
-                frames[ stream_id ] = get_result.getCvFrame()
+        while True:
+            for stream_id in pipeline_graph.xout_streams:
+                get_result = queues[ stream_id ].tryGet()
 
-            # SHOW IMAGE
-            if frames[ stream_id ] is not None:
-                cv2.imshow( stream_id, frames[ stream_id ] )
+                # RGB Frame
+                if get_result is not None:
+                    frames[ stream_id ] = get_result.getCvFrame()
 
-        # HANDLE QUIT
-        if cv2.waitKey(1) == ord('q'):
-            break
+                # SHOW IMAGE
+                if frames[ stream_id ] is not None:
+                    cv2.imshow( stream_id, frames[ stream_id ] )
+
+            # HANDLE QUIT
+            if cv2.waitKey(1) == ord('q'):
+                break
+
+
+if __name__ == "__main__":
+    main()

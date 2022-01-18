@@ -1,4 +1,5 @@
 opencv-python
 depthai==2.13.3.0
 pyqt5
+Qt.py
 pathlib

@@ -1,7 +1,4 @@
-PySide2
-Qt.py
-blinker
-nine
-docutils
-depthai==2.10.0.0
 opencv-python
+depthai==2.13.3.0
+pyqt5
+pathlib

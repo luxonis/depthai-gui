@@ -1,49 +1,42 @@
-# DepthAI-GUI
+<img width="1201" alt="Screen Shot 2022-01-06 at 9 37 46 PM" src="https://user-images.githubusercontent.com/6503621/148497367-26ff816c-8a81-443c-9c4e-f598aa316885.png">
 
-**This repository is a fork of PyFlow tool, to learn more about it, please [click here to go to the original repository](https://github.com/wonderworks-software/PyFlow)**
-
-DepthAI GUI is a WYSIWYG tool that allows to create a custom DepthAI pipelines, run them and see the results - all
-in one tool.
-
-It's purpose is to allow users to create computer vision prototypes quickly, focusing on **what** rather than **how**
-
-## Demo
+# Gen2 Visual Pipeline Editor
+This experiment has two components:
+1. A visual graph editor that lets you compose a DepthAI pipeline visually and save it as a JSON file.
+2. A parser for those JSON files that will turn it into a usable DepthAI pipeline
 
 
-[![Gaze Example Demo](https://user-images.githubusercontent.com/5244214/102778186-6729a200-4392-11eb-981a-b2f3db50c2b9.gif)](https://www.youtube.com/watch?v=yNFgp1xrE80)
+## Editor 
+The graph editor is a modified version of [NodeGraphQt](https://github.com/jchanvfx/NodeGraphQt) by Johnny Chan.
 
+### Install Dependencies:
+`python3 install_requirements.py`
 
-## Install 
+### Usage
+`python3 pipeline_editor.py` - Runs the visual pipeline editor
 
+### Navigation
+- Press **Tab** to create new nodes
+- **Right Click** To save/load pipeline graphs
+- You can find a full list of controls in the [NodeGraphQt Documentation](https://jchanvfx.github.io/NodeGraphQt/api/html/examples/ex_overview.html) 
+
+## Parser
+`DAIPipelineGraph` is the graph parser.
+
+### Demo
+`python3 demo.py` - Runs the included ExampleGraph.json pipeline
+
+### Usage
 ```
-pip install depthai-gui
-```
+from DAIPipelineGraph import DAIPipelineGraph
 
-## Usage
+pipeline_graph = DAIPipelineGraph( path=pipeline_path )
 
-To start the GUI, run
-
-```
-depthai-gui
-```
-
-To run a specific example (`example.pygraph`) run
-
-```
-depthai-gui -f /path/to/example.pygraph
-```
-
-## Troubleshooting
-
-### AttributeError: module 'Qt' has no attribute 'QtGui'
-
-We experienced this issue with Qt library on Ubuntu 18.04, and the cause of this error was in missing libraries.
-
-To make it work, please make sure you have the following libraries installed:
-
-```
-sudo apt-get install libgl1-mesa-glx libpulse-dev libxcb-xinerama0 libfontconfig libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-shape0 libxcb-xfixes0 libxcb-xkb1 libxkbcommon-x11-0
+with dai.Device( pipeline_graph.pipeline ) as device:
+  ...
 ```
 
-[Here](https://gist.github.com/VanDavv/62d1940f83fe2059f4734a5a7b40caf7) is a gist showing a working Ubuntu 18.04 example
-installation based on Docker.
+### Accessing Pipeline Data
+- `DAIPipelineGraph.pipeline`: A reference to the DepthAI pipeline
+- `DAIPipelineGraph.nodes`: A table of all the nodes. You can access them via the name you put into the "Node Name" field in the editor. Ex: `pipeline_graph.nodes["rgb_cam"].setPreviewSize(300,300)`
+- `DAIPipelineGraph.xout_streams`: A list of all the names of the XLinkOut streams

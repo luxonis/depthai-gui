@@ -33,6 +33,7 @@ class DAINodeGraph(NodeGraph):
         self.register_node(NeuralNetworkNode)
         self.register_node(ObjectTrackerNode)
         self.register_node(ScriptNode)
+        self.register_node(SpatialLocationCalculatorNode)
         self.register_node(SPIInNode)
         self.register_node(SPIOutNode)
         self.register_node(StereoDepthNode)

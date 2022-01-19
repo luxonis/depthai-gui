@@ -18,14 +18,7 @@ jobs:
     - name: Get current tag
       id: tag
       uses: battila7/get-version-action@v2
-   # Create GitHub release
     - uses: actions/checkout@v2
-    - name: Create folder structure
-      run: mkdir -p wheelhouse/audited/
-    - name: Building source distribution
-      run: |
-        /opt/python/cp38-cp38/bin/python3.8 setup.py sdist --formats=gztar
-        mv dist/* wheelhouse/audited/
     - name: Build wheels
       run: /opt/python/cp38-cp38/bin/python3.8 setup.py sdist bdist_wheel --verbose
     - name: Run deploy to PyPi

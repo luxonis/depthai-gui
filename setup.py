@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="depthai-gui",
-    version="2.0.1",
+    version="2.0.2",
     packages=['.'],
     entry_points={
         'console_scripts': [

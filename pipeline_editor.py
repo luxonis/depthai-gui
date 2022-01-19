@@ -5,12 +5,11 @@ def main():
     from NodeGraphQt import setup_context_menu
     from pathlib import Path
     from DAINodes import DAINodeGraph
-    SCRIPT_DIR = Path(__file__).resolve().parent
 
     parser = argparse.ArgumentParser()
-    parser.add_argument( "-p", "--path", type=str, help="Path to save/load folder, relative to this script file.")
-    parser.add_argument( "-o", "--open", type=str, help="Path to file to open, relative to this script file")
-    args = vars( parser.parse_args() )
+    parser.add_argument( "-p", "--path", type=Path, default=Path(__file__).parent, help="Path to save/load default directory")
+    parser.add_argument( "-o", "--open", type=Path, default=None, help="Path to project file to open")
+    args = parser.parse_args()
 
     app = QtWidgets.QApplication(sys.argv)
 
@@ -18,17 +17,7 @@ def main():
     graph = DAINodeGraph()
 
     # set up default menu and commands.
-    if args[ 'path' ]:
-        filepath = str( SCRIPT_DIR / args[ 'path' ] )
-    else:
-        filepath = str( SCRIPT_DIR )
-
-    if args[ 'open' ]:
-        open_file = str( SCRIPT_DIR / args[ 'open' ] )
-    else:
-        open_file = None
-
-    setup_context_menu( graph, set_default_file_path=filepath, open_file=open_file )
+    setup_context_menu( graph, set_default_file_path=args.path, open_file=args.open)
 
     # show the node graph widget.
     graph_widget = graph.widget

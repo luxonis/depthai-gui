@@ -8,24 +8,24 @@ import re
 
 from Qt import QtCore, QtWidgets, QtGui
 
-from .commands import (NodeAddedCmd,
+from NodeGraphQt.base.commands import (NodeAddedCmd,
                        NodeRemovedCmd,
                        NodeMovedCmd,
                        PortConnectedCmd)
-from .factory import NodeFactory
-from .menu import NodeGraphMenu, NodesMenu
-from .model import NodeGraphModel
-from .node import NodeObject, BackdropNode, BaseNode
-from .port import Port
-from ..constants import (
+from NodeGraphQt.base.factory import NodeFactory
+from NodeGraphQt.base.menu import NodeGraphMenu, NodesMenu
+from NodeGraphQt.base.model import NodeGraphModel
+from NodeGraphQt.base.node import NodeObject, BackdropNode, BaseNode
+from NodeGraphQt.base.port import Port
+from NodeGraphQt.constants import (
     URI_SCHEME, URN_SCHEME,
     NODE_LAYOUT_DIRECTION, NODE_LAYOUT_HORIZONTAL, NODE_LAYOUT_VERTICAL,
     PIPE_LAYOUT_CURVED, PIPE_LAYOUT_STRAIGHT, PIPE_LAYOUT_ANGLE,
     IN_PORT, OUT_PORT,
     VIEWER_GRID_LINES
 )
-from ..widgets.node_space_bar import node_space_bar
-from ..widgets.viewer import NodeViewer
+from NodeGraphQt.widgets.node_space_bar import node_space_bar
+from NodeGraphQt.widgets.viewer import NodeViewer
 
 
 class NodeGraph(QtCore.QObject):

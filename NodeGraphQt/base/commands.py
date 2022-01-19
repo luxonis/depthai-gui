@@ -1,8 +1,8 @@
 #!/usr/bin/python
 from Qt import QtWidgets
 
-from .utils import minimize_node_ref_count
-from ..constants import IN_PORT, OUT_PORT
+from NodeGraphQt.base.utils import minimize_node_ref_count
+from NodeGraphQt.constants import IN_PORT, OUT_PORT
 
 
 class PropertyChangedCmd(QtWidgets.QUndoCommand):

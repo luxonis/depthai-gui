@@ -4,7 +4,7 @@ import os
 
 from Qt import QtWidgets
 
-from .pkg_info import __version__
+from NodeGraphQt.pkg_info import __version__
 
 __doc__ = """
 The ``NodeGraphQt.constants`` namespace contains variables used throughout 

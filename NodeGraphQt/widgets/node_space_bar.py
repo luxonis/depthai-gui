@@ -1,6 +1,6 @@
 from Qt import QtWidgets, QtCore
 
-from .stylesheet import STYLE_SLASH_BUTTON, STYLE_NODE_BUTTON
+from NodeGraphQt.widgets.stylesheet import STYLE_SLASH_BUTTON, STYLE_NODE_BUTTON
 
 
 class node_space_bar(QtWidgets.QWidget):

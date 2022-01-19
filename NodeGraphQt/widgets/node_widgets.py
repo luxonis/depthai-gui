@@ -1,11 +1,11 @@
 #!/usr/bin/python
-from .dialogs import FileDialog
-from .properties import _ValueEdit
-from .stylesheet import *
+from NodeGraphQt.widgets.dialogs import FileDialog
+from NodeGraphQt.widgets.properties import _ValueEdit
+from NodeGraphQt.widgets.stylesheet import *
 
 from Qt import QtCore, QtWidgets, QtGui
-from ..constants import Z_VAL_NODE_WIDGET
-from ..errors import NodeWidgetError
+from NodeGraphQt.constants import Z_VAL_NODE_WIDGET
+from NodeGraphQt.errors import NodeWidgetError
 
 
 class _NodeGroupBox(QtWidgets.QGroupBox):

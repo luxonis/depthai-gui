@@ -3,8 +3,8 @@ import math
 
 from Qt import QtCore, QtGui, QtWidgets
 
-from .port import PortItem
-from ..constants import (
+from NodeGraphQt.qgraphics.port import PortItem
+from NodeGraphQt.constants import (
     PIPE_DEFAULT_COLOR, PIPE_ACTIVE_COLOR,
     PIPE_HIGHLIGHT_COLOR, PIPE_DISABLED_COLOR,
     PIPE_STYLE_DASHED, PIPE_STYLE_DEFAULT, PIPE_STYLE_DOTTED,

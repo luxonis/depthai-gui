@@ -11,17 +11,17 @@ if Qt.IsPySide2:
 elif Qt.IsPyQt5:
     from PyQt5.QtWidgets import QOpenGLWidget
 
-from .dialogs import BaseDialog, FileDialog
-from .scene import NodeScene
-from .tab_search import TabSearchMenuWidget
-from ..base.menu import BaseMenu
-from ..constants import (IN_PORT, OUT_PORT,
+from NodeGraphQt.widgets.dialogs import BaseDialog, FileDialog
+from NodeGraphQt.widgets.scene import NodeScene
+from NodeGraphQt.widgets.tab_search import TabSearchMenuWidget
+from NodeGraphQt.base.menu import BaseMenu
+from NodeGraphQt.constants import (IN_PORT, OUT_PORT,
                          PIPE_LAYOUT_CURVED)
-from ..qgraphics.node_abstract import AbstractNodeItem
-from ..qgraphics.node_backdrop import BackdropNodeItem
-from ..qgraphics.pipe import Pipe, LivePipe
-from ..qgraphics.port import PortItem
-from ..qgraphics.slicer import SlicerPipe
+from NodeGraphQt.qgraphics.node_abstract import AbstractNodeItem
+from NodeGraphQt.qgraphics.node_backdrop import BackdropNodeItem
+from NodeGraphQt.qgraphics.pipe import Pipe, LivePipe
+from NodeGraphQt.qgraphics.port import PortItem
+from NodeGraphQt.qgraphics.slicer import SlicerPipe
 
 ZOOM_MIN = -0.95
 ZOOM_MAX = 2.0

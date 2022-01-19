@@ -1,10 +1,9 @@
 #!/usr/bin/python
 from Qt import QtGui, QtCore, QtWidgets
 
-from ..constants import (VIEWER_BG_COLOR,
+from NodeGraphQt.constants import (VIEWER_BG_COLOR,
                          VIEWER_GRID_SIZE,
                          VIEWER_GRID_COLOR,
-                         VIEWER_GRID_NONE,
                          VIEWER_GRID_DOTS,
                          VIEWER_GRID_LINES)
 

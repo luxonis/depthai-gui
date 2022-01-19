@@ -3,8 +3,8 @@ from collections import defaultdict
 
 from Qt import QtWidgets, QtCore, QtGui
 
-from .dialogs import FileDialog
-from ..constants import (NODE_PROP_QLABEL,
+from NodeGraphQt.widgets.dialogs import FileDialog
+from NodeGraphQt.constants import (NODE_PROP_QLABEL,
                          NODE_PROP_QLINEEDIT,
                          NODE_PROP_QTEXTEDIT,
                          NODE_PROP_QCOMBO,
@@ -1008,7 +1008,7 @@ class NodePropWidget(QtWidgets.QWidget):
 
 if __name__ == '__main__':
     import sys
-    from .. import BaseNode, NodeGraph
+    from NodeGraphQt import BaseNode, NodeGraph
 
 
     class TestNode(BaseNode):

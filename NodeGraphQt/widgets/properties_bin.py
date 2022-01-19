@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from Qt import QtWidgets, QtCore, QtGui, QtCompat
 
-from .properties import NodePropWidget
+from NodeGraphQt.widgets.properties import NodePropWidget
 
 
 class PropertiesDelegate(QtWidgets.QStyledItemDelegate):
@@ -268,8 +268,8 @@ class PropertiesBinWidget(QtWidgets.QWidget):
 
 if __name__ == '__main__':
     import sys
-    from .. import BaseNode, NodeGraph
-    from ..constants import (NODE_PROP_QLABEL,
+    from NodeGraphQt import BaseNode, NodeGraph
+    from NodeGraphQt.constants import (NODE_PROP_QLABEL,
                              NODE_PROP_QLINEEDIT,
                              NODE_PROP_QCOMBO,
                              NODE_PROP_QSPINBOX,

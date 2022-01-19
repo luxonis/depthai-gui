@@ -3,12 +3,9 @@ from distutils.version import LooseVersion
 
 from Qt import QtGui, QtCore
 
-from ..constants import (PIPE_LAYOUT_CURVED,
+from NodeGraphQt.constants import (PIPE_LAYOUT_CURVED,
                          PIPE_LAYOUT_STRAIGHT,
-                         PIPE_LAYOUT_ANGLE,
-                         NODE_LAYOUT_VERTICAL,
-                         NODE_LAYOUT_HORIZONTAL,
-                         NODE_LAYOUT_DIRECTION)
+                         PIPE_LAYOUT_ANGLE)
 
 
 default_file_path = None
@@ -493,7 +490,7 @@ def _sort_nodes(graph, start_nodes, reverse=True):
 
 
 def __remove_BackdropNode(nodes):
-    from .node import BackdropNode
+    from NodeGraphQt.node import BackdropNode
     for node in nodes[:]:
         if isinstance(node, BackdropNode):
             nodes.remove(node)
@@ -641,8 +638,8 @@ def minimize_node_ref_count(node):
         if hasattr(node, 'deleted'):
             del node
             return
-        from .node import BaseNode
-        from .graph import SubGraph
+        from NodeGraphQt.node import BaseNode
+        from NodeGraphQt.graph import SubGraph
         node._parent = None
         if isinstance(node, BaseNode):
             try:

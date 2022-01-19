@@ -1,11 +1,11 @@
 #!/usr/bin/python
 from collections import OrderedDict
 
-from .commands import PropertyChangedCmd
-from .model import NodeModel
-from .port import Port
-from .utils import update_node_down_stream
-from ..constants import (NODE_PROP,
+from NodeGraphQt.base.commands import PropertyChangedCmd
+from NodeGraphQt.base.model import NodeModel
+from NodeGraphQt.base.port import Port
+from NodeGraphQt.base.utils import update_node_down_stream
+from NodeGraphQt.constants import (NODE_PROP,
                          NODE_PROP_QLABEL,
                          NODE_PROP_QLINEEDIT,
                          NODE_PROP_QTEXTEDIT,
@@ -18,10 +18,10 @@ from ..constants import (NODE_PROP,
                          NODE_LAYOUT_VERTICAL,
                          NODE_LAYOUT_HORIZONTAL,
                          NODE_LAYOUT_DIRECTION)
-from ..errors import PortRegistrationError, NodeWidgetError
-from ..qgraphics.node_backdrop import BackdropNodeItem
-from ..qgraphics.node_base import NodeItem, NodeItemVertical
-from ..widgets.node_widgets import (NodeBaseWidget,
+from NodeGraphQt.errors import PortRegistrationError, NodeWidgetError
+from NodeGraphQt.qgraphics.node_backdrop import BackdropNodeItem
+from NodeGraphQt.qgraphics.node_base import NodeItem, NodeItemVertical
+from NodeGraphQt.widgets.node_widgets import (NodeBaseWidget,
                                     NodeComboBox,
                                     NodeLineEdit,
                                     NodeFloatEdit,

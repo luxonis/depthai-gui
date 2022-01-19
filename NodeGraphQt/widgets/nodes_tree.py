@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from Qt import QtWidgets, QtCore, QtGui
 
-from ..constants import URN_SCHEME
+from NodeGraphQt.constants import URN_SCHEME
 
 TYPE_NODE = QtWidgets.QTreeWidgetItem.UserType + 1
 TYPE_CATEGORY = QtWidgets.QTreeWidgetItem.UserType + 2

@@ -1,6 +1,6 @@
 import os
 
-from .properties import PropFileSavePath
+from NodeGraphQt.widgets.properties import PropFileSavePath
 from Qt import QtWidgets
 
 

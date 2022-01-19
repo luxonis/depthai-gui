@@ -7,8 +7,8 @@ with open('requirements.txt') as f:
 
 setup(
     name="depthai-gui",
-    version="2.0.2",
-    packages=['.'],
+    version="2.0.3",
+    packages=['.', *find_packages()],
     entry_points={
         'console_scripts': [
             'depthai-gui = pipeline_editor:main',
@@ -16,6 +16,7 @@ setup(
         ]
     },
     author="Luxonis",
+    include_package_data=True,
     long_description=io.open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     author_email="support@luxonis.com",

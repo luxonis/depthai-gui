@@ -17,7 +17,7 @@ def main():
     graph = DAINodeGraph()
 
     # set up default menu and commands.
-    setup_context_menu( graph, set_default_file_path=args.path, open_file=args.open)
+    setup_context_menu( graph, set_default_file_path=str(args.path), open_file=args.open)
 
     # show the node graph widget.
     graph_widget = graph.widget
